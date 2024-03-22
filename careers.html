@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | H.A.V.E.N. Command</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            color: #00f;
+            text-shadow: 0 0 10px #00f, 0 0 20px #00f, 0 0 30px #00f;
+        }
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+            text-shadow: 0 0 10px #00f, 0 0 20px #00f, 0 0 30px #00f;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+        .job {
+            margin-bottom: 20px;
+        }
+        .job h3 {
+            color: #fff;
+        }
+        form {
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        form input[type="text"],
+        form input[type="email"],
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+        form textarea {
+            resize: vertical;
+        }
+        form input[type="submit"] {
+            background-color: #00f;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        form input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>H.A.V.E.N. Command</h1>
+    </header>
+    <nav>
+        <a href="index.html#home">Home</a>
+        <a href="index.html#about">About Us</a>
+        <a href="index.html#approach">Our Approach</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="careers.html">Careers</a>
+        <a href="index.html#contact">Contact Us</a>
+    </nav>
+    <div class="container">
+        <h2>Careers at H.A.V.E.N. Command</h2>
+        <div class="job">
+            <h3>Game Developer Intern</h3>
+            <p>We are seeking a talented Game Developer Intern to assist in the development of our gaming projects. Responsibilities include coding, debugging, and implementing game features, as well as collaborating with the design and art teams to ensure a cohesive gaming experience.</p>
+        </div>
+        <div class="job">
+            <h3>2D/3D Modeling and Topology Intern</h3>
+            <p>Join our modeling and topology team as an Intern and help create stunning visual assets for our games. Responsibilities include modeling and texturing characters, environments, and props, as well as optimizing assets for performance and scalability.</p>
+        </div>
+        <div class="job">
+            <h3>Game Design Intern</h3>
+            <p>We are looking for a creative Game Design Intern to assist in the development of game concepts, mechanics, and levels. Responsibilities include designing and prototyping gameplay features, balancing game systems, and analyzing player feedback to improve overall game experience.</p>
+        </div>
+        <div class="job">
+            <h3>Audio Engineer Intern</h3>
+            <p>Join our audio engineering team as an Intern and assist in creating immersive soundscapes for our games. Responsibilities include recording and editing audio assets, implementing sound effects and music, and collaborating with the design team to enhance player immersion.</p>
+        </div>
+        <div class="job">
+            <h3>Marketing Intern</h3>
+            <p>We are seeking a Marketing Intern to assist in promoting our games and engaging with our community. Responsibilities include creating marketing materials, managing social media channels, analyzing marketing data, and assisting in the development of marketing strategies.</p>
+        </div>
+        <h3>Apply Now</h3>
+<form action="mailto:contact@havencommand.com" method="post" enctype="multipart/form-data">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" required><br>
+    <label for="phone">Phone Number:</label><br>
+    <input type="tel" id="phone" name="phone" required><br>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br>
+    <label for="experience">Experience:</label><br>
+    <textarea id="experience" name="experience" rows="4" maxlength="1000" required></textarea><br>
+    <label for="resume">Upload Resume:</label><br>
+    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required><br>
+    <input type="submit" value="Submit">
+</form>
+    </div>
+    <footer>
+        <p>&copy; 2024 H.A.V.E.N. Command. All rights reserved.</p>
+    </footer>
+</body>
+</html>
