@@ -32,7 +32,16 @@
             background-attachment: fixed;
             color: #fff;
         }
+        .container {
+            padding-top: 90px; /* Adjust this value based on the height of your fixed header */
+        }
 
+        :target:before {
+            content:"";
+            display:block;
+            height:90px; /* Adjust this value based on the height of your fixed header */
+            margin:-90px 0 0; /* Adjust this value based on the height of your fixed header */
+        }
         .haven-font {
             font-family: 'Haven', sans-serif;
         }
