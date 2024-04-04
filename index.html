@@ -50,23 +50,22 @@
         }
 
         .header-title {
-            flex-grow: 1;
             text-align: center;
             margin: 0;
             font-size: 1.5rem; /* Adjust as needed */
+            flex-grow: 1;
         }
 
         .logo {
-            max-width: 100px; /* Adjust as needed */
-            max-height: 100px; /* Adjust as needed */
+            max-width: 60px; /* Adjust as needed */
+            max-height: 60px; /* Adjust as needed */
             width: auto;
             height: auto;
-            margin: 0 10px;
         }
 
         nav {
             position: fixed;
-            top: 60px; /* Adjust based on header's actual height */
+            top: calc(60px + 10px); /* Adjust based on header's actual height and padding */
             width: 100%;
             z-index: 101;
             background-color: rgba(0, 0, 0, 0.8);
@@ -82,8 +81,17 @@
             font-size: 1rem; /* Adjust as needed */
         }
 
+        .link-top-right {
+            position: fixed;
+            top: 20px; /* Adjust as needed */
+            right: 20px; /* Adjust as needed */
+            font-size: 1rem; /* Adjust as needed */
+            color: #fff;
+            text-decoration: none;
+        }
+
         .container {
-            margin-top: 120px; /* Adjust based on total height of header and nav */
+            margin-top: calc(60px + 60px + 10px); /* Adjust based on total height of header, logo, and padding */
             padding: 20px;
             max-width: 1200px;
             margin-left: auto;
@@ -122,16 +130,6 @@
             border-radius: 8px;
         }
 
-        .link-top-right {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 0.8rem; /* Adjust as needed */
-            color: #fff;
-            text-decoration: none;
-            text-shadow: 0 0 5px #00f, 0 0 10px #00f;
-        }
-
         @media screen and (max-width: 768px) {
             .header-title {
                 font-size: 1.2rem;
@@ -143,15 +141,15 @@
             }
 
             nav {
-                top: 50px;
+                top: calc(50px + 10px); /* Adjust based on header's actual height and padding */
             }
 
             nav a {
-                font-size: 0.9rem;
+                font-size: 0.9rem; /* Adjust as needed */
             }
 
             .container {
-                margin-top: 100px;
+                margin-top: calc(50px + 50px + 10px); /* Adjust based on total height of header, logo, and padding */
             }
 
             .project img {
@@ -166,16 +164,16 @@
             <img src="images/HavenIcon.png" alt="Left Logo">
         </div>
         <h1 class="header-title">H.A.V.E.N. Command</h1>
-        <a class="link-top-right" href="https://privateemail.com/">Private Email</a> <!-- Link in the top right corner -->
     </header>
     <nav>
         <a href="#home">Home</a>
         <a href="#about">About Us</a>
         <a href="#approach">Our Approach</a>
         <a href="#projects">Projects</a>
-        <a href="careers.html">Careers</a>
         <a href="#contact">Contact Us</a>
+        <a href="careers.html">Careers</a>
     </nav>
+    <a class="link-top-right" href="https://privateemail.com/">Private Email</a> <!-- Link in the top right corner -->
     <div class="container">
         <h2 id="home">Welcome to H.A.V.E.N. Command</h2>
         <h3 id="about">About Us</h3>
