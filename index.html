@@ -40,9 +40,10 @@
         header {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
             background-color: rgba(0, 0, 0, 0.8);
-            padding: 10px;
+            padding: 20px 30px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -50,22 +51,26 @@
         }
 
         .logo {
-            max-width: 30px; /* Adjust as needed */
-            max-height: 30px; /* Adjust as needed */
-            width: auto;
-            height: auto;
-            margin-left: 20px;
+            width: 30px;
+            height: 30px;
+            margin-right: 20px;
+        }
+
+        .title {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
         }
 
         .email-link {
-            margin-right: 20px;
-            font-size: 0.8rem; /* Adjust as needed */
+            font-size: 0.8rem;
             color: #fff;
             text-decoration: none;
         }
 
         nav {
-            margin-top: 60px; /* Adjust as needed */
+            margin-top: 70px; /* Adjust as needed */
             width: 100%;
             background-color: rgba(0, 0, 0, 0.8);
             padding: 10px 0;
@@ -79,7 +84,7 @@
             text-decoration: none;
             margin: 0 10px;
             font-weight: bold;
-            font-size: 1rem; /* Adjust as needed */
+            font-size: 1rem;
         }
 
         .container {
@@ -123,17 +128,17 @@
         }
 
         @media screen and (max-width: 768px) {
-            .header-top {
-                padding: 10px 0;
+            .logo {
+                width: 25px;
+                height: 25px;
             }
 
-            .logo {
-                max-width: 50px;
-                max-height: 50px;
+            .title {
+                font-size: 1.2rem;
             }
 
             .email-link {
-                font-size: 0.7rem; /* Adjust as needed */
+                font-size: 0.7rem;
             }
 
             nav {
@@ -157,9 +162,10 @@
 <body>
     <header>
         <div class="logo"><!-- Logo on the left -->
-            <img src="images/HavenIcon.png" alt="Logo">
+            <img src="images/HavenIcon.png" alt="Left Logo">
         </div>
-        <h1 class="header-title">H.A.V.E.N. Command</h1>
+        <h1 class="title">H.A.V.E.N. Command</h1>
+        <a href="https://privateemail.com/" target="_blank" class="email-link">Email Login</a> <!-- Link in the top right corner -->
     </header>
     <nav>
         <a href="#home">Home</a>
