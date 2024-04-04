@@ -37,20 +37,21 @@
             font-family: 'Haven', sans-serif;
         }
 
-        .header-top {
+        header {
             position: fixed;
             top: 0;
             width: 100%;
             background-color: rgba(0, 0, 0, 0.8);
             padding: 10px;
             display: flex;
+            align-items: center;
             justify-content: space-between;
             z-index: 100;
         }
 
         .logo {
-            max-width: 60px; /* Adjust as needed */
-            max-height: 60px; /* Adjust as needed */
+            max-width: 30px; /* Adjust as needed */
+            max-height: 30px; /* Adjust as needed */
             width: auto;
             height: auto;
             margin-left: 20px;
@@ -154,12 +155,12 @@
     </style>
 </head>
 <body>
-    <div class="header-top">
+    <header>
         <div class="logo"><!-- Logo on the left -->
-            <img src="images/HavenIcon.png" alt="Left Logo">
+            <img src="images/HavenIcon.png" alt="Logo">
         </div>
-        <a href="https://privateemail.com/" target="_blank" class="email-link">Email Login</a> <!-- Link in the top right corner -->
-    </div>
+        <h1 class="header-title">H.A.V.E.N. Command</h1>
+    </header>
     <nav>
         <a href="#home">Home</a>
         <a href="#about">About Us</a>
