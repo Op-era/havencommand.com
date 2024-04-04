@@ -42,51 +42,49 @@
             justify-content: space-between;
             align-items: center;
             position: fixed;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 1);
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
             text-align: center;
-            text-shadow: 0 0 10px #00f, 0 0 20px #00f, 0 0 30px #00f;
             top: 0;
             width: 100%;
             z-index: 100;
         }
+
         .header-title {
             flex-grow: 1;
             text-align: center;
-            margin: 0; /*Adjust as needed */
+            margin: 0;
+            font-size: 1.5rem; /* Adjust as needed */
         }
-        .logo img {
-            max-width: 100px; /* Adjust to your preferred max width */
-            max-height: 100px; /* Adjust to your preferred max height */
+
+        .logo {
+            max-width: 80px; /* Adjust as needed */
+            max-height: 80px; /* Adjust as needed */
             width: auto;
             height: auto;
-            margin: 0 50px;
-            
-}
+            margin: 0 10px;
+        }
 
-nav {
-    position: fixed;
-    top: 107px; /* Update this based on header's actual height */
-    width: 100%;
-    z-index: 101;
-    background-color: rgba(0, 0, 0, 0.8); /* Ensure visibility against the background */
-    padding: 10px;
-    text-align: center;
-    display: block !important; /* Temporarily ensure display is not none */
-    visibility: visible !important; /* Temporarily ensure visibility is not hidden */
-    opacity: 1 !important; /* Temporarily ensure it's fully opaque */
-}
+        nav {
+            position: fixed;
+            top: 60px; /* Adjust based on header's actual height */
+            width: 100%;
+            z-index: 101;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            text-align: center;
+        }
 
         nav a {
             color: #fff;
             text-decoration: none;
-            margin: 0 15px;
+            margin: 0 10px;
             font-weight: bold;
-            text-shadow: 0 0 10px #00f, 0 0 20px #00f, 0 0 30px #00f;
+            font-size: 1rem; /* Adjust as needed */
         }
 
         .container {
-            margin-top: 168px; /* Adjust based on total height of header and nav */
+            margin-top: 120px; /* Adjust based on total height of header and nav */
             padding: 20px;
             max-width: 1200px;
             margin-left: auto;
@@ -97,7 +95,7 @@ nav {
         }
 
         .project {
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             padding: 20px;
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 8px;
@@ -106,7 +104,7 @@ nav {
         }
 
         .project img {
-            width: 200px;
+            width: 150px;
             border-radius: 8px;
             margin-right: 20px;
         }
@@ -119,20 +117,58 @@ nav {
         }
 
         .contact {
-            margin-top: 40px;
+            margin-top: 20px;
             padding: 20px;
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 8px;
+        }
+
+        .link-top-right {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 0.8rem; /* Adjust as needed */
+            color: #fff;
+            text-decoration: none;
+            text-shadow: 0 0 5px #00f, 0 0 10px #00f;
+        }
+
+        @media screen and (max-width: 768px) {
+            .header-title {
+                font-size: 1.2rem;
+            }
+
+            .logo {
+                max-width: 60px;
+                max-height: 60px;
+            }
+
+            nav {
+                top: 50px;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+            }
+
+            .container {
+                margin-top: 100px;
+            }
+
+            .project img {
+                width: 120px;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo left-logo"><!-- Logo on the left -->
+        <div class="logo"><!-- Logo on the left -->
             <img src="images/HavenIcon.png" alt="Left Logo">
         </div>
         <h1 class="header-title">H.A.V.E.N. Command</h1>
-        <div class="logo right-logo"><!-- Logo on the right -->
+        <a class="link-top-right" href="https://privateemail.com/">Private Email</a> <!-- Link in the top right corner -->
+        <div class="logo"><!-- Logo on the right -->
             <img src="images/HavenIcon.png" alt="Right Logo">
         </div>
     </header>
@@ -146,19 +182,19 @@ nav {
     </nav>
     <div class="container">
         <h2 id="home">Welcome to H.A.V.E.N. Command</h2>
-            <h3 id="about">About Us</h3>
-                <p>Haven Command,LLC is a leading game development studio specializing in creating immersive gaming experiences that transport players to new worlds and ignite their imagination. With a dedicated team of passionate individuals, we push the boundaries of what's possible in gaming, combining cutting-edge technology with captivating storytelling to deliver unforgettable adventures.</p>
-                <p>Our mission is to redefine interactive entertainment and unlock the endless possibilities of gaming. We believe in creating games that not only entertain but also inspire, leaving a lasting impact on players worldwide. Join us on our journey as we continue to push creative boundaries and shape the future of gaming.</p>
-            <h3 id="approach">Our Approach to Game Development</h3>
-                <p>At Haven Command, LLC, we believe in pushing the boundaries of game development by combining cutting-edge technology with captivating storytelling. Our team consists of passionate individuals who are dedicated to creating immersive experiences that resonate with players worldwide. With a focus on innovation and creativity, we strive to deliver games that not only entertain but also inspire.</p>
-            <h3 id="projects">Our Projects</h3>
-    <div class="project">
-        <img src="images/Maze.png" alt="The Maze Trials Concept Art">
-        <div>
-            <h4>Project 1: The Maze Trials</h4>
-            <p>Survive the challenges of the labyrinth in this thrilling adventure. Dive into a world of mystery and danger as you navigate through intricate puzzles and evade deadly traps.</p>
+        <h3 id="about">About Us</h3>
+        <p>Haven Command, LLC is a leading game development studio specializing in creating immersive gaming experiences that transport players to new worlds and ignite their imagination. With a dedicated team of passionate individuals, we push the boundaries of what's possible in gaming, combining cutting-edge technology with captivating storytelling to deliver unforgettable adventures.</p>
+        <p>Our mission is to redefine interactive entertainment and unlock the endless possibilities of gaming. We believe in creating games that not only entertain but also inspire, leaving a lasting impact on players worldwide. Join us on our journey as we continue to push creative boundaries and shape the future of gaming.</p>
+        <h3 id="approach">Our Approach to Game Development</h3>
+        <p>At Haven Command, LLC, we believe in pushing the boundaries of game development by combining cutting-edge technology with captivating storytelling. Our team consists of passionate individuals who are dedicated to creating immersive experiences that resonate with players worldwide. With a focus on innovation and creativity, we strive to deliver games that not only entertain but also inspire.</p>
+        <h3 id="projects">Our Projects</h3>
+        <div class="project">
+            <img src="images/Maze.png" alt="The Maze Trials Concept Art">
+            <div>
+                <h4>Project 1: The Maze Trials</h4>
+                <p>Survive the challenges of the labyrinth in this thrilling adventure. Dive into a world of mystery and danger as you navigate through intricate puzzles and evade deadly traps.</p>
+            </div>
         </div>
-    </div>
     <div class="project">
     <img src="images/haven.png" alt="HAVEN Concept Art">
         <div>
