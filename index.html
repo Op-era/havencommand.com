@@ -88,8 +88,18 @@
         .logo {
             width: 60px;
             height: 60px;
+            display: block;
+            flex-shrink: 0;
+        }
+
+        header > div:first-child {
+            flex: 1;
+            min-width: 0;
+        }
+
+        header > div:last-child {
+            flex-shrink: 0;
             margin-left: 20px;
-            align: left
         }
 
         .title {
@@ -166,6 +176,10 @@
             .logo {
                 width: 25px;
                 height: 25px;
+            }
+
+            header > div:last-child {
+                margin-left: 10px;
             }
 
             .title {
