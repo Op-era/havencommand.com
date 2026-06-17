@@ -208,6 +208,24 @@
                 width: 120px;
             }
         }
+
+        #lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.92);
+            z-index: 1000;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+        }
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 6px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+        }
     </style>
 </head>
 <body>
@@ -236,15 +254,19 @@
         <h3 id="approach">Our Approach to Software and Game Development</h3>
         <p>At Haven Command, LLC, we believe in pushing the boundaries of both software and game development. Our team is dedicated to building products that are as technically excellent as they are engaging — from chess platforms and web applications to immersive RPGs and adventure games. With a focus on innovation and creativity, we strive to deliver software that not only works beautifully but also inspires.</p>
         <h3 id="projects">Our Projects</h3>
+        <div id="lightbox" onclick="closeLightbox()">
+            <img id="lightbox-img" src="" alt="Full screen preview">
+        </div>
+
         <div class="project">
-            <img src="images/websiteCognitionBG.jpg" alt="Cognition Concept Art">
+            <img src="images/websiteCognitionBG.jpg" alt="Cognition Concept Art" style="cursor:pointer;" onclick="openLightbox(this.src)">
             <div>
                 <h4>Project 1: Cognition</h4>
                 <p>Survive the challenges of the labyrinth in this thrilling adventure. Dive into a world of mystery and danger as you navigate through intricate puzzles and evade deadly traps.</p>
             </div>
         </div>
     <div class="project">
-    <img src="images/d4chess-logo.png" alt="D4Chess Logo">
+    <a href="https://d4chess.club" target="_blank"><img src="images/d4chess-logo.png" alt="D4Chess Logo" style="cursor:pointer;"></a>
         <div>
             <h4>Project 2: D4Chess</h4>
             <p>A modern online chess platform. Play, compete, and sharpen your game with a clean and fast chess experience built for players of all levels. <strong>The waitlist is now open</strong> — sign up at <a href="http://d4chess.club" target="_blank" style="color:#fff;">d4chess.club</a>.</p>
@@ -287,6 +309,16 @@
     <p>© 2024 Haven Command LLC. All rights reserved.</p>
 </footer>
 <script>
+    function openLightbox(src) {
+        const lb = document.getElementById('lightbox');
+        document.getElementById('lightbox-img').src = src;
+        lb.style.display = 'flex';
+    }
+    function closeLightbox() {
+        document.getElementById('lightbox').style.display = 'none';
+    }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
     document.addEventListener('DOMContentLoaded', (event) => {
     const bodyContent = document.body.innerHTML;
     document.body.innerHTML = bodyContent.replace(/H.A.V.E.N./g, '<span class="haven-font">H.A.V.E.N.</span>');});
