@@ -5,7 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="robots" content="noindex, nofollow"/>
 <script>
-if (sessionStorage.getItem('hc_admin') !== '2122ce7828b5a346e9edff2441b7dfa491a99197cd944af85696dcb95c0870fb') {
+const _valid = new Set([
+  '2122ce7828b5a346e9edff2441b7dfa491a99197cd944af85696dcb95c0870fb',
+  '43f421304d1699f9d2f010353bf9f5eb9eb7ed1f45dca6cc3d31661df2be9c4e'
+]);
+if (!_valid.has(sessionStorage.getItem('hc_admin'))) {
   window.location.replace('../index.html');
 }
 </script>

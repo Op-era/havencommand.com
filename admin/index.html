@@ -67,8 +67,14 @@ const ALLOWED = [
   {
     emailHash: '12dc4180b5ec213d5b666cf709eaec6a32719b0155252f1feabfca480c9b9b79',
     passHash:  '2122ce7828b5a346e9edff2441b7dfa491a99197cd944af85696dcb95c0870fb'
+  },
+  {
+    emailHash: 'b51e5be810078bbb02d8be6ed4389c0a00d2f605038c9bf0313be065aca5145b',
+    passHash:  '43f421304d1699f9d2f010353bf9f5eb9eb7ed1f45dca6cc3d31661df2be9c4e'
   }
 ];
+
+const VALID_HASHES = new Set(ALLOWED.map(a => a.passHash));
 
 async function sha256(str) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
@@ -81,7 +87,7 @@ async function login() {
   const eHash = await sha256(email);
   const pHash = await sha256(pass);
 
-  const match = ALLOWED.some(a => a.passHash === pHash);
+  const match = ALLOWED.some(a => a.emailHash === eHash && a.passHash === pHash);
   if (match) {
     sessionStorage.setItem('hc_admin', pHash);
     window.location.href = 'report/index.html';
@@ -90,8 +96,9 @@ async function login() {
   }
 }
 
-// If already authed this session, skip login
-if (sessionStorage.getItem('hc_admin') === '2122ce7828b5a346e9edff2441b7dfa491a99197cd944af85696dcb95c0870fb') {
+// If already authed this session with any valid hash, skip login
+const stored = sessionStorage.getItem('hc_admin');
+if (stored && VALID_HASHES.has(stored)) {
   window.location.href = 'report/index.html';
 }
 </script>
