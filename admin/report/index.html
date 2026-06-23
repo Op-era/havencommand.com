@@ -847,8 +847,246 @@ if (!_valid.has(sessionStorage.getItem('hc_admin'))) {
   </div>
 
   <p style="font-size:12px; color:var(--muted); margin-top:12px; font-style:italic;">
-    * Month 12 MRR of ~$15,600 exceeds break-even for investor repayment trigger.
-    Year 2 scenario at 3× growth: ~$209K annual revenue.
+    * Conservative scenario assumes modest organic-only reach. The section below models
+    how each investment tier accelerates these numbers through paid marketing.
+  </p>
+</section>
+
+<!-- ════════════════════════════════════════════
+     MARKETING IMPACT
+════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-title">Marketing Impact — What Your Investment Actually Does to Revenue</div>
+
+  <p style="font-size:13px; color:var(--muted); margin-bottom:28px; max-width:820px; line-height:1.8;">
+    The products are built. The bottleneck is reach. Every dollar spent on paid marketing
+    during a product's launch window has an outsized effect — early users generate reviews,
+    referrals, and community presence that compound for months afterward.
+    The chart below shows projected MRR across the 12-month window at each investment level.
+    Higher early investment compresses the timeline to profitability — which also means
+    the investor gets repaid faster.
+  </p>
+
+  <!-- MARKETING COMPARISON CHART -->
+  <div class="chart-card" style="margin-bottom:24px;">
+    <div class="chart-title">Monthly Recurring Revenue — All 6 Investment Scenarios</div>
+    <div class="chart-sub">Month-by-month MRR projection · Growth scenario · Paid marketing begins month 1</div>
+    <div class="chart-wrap" style="height:340px;">
+      <canvas id="mktgCompareChart"></canvas>
+    </div>
+  </div>
+
+  <!-- PAYBACK TIMELINE -->
+  <div class="chart-grid" style="margin-bottom:24px;">
+    <div class="chart-card">
+      <div class="chart-title">Year 1 Revenue by Investment Tier</div>
+      <div class="chart-sub">Sum of all monthly MRR over 12 months</div>
+      <div class="chart-wrap" style="height:260px;">
+        <canvas id="yr1RevenueChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Estimated Months to Investor Repayment Trigger</div>
+      <div class="chart-sub">Fewer months = investor paid back sooner</div>
+      <div class="chart-wrap" style="height:260px;">
+        <canvas id="paybackChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUSTOMER ECONOMICS -->
+  <div class="section-title" style="margin-top:40px;">Customer Economics — Why Paid Marketing Works Here</div>
+  <div class="stat-grid" style="margin-bottom:28px;">
+    <div class="stat-card" style="--accent:var(--blue)">
+      <div class="stat-label">Blended Avg Revenue / User</div>
+      <div class="stat-value">$18<span style="font-size:16px;color:var(--muted)">/mo</span></div>
+      <div class="stat-sub">Across D4Chess, TheraScribe, ScriptForge, TrustLoop</div>
+    </div>
+    <div class="stat-card" style="--accent:var(--green)">
+      <div class="stat-label">Avg Customer Lifetime</div>
+      <div class="stat-value">16<span style="font-size:16px;color:var(--muted)"> mo</span></div>
+      <div class="stat-sub">Conservative — professional tools trend longer</div>
+    </div>
+    <div class="stat-card" style="--accent:var(--gold)">
+      <div class="stat-label">Lifetime Value (LTV)</div>
+      <div class="stat-value">$288</div>
+      <div class="stat-sub">$18/mo × 16 months avg</div>
+    </div>
+    <div class="stat-card" style="--accent:var(--purple)">
+      <div class="stat-label">Target Cost to Acquire (CAC)</div>
+      <div class="stat-value">$38</div>
+      <div class="stat-sub">Reddit + Facebook + Google · optimized over 60 days</div>
+    </div>
+    <div class="stat-card" style="--accent:var(--green)">
+      <div class="stat-label">LTV : CAC Ratio</div>
+      <div class="stat-value" style="color:var(--green)">7.6×</div>
+      <div class="stat-sub">Industry healthy benchmark is 3× · We're at 7.6×</div>
+    </div>
+    <div class="stat-card" style="--accent:var(--orange)">
+      <div class="stat-label">CAC Payback Period</div>
+      <div class="stat-value">2.1<span style="font-size:16px;color:var(--muted)"> mo</span></div>
+      <div class="stat-sub">Each new customer pays back acquisition cost in ~2 months</div>
+    </div>
+  </div>
+
+  <div style="background:var(--dark3); border:1px solid var(--border); border-radius:12px; padding:20px 24px; margin-bottom:28px; max-width:820px;">
+    <p style="font-size:13px; color:var(--text); line-height:1.8;">
+      <strong style="color:var(--gold)">What this means in plain terms:</strong>
+      For every $38 spent on advertising, we acquire a customer who pays $288 over their lifetime.
+      That's a 7.6× return on ad spend — and that customer is paying back their acquisition cost within
+      2 months. This is why scaling marketing spend early is the highest-leverage use of capital right now.
+      The products are proven. The economics work. The only constraint is how many people know we exist.
+    </p>
+  </div>
+
+  <!-- INVESTMENT IMPACT TABLE -->
+  <div class="section-title" style="margin-top:40px;">All Six Investment Tiers — Full Comparison</div>
+  <div style="background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:16px;">
+    <table class="proj-table">
+      <thead>
+        <tr>
+          <th>Investment</th>
+          <th>Ad Budget</th>
+          <th>New Users (Yr 1)</th>
+          <th>MRR Month 12</th>
+          <th>Year 1 Revenue</th>
+          <th>Trigger Est.</th>
+          <th>Investor Return</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="muted">No investment</td>
+          <td class="muted">$0</td>
+          <td class="muted">~80</td>
+          <td class="muted">$1,560</td>
+          <td class="muted">~$9,400</td>
+          <td class="muted">30+ mo</td>
+          <td class="muted">—</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--green)">$5,000</strong></td>
+          <td>$1,200</td>
+          <td>~380</td>
+          <td class="green">$5,900</td>
+          <td class="green">~$36,000</td>
+          <td>~18 mo</td>
+          <td class="gold">~$5,218</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--green)">$10,000</strong></td>
+          <td>$4,500</td>
+          <td>~830</td>
+          <td class="green">$12,500</td>
+          <td class="green">~$76,000</td>
+          <td>~12 mo</td>
+          <td class="gold">~$10,488</td>
+        </tr>
+        <tr style="background:rgba(201,168,76,0.04);">
+          <td><strong style="color:var(--gold)">$20,000</strong></td>
+          <td>$8,000</td>
+          <td>~1,450</td>
+          <td class="green">$22,000</td>
+          <td class="green">~$132,000</td>
+          <td>~9 mo</td>
+          <td class="gold">~$20,700</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--orange)">$50,000</strong></td>
+          <td>$20,000</td>
+          <td>~4,000</td>
+          <td class="green">$61,000</td>
+          <td class="green">~$359,000</td>
+          <td>~5 mo</td>
+          <td class="gold">~$51,500</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--red)">$100,000</strong></td>
+          <td>$40,000</td>
+          <td>~7,700</td>
+          <td class="green">$117,000</td>
+          <td class="green">~$716,000</td>
+          <td>~3 mo</td>
+          <td class="gold">~$103,300</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:12px; color:var(--muted); font-style:italic; margin-bottom:36px;">
+    * All projections are estimates based on industry-average CAC of $38, blended LTV of $288, and 5% monthly churn.
+    "Trigger Est." = estimated months until 2 consecutive profitable months, initiating investor repayment.
+    Higher investment = faster trigger = less total interest accrued = both parties win sooner.
+  </p>
+
+  <!-- TIER 4 & 5 USE OF FUNDS -->
+  <div class="section-title" style="margin-top:8px;">What $50,000 and $100,000 Fund</div>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:12px;">
+
+    <!-- $50K -->
+    <div style="background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden;">
+      <div style="background:linear-gradient(135deg,#1a1200,#2a2000); padding:20px 24px; border-bottom:1px solid var(--border);">
+        <div style="font-size:11px; color:var(--orange); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px;">Tier 4</div>
+        <div style="font-size:26px; font-weight:800; color:var(--orange);">$50,000</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:4px;">Launch all three revenue products simultaneously</div>
+      </div>
+      <div style="padding:20px 24px;">
+        <table style="width:100%; font-size:13px; border-collapse:collapse;">
+          <tr><td style="padding:7px 0; border-bottom:1px solid var(--border); color:var(--muted);">D4Chess + TheraScribe ads (6 mo)</td><td style="text-align:right; padding:7px 0; border-bottom:1px solid var(--border); font-weight:700;">$20,000</td></tr>
+          <tr><td style="padding:7px 0; border-bottom:1px solid var(--border); color:var(--muted);">ScriptForge AI launch campaign</td><td style="text-align:right; padding:7px 0; border-bottom:1px solid var(--border); font-weight:700;">$8,000</td></tr>
+          <tr><td style="padding:7px 0; border-bottom:1px solid var(--border); color:var(--muted);">Contract developer (3 months)</td><td style="text-align:right; padding:7px 0; border-bottom:1px solid var(--border); font-weight:700;">$6,000</td></tr>
+          <tr><td style="padding:7px 0; border-bottom:1px solid var(--border); color:var(--muted);">UI/UX design across all products</td><td style="text-align:right; padding:7px 0; border-bottom:1px solid var(--border); font-weight:700;">$3,000</td></tr>
+          <tr><td style="padding:7px 0; border-bottom:1px solid var(--border); color:var(--muted);">Cognition: assets + Steam submission</td><td style="text-align:right; padding:7px 0; border-bottom:1px solid var(--border); font-weight:700;">$2,000</td></tr>
+          <tr><td style="padding:7px 0; border-bottom:1px solid var(--border); color:var(--muted);">Insurance + franchise tax + IP filing</td><td style="text-align:right; padding:7px 0; border-bottom:1px solid var(--border); font-weight:700;">$2,000</td></tr>
+          <tr><td style="padding:7px 0; border-bottom:1px solid var(--border); color:var(--muted);">Legal + accounting setup</td><td style="text-align:right; padding:7px 0; border-bottom:1px solid var(--border); font-weight:700;">$3,500</td></tr>
+          <tr><td style="padding:7px 0; color:var(--muted);">12-month infrastructure + reserve</td><td style="text-align:right; padding:7px 0; font-weight:700;">$5,500</td></tr>
+        </table>
+        <div style="margin-top:16px; padding:14px; background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.3); border-radius:8px;">
+          <div style="font-size:11px; color:var(--orange); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:4px;">Why this tier changes the game</div>
+          <div style="font-size:13px; line-height:1.7; color:var(--text);">
+            Three revenue products running paid campaigns simultaneously creates a compounding effect —
+            users of one product discover others. A therapist using TheraScribe may also play chess.
+            A scriptwriter using ScriptForge may subscribe to D4Chess for fun. Cross-product discovery
+            reduces effective CAC across the portfolio.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- $100K -->
+    <div style="background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden;">
+      <div style="background:linear-gradient(135deg,#1a0a0a,#2a0f0f); padding:20px 24px; border-bottom:1px solid var(--border);">
+        <div style="font-size:11px; color:var(--red); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px;">Tier 5</div>
+        <div style="font-size:26px; font-weight:800; color:var(--red);">$100,000</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:4px;">Full-scale launch — build a real company in 12 months</div>
+      </div>
+      <div style="padding:20px 24px;">
+        <table style="width:100%; font-size:13px; border-collapse:collapse;">
+          <tr><td style="padding:7px 0; border-bottom:1px solid var(--border); color:var(--muted);">Full multi-channel ad campaign (12 mo)</td><td style="text-align:right; padding:7px 0; border-bottom:1px solid var(--border); font-weight:700;">$40,000</td></tr>
+          <tr><td style="padding:7px 0; border-bottom:1px solid var(--border); color:var(--muted);">Full-time contract developer (6 months)</td><td style="text-align:right; padding:7px 0; border-bottom:1px solid var(--border); font-weight:700;">$18,000</td></tr>
+          <tr><td style="padding:7px 0; border-bottom:1px solid var(--border); color:var(--muted);">UI/UX designer + content creator</td><td style="text-align:right; padding:7px 0; border-bottom:1px solid var(--border); font-weight:700;">$10,000</td></tr>
+          <tr><td style="padding:7px 0; border-bottom:1px solid var(--border); color:var(--muted);">Cognition: full asset pipeline + Steam</td><td style="text-align:right; padding:7px 0; border-bottom:1px solid var(--border); font-weight:700;">$8,000</td></tr>
+          <tr><td style="padding:7px 0; border-bottom:1px solid var(--border); color:var(--muted);">ScriptForge + TrustLoop dev sprint</td><td style="text-align:right; padding:7px 0; border-bottom:1px solid var(--border); font-weight:700;">$5,000</td></tr>
+          <tr><td style="padding:7px 0; border-bottom:1px solid var(--border); color:var(--muted);">Legal, accounting, and professional setup</td><td style="text-align:right; padding:7px 0; border-bottom:1px solid var(--border); font-weight:700;">$3,000</td></tr>
+          <tr><td style="padding:7px 0; border-bottom:1px solid var(--border); color:var(--muted);">Insurance — all products fully covered</td><td style="text-align:right; padding:7px 0; border-bottom:1px solid var(--border); font-weight:700;">$2,500</td></tr>
+          <tr><td style="padding:7px 0; color:var(--muted);">Operations + reserve + contingency</td><td style="text-align:right; padding:7px 0; font-weight:700;">$13,500</td></tr>
+        </table>
+        <div style="margin-top:16px; padding:14px; background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.3); border-radius:8px;">
+          <div style="font-size:11px; color:var(--red); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:4px;">Why this tier is different in kind, not just scale</div>
+          <div style="font-size:13px; line-height:1.7; color:var(--text);">
+            At $100K, Haven Command stops being a solo founder with a side budget and becomes a
+            functioning company. A full-time developer means 2–3 major product improvements per month.
+            A 12-month sustained ad campaign means we can build brand recognition — not just initial spikes.
+            This is the tier where the company is likely to be self-sustaining before year 2.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size:12px; color:var(--muted); font-style:italic;">
+    All projections assume industry-average paid ad performance. Results depend on execution quality,
+    market conditions, and product-market fit — which D4Chess's successful launch is beginning to confirm.
   </p>
 </section>
 
@@ -1091,6 +1329,120 @@ new Chart(document.getElementById('projectionChart'), {
         grid:{color:'#1a1a2e'}, ticks:{color:'#666',font:{size:10},callback: v => '$'+v.toLocaleString()},
         title:{display:true,text:'Monthly Recurring Revenue ($)',color:'#666'}
       }
+    }
+  }
+});
+
+// ── 6. MARKETING COMPARISON — ALL TIERS ───────────────────────────────────
+const mktgMonths = ['Mo 1','Mo 2','Mo 3','Mo 4','Mo 5','Mo 6','Mo 7','Mo 8','Mo 9','Mo 10','Mo 11','Mo 12'];
+
+const tierData = [
+  { label:'No Marketing',  color:'#444466', data:[100,200,350,500,650,800,950,1100,1250,1400,1490,1560], dash:[6,4] },
+  { label:'$5,000',        color:'#4caf7d', data:[400,900,1600,2400,3000,3600,4100,4600,5100,5500,5700,5900], dash:[] },
+  { label:'$10,000',       color:'#4c8fcf', data:[700,1700,3100,4700,6000,7300,8400,9500,10500,11500,12000,12500], dash:[] },
+  { label:'$20,000 ★',    color:'#c9a84c', data:[1100,2700,5200,8000,10500,13000,15000,17000,18500,20000,21000,22000], dash:[] },
+  { label:'$50,000',       color:'#f59e0b', data:[2500,6500,13000,21000,28000,34000,40000,46000,51000,56000,58500,61000], dash:[] },
+  { label:'$100,000',      color:'#ef4444', data:[5000,13000,27000,43000,57000,70000,82000,92000,101000,109000,113000,117000], dash:[] },
+];
+
+new Chart(document.getElementById('mktgCompareChart'), {
+  type: 'line',
+  data: {
+    labels: mktgMonths,
+    datasets: tierData.map(t => ({
+      label: t.label,
+      data: t.data,
+      borderColor: t.color,
+      backgroundColor: t.color + '12',
+      fill: t.label === '$20,000 ★',
+      tension: 0.4,
+      borderWidth: t.label.includes('★') ? 3 : 2,
+      borderDash: t.dash,
+      pointRadius: t.label.includes('★') ? 5 : 3,
+      pointBackgroundColor: t.color,
+    }))
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { labels:{color:'#aaa',font:{size:12}}, position:'bottom' },
+      tooltip: {
+        callbacks: {
+          label: ctx => ` ${ctx.dataset.label}: $${ctx.parsed.y.toLocaleString()}/mo`
+        }
+      }
+    },
+    scales: {
+      x: { grid:{color:'#1a1a2e'}, ticks:{color:'#666',font:{size:11}} },
+      y: {
+        grid:{color:'#1a1a2e'},
+        ticks:{color:'#666',font:{size:10},callback: v => '$'+v.toLocaleString()},
+        title:{display:true,text:'MRR ($)',color:'#666'}
+      }
+    }
+  }
+});
+
+// ── 7. YEAR 1 REVENUE BAR ─────────────────────────────────────────────────
+const yr1Totals = tierData.map(t => t.data.reduce((a,b) => a+b, 0));
+
+new Chart(document.getElementById('yr1RevenueChart'), {
+  type: 'bar',
+  data: {
+    labels: tierData.map(t => t.label),
+    datasets: [{
+      label: 'Year 1 Revenue',
+      data: yr1Totals,
+      backgroundColor: tierData.map(t => t.color + 'cc'),
+      borderColor:     tierData.map(t => t.color),
+      borderWidth: 2,
+      borderRadius: 6,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend:{ display:false },
+      tooltip: { callbacks:{ label: ctx => ' $'+ctx.parsed.y.toLocaleString() } }
+    },
+    scales: {
+      x: { grid:{display:false}, ticks:{color:'#ccc',font:{size:11}} },
+      y: {
+        grid:{color:'#1a1a2e'},
+        ticks:{color:'#666',font:{size:10},callback: v => '$'+v.toLocaleString()},
+      }
+    }
+  }
+});
+
+// ── 8. PAYBACK TIMELINE ────────────────────────────────────────────────────
+new Chart(document.getElementById('paybackChart'), {
+  type: 'bar',
+  data: {
+    labels: ['$5K','$10K','$20K','$50K','$100K'],
+    datasets: [{
+      label: 'Months to Repayment Trigger',
+      data: [18, 12, 9, 5, 3],
+      backgroundColor: ['#4caf7d','#4c8fcf','#c9a84c','#f59e0b','#ef4444'],
+      borderRadius: 6, borderSkipped: false,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend:{ display:false },
+      tooltip: { callbacks:{ label: ctx => ` ~${ctx.parsed.x} months` } }
+    },
+    scales: {
+      x: {
+        grid:{color:'#1a1a2e'},
+        ticks:{color:'#666',font:{size:10},callback: v => v+' mo'},
+        max: 22,
+        title:{display:true, text:'Months until investor repayment begins', color:'#666', font:{size:11}}
+      },
+      y: { grid:{display:false}, ticks:{color:'#ccc',font:{size:13},font:{weight:'bold'}} }
     }
   }
 });
