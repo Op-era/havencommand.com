@@ -59,6 +59,15 @@ if (!_valid.has(sessionStorage.getItem('hc_admin'))) {
   .header-right { text-align: right; }
   .header-right .label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
   .header-right .value { font-size: 22px; font-weight: 700; color: var(--gold-light); }
+  .dl-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 14px; padding: 9px 18px;
+    background: linear-gradient(135deg, #c9a84c, #e8c86a);
+    color: #0a0a0f; font-size: 12px; font-weight: 700;
+    border-radius: 8px; text-decoration: none; letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .dl-btn:hover { opacity: 0.88; }
 
   /* ── LAYOUT ── */
   .page { max-width: 1200px; margin: 0 auto; padding: 48px 40px; }
@@ -237,6 +246,7 @@ if (!_valid.has(sessionStorage.getItem('hc_admin'))) {
     <div class="value">560+</div>
     <div class="label" style="margin-top:8px;">Active Products</div>
     <div class="value">6</div>
+    <a href="../investor-pitch.pdf" download="Investor Pitch - Haven Command LLC.pdf" class="dl-btn">⬇ Investor Pitch PDF</a>
   </div>
 </header>
 
@@ -983,13 +993,13 @@ if (!_valid.has(sessionStorage.getItem('hc_admin'))) {
           <td class="gold">~$10,488</td>
         </tr>
         <tr style="background:rgba(201,168,76,0.04);">
-          <td><strong style="color:var(--gold)">$20,000</strong></td>
-          <td>$8,000</td>
+          <td><strong style="color:var(--gold)">$25,000</strong></td>
+          <td>$9,500</td>
           <td>~1,450</td>
           <td class="green">$22,000</td>
-          <td class="green">~$132,000</td>
+          <td class="green">~$166,000</td>
           <td>~9 mo</td>
-          <td class="gold">~$20,700</td>
+          <td class="gold">~$25,825</td>
         </tr>
         <tr>
           <td><strong style="color:var(--orange)">$50,000</strong></td>
@@ -1340,7 +1350,7 @@ const tierData = [
   { label:'No Marketing',  color:'#444466', data:[100,200,350,500,650,800,950,1100,1250,1400,1490,1560], dash:[6,4] },
   { label:'$5,000',        color:'#4caf7d', data:[400,900,1600,2400,3000,3600,4100,4600,5100,5500,5700,5900], dash:[] },
   { label:'$10,000',       color:'#4c8fcf', data:[700,1700,3100,4700,6000,7300,8400,9500,10500,11500,12000,12500], dash:[] },
-  { label:'$20,000 ★',    color:'#c9a84c', data:[1100,2700,5200,8000,10500,13000,15000,17000,18500,20000,21000,22000], dash:[] },
+  { label:'$25,000 ★',    color:'#c9a84c', data:[1100,2700,5200,8000,10500,13000,15000,17000,18500,20000,21000,22000], dash:[] },
   { label:'$50,000',       color:'#f59e0b', data:[2500,6500,13000,21000,28000,34000,40000,46000,51000,56000,58500,61000], dash:[] },
   { label:'$100,000',      color:'#ef4444', data:[5000,13000,27000,43000,57000,70000,82000,92000,101000,109000,113000,117000], dash:[] },
 ];
@@ -1354,7 +1364,7 @@ new Chart(document.getElementById('mktgCompareChart'), {
       data: t.data,
       borderColor: t.color,
       backgroundColor: t.color + '12',
-      fill: t.label === '$20,000 ★',
+      fill: t.label === '$25,000 ★',
       tension: 0.4,
       borderWidth: t.label.includes('★') ? 3 : 2,
       borderDash: t.dash,
