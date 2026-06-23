@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Haven Command — Admin</title>
+<meta name="robots" content="noindex, nofollow"/>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0a0a0f;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+  .card {
+    background: #1e1e2e;
+    border: 1px solid #2a2a3e;
+    border-radius: 16px;
+    padding: 48px 44px;
+    width: 100%; max-width: 400px;
+    text-align: center;
+  }
+  .logo { font-size: 13px; letter-spacing: 0.18em; color: #c9a84c; text-transform: uppercase; margin-bottom: 32px; }
+  h1 { font-size: 22px; color: #e8e8f0; margin-bottom: 6px; }
+  p { font-size: 13px; color: #666; margin-bottom: 32px; }
+  label { display: block; text-align: left; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666; margin-bottom: 6px; }
+  input {
+    width: 100%; padding: 12px 14px;
+    background: #12121a; border: 1px solid #2a2a3e; border-radius: 8px;
+    color: #e8e8f0; font-size: 14px; margin-bottom: 20px; outline: none;
+  }
+  input:focus { border-color: #c9a84c; }
+  button {
+    width: 100%; padding: 13px;
+    background: linear-gradient(135deg, #c9a84c, #e8c86a);
+    border: none; border-radius: 8px;
+    color: #0a0a0f; font-size: 15px; font-weight: 700;
+    cursor: pointer; letter-spacing: 0.04em;
+  }
+  button:hover { opacity: 0.9; }
+  .error { color: #ef4444; font-size: 13px; margin-top: 14px; display: none; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">Haven Command LLC</div>
+  <h1>Admin Access</h1>
+  <p>Internal use only. Not indexed by search engines.</p>
+
+  <form id="loginForm" onsubmit="return false;">
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="you@havencommand.com" autocomplete="username"/>
+
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="••••••••••••" autocomplete="current-password"/>
+
+    <button onclick="login()">Sign In →</button>
+    <div class="error" id="err">Invalid credentials.</div>
+  </form>
+</div>
+
+<script>
+// Credentials are stored as SHA-256 hashes — plaintext is never in source code.
+// To update: run `echo -n "yourpassword" | shasum -a 256` and replace the hash below.
+const ALLOWED = [
+  {
+    emailHash: '12dc4180b5ec213d5b666cf709eaec6a32719b0155252f1feabfca480c9b9b79',
+    passHash:  '2122ce7828b5a346e9edff2441b7dfa491a99197cd944af85696dcb95c0870fb'
+  }
+];
+
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+async function login() {
+  const email = document.getElementById('email').value.trim().toLowerCase();
+  const pass  = document.getElementById('password').value;
+  const eHash = await sha256(email);
+  const pHash = await sha256(pass);
+
+  const match = ALLOWED.some(a => a.passHash === pHash);
+  if (match) {
+    sessionStorage.setItem('hc_admin', pHash);
+    window.location.href = 'report/index.html';
+  } else {
+    document.getElementById('err').style.display = 'block';
+  }
+}
+
+// If already authed this session, skip login
+if (sessionStorage.getItem('hc_admin') === '2122ce7828b5a346e9edff2441b7dfa491a99197cd944af85696dcb95c0870fb') {
+  window.location.href = 'report/index.html';
+}
+</script>
+</body>
+</html>

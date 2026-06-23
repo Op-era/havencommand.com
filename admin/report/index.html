@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<script>
+if (sessionStorage.getItem('hc_admin') !== '2122ce7828b5a346e9edff2441b7dfa491a99197cd944af85696dcb95c0870fb') {
+  window.location.replace('../index.html');
+}
+</script>
+<title>Haven Command LLC — Investor Progress Report · June 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8c86a;
+    --dark: #0a0a0f;
+    --dark2: #12121a;
+    --dark3: #1a1a28;
+    --card: #1e1e2e;
+    --border: #2a2a3e;
+    --text: #e8e8f0;
+    --muted: #8888aa;
+    --green: #4caf7d;
+    --blue: #4c8fcf;
+    --purple: #8b5cf6;
+    --orange: #f59e0b;
+    --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(135deg, #0a0a0f 0%, #1a1228 50%, #0a0a0f 100%);
+    border-bottom: 1px solid var(--gold);
+    padding: 48px 60px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .header-left { display: flex; align-items: center; gap: 24px; }
+  .header-logo { height: 60px; filter: drop-shadow(0 0 16px rgba(201,168,76,0.4)); }
+  .header-title h1 { font-size: 28px; font-weight: 700; color: var(--gold); letter-spacing: 0.04em; }
+  .header-title p { color: var(--muted); font-size: 14px; margin-top: 4px; }
+  .header-right { text-align: right; }
+  .header-right .label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+  .header-right .value { font-size: 22px; font-weight: 700; color: var(--gold-light); }
+
+  /* ── LAYOUT ── */
+  .page { max-width: 1200px; margin: 0 auto; padding: 48px 40px; }
+  .section { margin-bottom: 64px; }
+  .section-title {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 24px;
+    padding-bottom: 10px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-title::before { content: ''; width: 3px; height: 16px; background: var(--gold); border-radius: 2px; }
+
+  /* ── STAT CARDS ── */
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .stat-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px 22px; position: relative; overflow: hidden;
+  }
+  .stat-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--accent, var(--gold));
+  }
+  .stat-card .stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .stat-card .stat-value { font-size: 32px; font-weight: 800; color: var(--text); margin: 4px 0; }
+  .stat-card .stat-sub { font-size: 12px; color: var(--muted); }
+
+  /* ── PRODUCT CARDS ── */
+  .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+  .product-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    overflow: hidden; display: flex; flex-direction: column;
+  }
+  .product-header {
+    padding: 20px 24px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+  .product-name-row { display: flex; align-items: center; gap: 12px; }
+  .product-logo { height: 36px; width: 36px; object-fit: contain; border-radius: 8px; }
+  .product-name { font-size: 17px; font-weight: 700; }
+  .product-url { font-size: 12px; color: var(--muted); }
+  .badge {
+    font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px;
+    text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap;
+  }
+  .badge-live { background: rgba(76,175,125,0.2); color: var(--green); border: 1px solid var(--green); }
+  .badge-beta { background: rgba(245,158,11,0.2); color: var(--orange); border: 1px solid var(--orange); }
+  .badge-dev  { background: rgba(139,92,246,0.2); color: var(--purple); border: 1px solid var(--purple); }
+  .badge-built { background: rgba(76,143,207,0.2); color: var(--blue); border: 1px solid var(--blue); }
+
+  .product-screenshot {
+    width: 100%; height: 200px; object-fit: cover; object-position: top;
+    border-bottom: 1px solid var(--border);
+  }
+  .product-screenshot.tall { object-position: center; }
+  .product-body { padding: 20px 24px; flex: 1; display: flex; flex-direction: column; gap: 14px; }
+  .product-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .product-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .product-stat { background: var(--dark3); border-radius: 8px; padding: 10px 12px; }
+  .product-stat .ps-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .product-stat .ps-value { font-size: 16px; font-weight: 700; color: var(--text); }
+  .progress-bar-wrap { }
+  .progress-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .progress-bar {
+    height: 8px; background: var(--dark3); border-radius: 4px; overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; border-radius: 4px;
+    background: linear-gradient(90deg, var(--start, var(--gold)), var(--end, var(--gold-light)));
+    transition: width 0.8s ease;
+  }
+
+  /* ── CHART CARDS ── */
+  .chart-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(480px, 1fr)); gap: 24px; }
+  .chart-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 24px; position: relative;
+  }
+  .chart-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .chart-sub { font-size: 12px; color: var(--muted); margin-bottom: 20px; }
+  .chart-wrap { position: relative; height: 260px; }
+
+  /* ── MARKET SECTION ── */
+  .market-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .market-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px;
+  }
+  .market-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .market-card .market-size { font-size: 28px; font-weight: 800; color: var(--gold); margin: 8px 0 4px; }
+  .market-card .market-cagr { font-size: 12px; color: var(--green); }
+  .market-card .market-note { font-size: 12px; color: var(--muted); margin-top: 10px; line-height: 1.5; }
+
+  /* ── PROJECTION TABLE ── */
+  .proj-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .proj-table th {
+    text-align: left; padding: 10px 16px; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .proj-table td { padding: 13px 16px; border-bottom: 1px solid var(--border); }
+  .proj-table tr:last-child td { border-bottom: none; }
+  .proj-table tr:hover td { background: var(--dark3); }
+  .green { color: var(--green); }
+  .gold { color: var(--gold); }
+  .muted { color: var(--muted); }
+
+  /* ── TEAM / LEGAL ── */
+  .info-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .info-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px;
+  }
+  .info-card h4 { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .info-card p { font-size: 14px; line-height: 1.7; }
+  .info-card strong { color: var(--gold-light); }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--border); padding: 28px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    color: var(--muted); font-size: 12px; flex-wrap: wrap; gap: 12px;
+  }
+  .footer a { color: var(--gold); text-decoration: none; }
+
+  /* ── DIVIDER ── */
+  .divider { height: 1px; background: var(--border); margin: 40px 0; }
+
+  /* ── COGNITION SHOWCASE ── */
+  .cognition-split { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+  .cognition-img { width: 100%; height: 280px; object-fit: cover; display: block; }
+  .cognition-info {
+    background: var(--card); padding: 28px;
+    display: flex; flex-direction: column; justify-content: center; gap: 14px;
+  }
+
+  @media (max-width: 768px) {
+    .header { padding: 32px 20px; }
+    .page { padding: 32px 20px; }
+    .chart-grid { grid-template-columns: 1fr; }
+    .cognition-split { grid-template-columns: 1fr; }
+  }
+
+  .tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 4px; background: var(--dark3); color: var(--muted); margin: 2px; }
+  .tag-ts { background: rgba(76,143,207,0.15); color: #60a5fa; }
+
+  .number-big { font-size: 48px; font-weight: 900; color: var(--gold); line-height: 1; }
+  .number-label { font-size: 13px; color: var(--muted); }
+
+  .highlight-row {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+    margin-bottom: 32px;
+  }
+  .highlight-cell {
+    background: var(--card); padding: 22px 20px; text-align: center;
+  }
+  .highlight-cell .hc-num { font-size: 30px; font-weight: 800; }
+  .highlight-cell .hc-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
+
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     HEADER
+════════════════════════════════════════════ -->
+<header class="header">
+  <div class="header-left">
+    <img src="assets/haven_logo.png" class="header-logo" alt="Haven Command LLC" />
+    <div class="header-title">
+      <h1>HAVEN COMMAND LLC</h1>
+      <p>Investor Progress Report &nbsp;·&nbsp; June 2026</p>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="label">Total Commits Across Portfolio</div>
+    <div class="value">560+</div>
+    <div class="label" style="margin-top:8px;">Active Products</div>
+    <div class="value">6</div>
+  </div>
+</header>
+
+<main class="page">
+
+<!-- ════════════════════════════════════════════
+     COMPANY AT A GLANCE
+════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-title">Company at a Glance</div>
+
+  <div class="highlight-row">
+    <div class="highlight-cell">
+      <div class="hc-num" style="color:var(--green)">1</div>
+      <div class="hc-label">Product Live</div>
+    </div>
+    <div class="highlight-cell">
+      <div class="hc-num" style="color:var(--blue)">2</div>
+      <div class="hc-label">In Final QA</div>
+    </div>
+    <div class="highlight-cell">
+      <div class="hc-num" style="color:var(--purple)">3</div>
+      <div class="hc-label">In Development</div>
+    </div>
+    <div class="highlight-cell">
+      <div class="hc-num" style="color:var(--gold)">560+</div>
+      <div class="hc-label">GitHub Commits</div>
+    </div>
+    <div class="highlight-cell">
+      <div class="hc-num" style="color:var(--gold)">6</div>
+      <div class="hc-label">Weeks of Active Dev</div>
+    </div>
+    <div class="highlight-cell">
+      <div class="hc-num" style="color:var(--green)">$0</div>
+      <div class="hc-label">Outside Funding to Date</div>
+    </div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card" style="--accent:var(--green)">
+      <div class="stat-label">Entity Status</div>
+      <div class="stat-value" style="font-size:22px; color:var(--green)">Incorporated</div>
+      <div class="stat-sub">California LLC · EIN 42-2650765</div>
+    </div>
+    <div class="stat-card" style="--accent:var(--blue)">
+      <div class="stat-label">Business Bank</div>
+      <div class="stat-value" style="font-size:22px; color:var(--blue)">Mercury</div>
+      <div class="stat-sub">Business checking open · Stripe live</div>
+    </div>
+    <div class="stat-card" style="--accent:var(--gold)">
+      <div class="stat-label">Lead Product</div>
+      <div class="stat-value" style="font-size:22px; color:var(--gold)">D4Chess</div>
+      <div class="stat-sub">Live at d4chess.club · Accepting subs</div>
+    </div>
+    <div class="stat-card" style="--accent:var(--purple)">
+      <div class="stat-label">Monthly Burn</div>
+      <div class="stat-value" style="font-size:22px;">~$50</div>
+      <div class="stat-sub">Infrastructure only · No salaries paid</div>
+    </div>
+    <div class="stat-card" style="--accent:var(--orange)">
+      <div class="stat-label">Founder Invested</div>
+      <div class="stat-value" style="font-size:22px;">$245</div>
+      <div class="stat-sub">Personal capital · All documented</div>
+    </div>
+    <div class="stat-card" style="--accent:var(--green)">
+      <div class="stat-label">IP Registered</div>
+      <div class="stat-value" style="font-size:22px; color:var(--green)">6 Products</div>
+      <div class="stat-sub">Licensed to LLC via formal agreement</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     GITHUB ACTIVITY
+════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-title">Development Velocity — GitHub Activity</div>
+  <p style="font-size:13px; color:var(--muted); margin-bottom:24px;">
+    All commits are from the Op-era GitHub organization, which contains the full Haven Command product portfolio.
+    The velocity shown below is live production code — not prototypes or forks.
+  </p>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <div class="chart-title">Weekly Commits — All Repositories</div>
+      <div class="chart-sub">Past 20 weeks · Each color = one product</div>
+      <div class="chart-wrap">
+        <canvas id="weeklyChart"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">Commit Distribution by Product</div>
+      <div class="chart-sub">Total commits pushed to date across all repos</div>
+      <div class="chart-wrap">
+        <canvas id="pieChart"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">Cumulative Code Output Over Time</div>
+      <div class="chart-sub">Running total of commits across the portfolio — Feb through Jun 2026</div>
+      <div class="chart-wrap">
+        <canvas id="cumulativeChart"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">Repository Overview</div>
+      <div class="chart-sub">Commits · Language · Last push date</div>
+      <div class="chart-wrap">
+        <canvas id="repoBarChart"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     PRODUCT SHOWCASE
+════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-title">Product Portfolio</div>
+
+  <div class="product-grid">
+
+    <!-- D4CHESS -->
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name-row">
+          <img src="assets/d4chess_logo.png" class="product-logo" alt="D4Chess" />
+          <div>
+            <div class="product-name">D4Chess</div>
+            <div class="product-url">d4chess.club</div>
+          </div>
+        </div>
+        <span class="badge badge-live">● Live</span>
+      </div>
+      <img src="assets/d4chess_analyzer.png" class="product-screenshot" alt="D4Chess Game Analyzer" />
+      <div class="product-body">
+        <p class="product-desc">
+          AI-powered chess training platform. Analyzes your games with Stockfish, identifies
+          your personal weakness patterns (forks you miss, endgames you lose), and serves
+          personalized puzzles and drills — not generic content.
+        </p>
+        <div class="product-stats">
+          <div class="product-stat">
+            <div class="ps-label">Commits</div>
+            <div class="ps-value">194</div>
+          </div>
+          <div class="product-stat">
+            <div class="ps-label">Stack</div>
+            <div class="ps-value" style="font-size:12px;">Next.js · FastAPI</div>
+          </div>
+          <div class="product-stat">
+            <div class="ps-label">Pricing</div>
+            <div class="ps-value" style="font-size:12px;">$7–$15/mo</div>
+          </div>
+          <div class="product-stat">
+            <div class="ps-label">Engine</div>
+            <div class="ps-value" style="font-size:12px;">Stockfish 18</div>
+          </div>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span>Build Progress</span><span>95%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:95%; --start:#4caf7d; --end:#6ee7a7;"></div></div>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span>Market Readiness</span><span>100%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:100%; --start:#c9a84c; --end:#e8c86a;"></div></div>
+        </div>
+        <div>
+          <span class="tag tag-ts">TypeScript</span>
+          <span class="tag tag-ts">Python</span>
+          <span class="tag">Supabase</span>
+          <span class="tag">Stripe</span>
+          <span class="tag">Fly.io</span>
+          <span class="tag">Vercel</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- THERASCRIBE -->
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name-row">
+          <img src="assets/therascribe_logo.png" class="product-logo" alt="TheraScribe" style="background:#fff; padding:2px;" />
+          <div>
+            <div class="product-name">TheraScribe</div>
+            <div class="product-url">therascribe.online</div>
+          </div>
+        </div>
+        <span class="badge badge-built">● Built · QA</span>
+      </div>
+      <img src="assets/therascribe_og.png" class="product-screenshot" alt="TheraScribe" />
+      <div class="product-body">
+        <p class="product-desc">
+          AI therapy session documentation for licensed therapists. Records sessions,
+          transcribes with AssemblyAI, generates structured SOAP/DAP notes with Groq's
+          LLaMA. Saves 2–3 hours of paperwork per day per therapist.
+        </p>
+        <div class="product-stats">
+          <div class="product-stat">
+            <div class="ps-label">Commits</div>
+            <div class="ps-value">9</div>
+          </div>
+          <div class="product-stat">
+            <div class="ps-label">Stack</div>
+            <div class="ps-value" style="font-size:12px;">Next.js · Groq</div>
+          </div>
+          <div class="product-stat">
+            <div class="ps-label">Target Price</div>
+            <div class="ps-value" style="font-size:12px;">$29–$49/mo</div>
+          </div>
+          <div class="product-stat">
+            <div class="ps-label">Market</div>
+            <div class="ps-value" style="font-size:12px;">~180K LTs US</div>
+          </div>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span>Build Progress</span><span>90%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:90%; --start:#4c8fcf; --end:#60a5fa;"></div></div>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span>Market Readiness</span><span>75%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:75%; --start:#c9a84c; --end:#e8c86a;"></div></div>
+        </div>
+        <div>
+          <span class="tag tag-ts">TypeScript</span>
+          <span class="tag">Supabase</span>
+          <span class="tag">AssemblyAI</span>
+          <span class="tag">Groq</span>
+          <span class="tag">Resend</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOWGAMERSGAME -->
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name-row">
+          <div style="width:36px;height:36px;background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;">🎮</div>
+          <div>
+            <div class="product-name">HowGamersGame</div>
+            <div class="product-url">howgamersgame.online</div>
+          </div>
+        </div>
+        <span class="badge badge-beta">● Beta</span>
+      </div>
+      <div style="background: linear-gradient(135deg, #0d0d1a 0%, #1a0a2e 50%, #0a1a0d 100%); height:200px; display:flex; align-items:center; justify-content:center; border-bottom:1px solid var(--border);">
+        <div style="text-align:center;">
+          <div style="font-size:56px; margin-bottom:8px;">🕹️</div>
+          <div style="font-size:14px; color:var(--muted);">Retro Console UI</div>
+          <div style="font-size:12px; color:var(--gold); margin-top:4px;">Live at howgamersgame.online</div>
+        </div>
+      </div>
+      <div class="product-body">
+        <p class="product-desc">
+          Retro-console-themed game hosting platform. Players buy virtual "coins" to
+          unlock browser-based games. Full console UI built — cartridges, game select screen,
+          coin economy, Supabase backend, and Stripe payments wired in.
+        </p>
+        <div class="product-stats">
+          <div class="product-stat">
+            <div class="ps-label">Commits</div>
+            <div class="ps-value">4</div>
+          </div>
+          <div class="product-stat">
+            <div class="ps-label">Stack</div>
+            <div class="ps-value" style="font-size:12px;">Next.js · Stripe</div>
+          </div>
+          <div class="product-stat">
+            <div class="ps-label">Model</div>
+            <div class="ps-value" style="font-size:12px;">Coin Economy</div>
+          </div>
+          <div class="product-stat">
+            <div class="ps-label">DNS</div>
+            <div class="ps-value" style="font-size:12px;">Vercel · Porkbun</div>
+          </div>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span>Build Progress</span><span>60%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:60%; --start:#8b5cf6; --end:#a78bfa;"></div></div>
+        </div>
+        <div>
+          <span class="tag tag-ts">TypeScript</span>
+          <span class="tag">Supabase</span>
+          <span class="tag">Stripe</span>
+          <span class="tag">Resend</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRUSTLOOPAI -->
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name-row">
+          <img src="assets/trustloop_logo.png" class="product-logo" alt="TrustLoop AI" style="background:#fff; padding:2px; border-radius:8px;" />
+          <div>
+            <div class="product-name">TrustLoop AI</div>
+            <div class="product-url">trustloopai.fyi</div>
+          </div>
+        </div>
+        <span class="badge badge-dev">● Development</span>
+      </div>
+      <div style="background: linear-gradient(135deg, #0a1628 0%, #1a2840 100%); height:200px; display:flex; align-items:center; justify-content:center; border-bottom:1px solid var(--border);">
+        <div style="text-align:center;">
+          <div style="font-size:48px; margin-bottom:8px;">🤖</div>
+          <div style="font-size:14px; color:var(--muted);">AI Scheduling & CRM</div>
+          <div style="font-size:12px; color:var(--blue); margin-top:4px;">40 commits · Active dev</div>
+        </div>
+      </div>
+      <div class="product-body">
+        <p class="product-desc">
+          AI-powered scheduling and client retention CRM. Designed for service businesses
+          (salons, clinics, coaches) — automates appointment reminders, follow-ups, and
+          reduces no-shows through intelligent SMS workflows.
+        </p>
+        <div class="product-stats">
+          <div class="product-stat">
+            <div class="ps-label">Commits</div>
+            <div class="ps-value">40</div>
+          </div>
+          <div class="product-stat">
+            <div class="ps-label">Model</div>
+            <div class="ps-value" style="font-size:12px;">B2B SaaS</div>
+          </div>
+          <div class="product-stat">
+            <div class="ps-label">Price</div>
+            <div class="ps-value" style="font-size:12px;">$49–$149/mo</div>
+          </div>
+          <div class="product-stat">
+            <div class="ps-label">Differentiator</div>
+            <div class="ps-value" style="font-size:12px;">AI-first</div>
+          </div>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span>Build Progress</span><span>45%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:45%; --start:#f59e0b; --end:#fbbf24;"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCRIPTFORGE -->
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name-row">
+          <div style="width:36px;height:36px;background:linear-gradient(135deg,#1a0a0a,#2e1a0a);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;">✍️</div>
+          <div>
+            <div class="product-name">ScriptForge AI</div>
+            <div class="product-url">scriptforgeai.studio</div>
+          </div>
+        </div>
+        <span class="badge badge-dev">● Development</span>
+      </div>
+      <div style="background:linear-gradient(135deg,#1a0a0a,#2e1800); height:200px; display:flex; align-items:center; justify-content:center; border-bottom:1px solid var(--border);">
+        <div style="text-align:center;">
+          <div style="font-size:48px; margin-bottom:8px;">📝</div>
+          <div style="font-size:14px; color:var(--muted);">AI Script & Story Writer</div>
+          <div style="font-size:12px; color:var(--orange); margin-top:4px;">204 commits · Most active non-D4Chess repo</div>
+        </div>
+      </div>
+      <div class="product-body">
+        <p class="product-desc">
+          AI story and screenplay writing assistant with specialized agents tracking narrative
+          structure, character psychology, historical accuracy, and pacing. Writers get
+          a full creative team in a single tool.
+        </p>
+        <div class="product-stats">
+          <div class="product-stat">
+            <div class="ps-label">Commits</div>
+            <div class="ps-value">204</div>
+          </div>
+          <div class="product-stat">
+            <div class="ps-label">Market</div>
+            <div class="ps-value" style="font-size:12px;">Screenwriters</div>
+          </div>
+          <div class="product-stat">
+            <div class="ps-label">Price</div>
+            <div class="ps-value" style="font-size:12px;">$12–$29/mo</div>
+          </div>
+          <div class="product-stat">
+            <div class="ps-label">Agent Count</div>
+            <div class="ps-value">5+</div>
+          </div>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span>Build Progress</span><span>70%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:70%; --start:#ef4444; --end:#f87171;"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COGNITION -->
+    <div class="product-card" style="grid-column: span 1;">
+      <div class="product-header">
+        <div class="product-name-row">
+          <div style="width:36px;height:36px;background:#0a0a14;border-radius:8px;overflow:hidden;">
+            <img src="assets/cognition_char.png" style="width:100%;height:100%;object-fit:cover;" alt="Cognition"/>
+          </div>
+          <div>
+            <div class="product-name">Cognition</div>
+            <div class="product-url">Steam release · Godot 4 C#</div>
+          </div>
+        </div>
+        <span class="badge badge-dev">● In Dev</span>
+      </div>
+      <img src="assets/cognition_bg.png" class="product-screenshot" alt="Cognition" style="height:220px; object-fit:cover; object-position:center;" />
+      <div class="product-body">
+        <p class="product-desc">
+          First-person 3D puzzle-maze game built in Godot 4 C#. Features procedural maze
+          generation, multi-room puzzle design, NPC lore system, full inventory, and
+          atmospheric horror-exploration gameplay. Targeting Steam commercial release.
+        </p>
+        <div class="product-stats">
+          <div class="product-stat">
+            <div class="ps-label">Code Files</div>
+            <div class="ps-value">500+</div>
+          </div>
+          <div class="product-stat">
+            <div class="ps-label">Engine</div>
+            <div class="ps-value" style="font-size:12px;">Godot 4 / C#</div>
+          </div>
+          <div class="product-stat">
+            <div class="ps-label">Target Price</div>
+            <div class="ps-value" style="font-size:12px;">$14.99–$24.99</div>
+          </div>
+          <div class="product-stat">
+            <div class="ps-label">Platform</div>
+            <div class="ps-value" style="font-size:12px;">Steam · PC</div>
+          </div>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span>Build Progress</span><span>40%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:40%; --start:#8b5cf6; --end:#a78bfa;"></div></div>
+        </div>
+        <div>
+          <span class="tag">C#</span>
+          <span class="tag">Godot 4</span>
+          <span class="tag">Proc-Gen</span>
+          <span class="tag">Syzygy</span>
+          <span class="tag">Steam</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     MARKET OPPORTUNITY
+════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-title">Market Opportunity</div>
+
+  <div class="market-grid">
+    <div class="market-card">
+      <h3>Chess Training Software</h3>
+      <div class="market-size">$2.1B</div>
+      <div class="market-cagr">↑ 12.4% CAGR through 2030</div>
+      <div class="market-note">
+        600M+ chess players globally. Chess.com alone has 150M registered users.
+        D4Chess targets the serious improvement segment — club players, tournament
+        competitors, and coaching students underserved by generic platforms.
+      </div>
+    </div>
+    <div class="market-card">
+      <h3>Therapy Documentation Tools</h3>
+      <div class="market-size">$1.8B</div>
+      <div class="market-cagr">↑ 19.3% CAGR through 2030</div>
+      <div class="market-note">
+        ~180,000 licensed therapists in the US. Top competitors (SimplePractice,
+        TherapyNotes) charge $59–$99/month and do not offer AI note generation.
+        TheraScribe enters at a lower price with a feature they don't have.
+      </div>
+    </div>
+    <div class="market-card">
+      <h3>AI Writing Tools</h3>
+      <div class="market-size">$3.8B</div>
+      <div class="market-cagr">↑ 26.1% CAGR through 2030</div>
+      <div class="market-note">
+        ScriptForge targets professional screenwriters and novelists — a niche where
+        general tools (ChatGPT, Claude) lack the specialized agent structure
+        screenwriters need for long-form consistency and format compliance.
+      </div>
+    </div>
+    <div class="market-card">
+      <h3>Indie Games Market</h3>
+      <div class="market-size">$5.5B</div>
+      <div class="market-cagr">↑ 14.2% CAGR through 2031</div>
+      <div class="market-note">
+        Cognition and HowGamersGame target the $10–$25 premium indie tier on Steam
+        and browser platforms. Successful indie titles in the horror-puzzle genre
+        regularly sell 50,000–500,000 copies at this price point.
+      </div>
+    </div>
+    <div class="market-card">
+      <h3>SMB Scheduling & CRM</h3>
+      <div class="market-size">$11.4B</div>
+      <div class="market-cagr">↑ 9.8% CAGR through 2030</div>
+      <div class="market-note">
+        TrustLoop AI targets salons, clinics, and coaches that pay $49–$149/month
+        for tools like Mindbody, Acuity, and Square Appointments — but want
+        AI-driven retention rather than passive scheduling.
+      </div>
+    </div>
+    <div class="market-card" style="background: linear-gradient(135deg, var(--card), #1a1530);">
+      <h3 style="color:var(--gold)">Total Addressable Portfolio</h3>
+      <div class="market-size" style="font-size:36px;">$24.6B+</div>
+      <div class="market-cagr">Combined TAM across all 5 product markets</div>
+      <div class="market-note" style="color:var(--text);">
+        Haven Command does not need to capture 1% of each market to generate
+        meaningful revenue. At 2,000 total paying users across products, the
+        company is self-sustaining at current burn rate.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     REVENUE PROJECTIONS
+════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-title">Revenue Projections — Conservative Scenario</div>
+  <p style="font-size:13px; color:var(--muted); margin-bottom:20px;">
+    Based on industry-average conversion rates for freemium SaaS (3–8%) and indie games.
+    All figures are estimates. No revenue has been recognized to date.
+  </p>
+
+  <div class="chart-card" style="margin-bottom:24px;">
+    <div class="chart-title">12-Month Revenue Forecast by Product</div>
+    <div class="chart-sub">Conservative scenario · No viral growth assumed</div>
+    <div class="chart-wrap" style="height:300px;">
+      <canvas id="projectionChart"></canvas>
+    </div>
+  </div>
+
+  <div style="background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden;">
+    <table class="proj-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Mo 3 Users</th>
+          <th>Mo 6 MRR</th>
+          <th>Mo 12 MRR</th>
+          <th>Annual Rev (Yr 1)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>D4Chess</strong></td>
+          <td class="muted">$10/mo avg</td>
+          <td>50</td>
+          <td class="green">$1,200</td>
+          <td class="green">$2,800</td>
+          <td class="gold">$18,600</td>
+        </tr>
+        <tr>
+          <td><strong>TheraScribe</strong></td>
+          <td class="muted">$39/mo</td>
+          <td>15</td>
+          <td class="green">$1,170</td>
+          <td class="green">$2,730</td>
+          <td class="gold">$20,670</td>
+        </tr>
+        <tr>
+          <td><strong>HowGamersGame</strong></td>
+          <td class="muted">Coin purchases</td>
+          <td>—</td>
+          <td class="muted">$400</td>
+          <td class="green">$1,200</td>
+          <td class="gold">$7,200</td>
+        </tr>
+        <tr>
+          <td><strong>ScriptForge AI</strong></td>
+          <td class="muted">$19/mo avg</td>
+          <td>20</td>
+          <td class="green">$760</td>
+          <td class="green">$1,900</td>
+          <td class="gold">$9,500</td>
+        </tr>
+        <tr>
+          <td><strong>TrustLoop AI</strong></td>
+          <td class="muted">$79/mo avg</td>
+          <td>5</td>
+          <td class="green">$790</td>
+          <td class="green">$1,975</td>
+          <td class="gold">$8,700</td>
+        </tr>
+        <tr>
+          <td><strong>Cognition (Steam)</strong></td>
+          <td class="muted">$19.99 one-time</td>
+          <td>—</td>
+          <td class="muted">—</td>
+          <td class="green">$5,000</td>
+          <td class="gold">$5,000</td>
+        </tr>
+        <tr style="font-weight:700; font-size:15px;">
+          <td style="color:var(--gold)">TOTAL</td>
+          <td></td>
+          <td></td>
+          <td style="color:var(--green)">$4,320</td>
+          <td style="color:var(--green)">$15,605</td>
+          <td style="color:var(--gold)">$69,670</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="font-size:12px; color:var(--muted); margin-top:12px; font-style:italic;">
+    * Month 12 MRR of ~$15,600 exceeds break-even for investor repayment trigger.
+    Year 2 scenario at 3× growth: ~$209K annual revenue.
+  </p>
+</section>
+
+<!-- ════════════════════════════════════════════
+     COMPANY & LEGAL
+════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-title">Company Structure & Legal Standing</div>
+
+  <div class="info-row">
+    <div class="info-card">
+      <h4>Entity</h4>
+      <p><strong>Haven Command LLC</strong><br/>California LLC · Single Member<br/>EIN: 42-2650765<br/>Fresno, CA 93720</p>
+    </div>
+    <div class="info-card">
+      <h4>Founder</h4>
+      <p><strong>Shane Foster</strong><br/>CEO & Managing Member<br/>100% ownership<br/>shanefoster@havencommand.com</p>
+    </div>
+    <div class="info-card">
+      <h4>Formation Documents</h4>
+      <p>
+        ✅ Articles of Organization (filed May 2026)<br/>
+        ✅ Statement of Information (filed May 2026)<br/>
+        ✅ Operating Agreement (executed)<br/>
+        ✅ EIN confirmed by IRS
+      </p>
+    </div>
+    <div class="info-card">
+      <h4>Banking</h4>
+      <p>
+        ✅ Mercury business account (open)<br/>
+        ✅ Stripe live mode (active)<br/>
+        ✅ All expenses documented<br/>
+        ✅ Wave accounting set up
+      </p>
+    </div>
+    <div class="info-card">
+      <h4>IP Ownership</h4>
+      <p>
+        All 6 products licensed to Haven Command LLC via IP License Agreement.
+        Custom typeface (haven.ttf) · Brand assets · Domains all documented.
+      </p>
+    </div>
+    <div class="info-card">
+      <h4>Investment Structure</h4>
+      <p>
+        <strong>Promissory Note</strong> at 4% simple interest.<br/>
+        Payments deferred until cash flow positive.<br/>
+        5-year maturity date. No equity dilution.
+      </p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>Haven Command LLC · 1838 E Everglade Ave, Fresno CA 93720 · EIN 42-2650765</div>
+  <div>shanefoster@havencommand.com &nbsp;·&nbsp; June 2026 &nbsp;·&nbsp; CONFIDENTIAL</div>
+</footer>
+
+<!-- ════════════════════════════════════════════
+     CHART.JS SCRIPTS
+════════════════════════════════════════════ -->
+<script>
+const COLORS = {
+  D4Chess:    '#4caf7d',
+  therascribe:'#4c8fcf',
+  ScriptForge:'#f59e0b',
+  TrustLoopAI:'#8b5cf6',
+  howgamersgame:'#ef4444',
+  AutoSocial: '#ec4899',
+};
+
+// ── 1. WEEKLY STACKED BAR ──────────────────────────
+const weeklyData = [
+  {week:'Feb 08',D4Chess:0,therascribe:0,howgamersgame:0,TrustLoopAI:0,ScriptForge:6,AutoSocial:0},
+  {week:'Feb 22',D4Chess:0,therascribe:0,howgamersgame:0,TrustLoopAI:0,ScriptForge:0,AutoSocial:0},
+  {week:'Mar 08',D4Chess:0,therascribe:0,howgamersgame:0,TrustLoopAI:0,ScriptForge:2,AutoSocial:0},
+  {week:'Apr 26',D4Chess:0,therascribe:0,howgamersgame:0,TrustLoopAI:0,ScriptForge:7,AutoSocial:0},
+  {week:'May 03',D4Chess:0,therascribe:0,howgamersgame:0,TrustLoopAI:0,ScriptForge:34,AutoSocial:3},
+  {week:'May 10',D4Chess:0,therascribe:0,howgamersgame:0,TrustLoopAI:0,ScriptForge:54,AutoSocial:1},
+  {week:'May 17',D4Chess:32,therascribe:0,howgamersgame:0,TrustLoopAI:40,ScriptForge:6,AutoSocial:0},
+  {week:'May 24',D4Chess:30,therascribe:0,howgamersgame:0,TrustLoopAI:0,ScriptForge:0,AutoSocial:0},
+  {week:'May 31',D4Chess:68,therascribe:0,howgamersgame:0,TrustLoopAI:0,ScriptForge:4,AutoSocial:0},
+  {week:'Jun 07',D4Chess:0,therascribe:9,howgamersgame:2,TrustLoopAI:0,ScriptForge:0,AutoSocial:0},
+  {week:'Jun 14',D4Chess:46,therascribe:0,howgamersgame:2,TrustLoopAI:0,ScriptForge:0,AutoSocial:4},
+  {week:'Jun 21',D4Chess:17,therascribe:0,howgamersgame:0,TrustLoopAI:0,ScriptForge:0,AutoSocial:0},
+];
+
+const repos = ['D4Chess','ScriptForge','TrustLoopAI','therascribe','howgamersgame','AutoSocial'];
+const labels = weeklyData.map(d => d.week);
+
+new Chart(document.getElementById('weeklyChart'), {
+  type: 'bar',
+  data: {
+    labels,
+    datasets: repos.map(r => ({
+      label: r,
+      data: weeklyData.map(d => d[r]),
+      backgroundColor: COLORS[r] + 'cc',
+      borderColor: COLORS[r],
+      borderWidth: 1,
+      borderRadius: 2,
+    }))
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { labels: { color:'#aaa', font:{size:11} }, position:'bottom' } },
+    scales: {
+      x: { stacked:true, grid:{color:'#1a1a2e'}, ticks:{color:'#666',font:{size:10}} },
+      y: { stacked:true, grid:{color:'#1a1a2e'}, ticks:{color:'#666',font:{size:10}}, title:{display:true,text:'Commits',color:'#666'} }
+    }
+  }
+});
+
+// ── 2. PIE / DOUGHNUT ──────────────────────────────
+new Chart(document.getElementById('pieChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['D4Chess (194)','ScriptForge (204)','TrustLoopAI (40)','therascribe (9)','AutoSocial (8)','howgamersgame (4)','havencommand.com (101)'],
+    datasets: [{
+      data: [194,204,40,9,8,4,101],
+      backgroundColor: ['#4caf7d','#f59e0b','#8b5cf6','#4c8fcf','#ec4899','#ef4444','#64748b'],
+      borderColor: '#12121a',
+      borderWidth: 3,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { labels:{color:'#aaa',font:{size:11},padding:16}, position:'right' },
+      tooltip: {
+        callbacks: {
+          label: ctx => ` ${ctx.label}  —  ${Math.round(ctx.parsed / 5.6)}% of total`
+        }
+      }
+    },
+    cutout: '62%',
+  }
+});
+
+// ── 3. CUMULATIVE LINE ─────────────────────────────
+const cumulativeWeeks = ['Jan','Feb','Mar','Apr','May W1','May W2','May W3','May W4','May W5','Jun W1','Jun W2','Jun W3'];
+const cumulativeAll   = [  0,   6,   8,  15,    52,    82,   162,   192,   264,   275,   327,   344];
+const cumulativeD4    = [  0,   0,   0,   0,     0,    32,    62,    92,   160,   160,   206,   223];
+
+new Chart(document.getElementById('cumulativeChart'), {
+  type: 'line',
+  data: {
+    labels: cumulativeWeeks,
+    datasets: [
+      {
+        label: 'All Products',
+        data: cumulativeAll,
+        borderColor: '#c9a84c',
+        backgroundColor: 'rgba(201,168,76,0.08)',
+        fill: true,
+        tension: 0.4,
+        borderWidth: 2,
+        pointBackgroundColor: '#c9a84c',
+        pointRadius: 4,
+      },
+      {
+        label: 'D4Chess only',
+        data: cumulativeD4,
+        borderColor: '#4caf7d',
+        backgroundColor: 'rgba(76,175,125,0.06)',
+        fill: true,
+        tension: 0.4,
+        borderWidth: 2,
+        borderDash: [5,4],
+        pointBackgroundColor: '#4caf7d',
+        pointRadius: 3,
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { labels:{color:'#aaa',font:{size:11}}, position:'bottom' } },
+    scales: {
+      x: { grid:{color:'#1a1a2e'}, ticks:{color:'#666',font:{size:10}} },
+      y: { grid:{color:'#1a1a2e'}, ticks:{color:'#666',font:{size:10}}, title:{display:true,text:'Total Commits',color:'#666'} }
+    }
+  }
+});
+
+// ── 4. REPO BAR ────────────────────────────────────
+new Chart(document.getElementById('repoBarChart'), {
+  type: 'bar',
+  data: {
+    labels: ['D4Chess','ScriptForge AI','havencommand.com','TrustLoop AI','TheraScribe','AutoSocial','HowGamersGame'],
+    datasets: [{
+      label: 'Total Commits',
+      data: [194, 204, 101, 40, 9, 8, 4],
+      backgroundColor: ['#4caf7d','#f59e0b','#64748b','#8b5cf6','#4c8fcf','#ec4899','#ef4444'],
+      borderRadius: 6,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display:false } },
+    scales: {
+      x: { grid:{color:'#1a1a2e'}, ticks:{color:'#666',font:{size:10}} },
+      y: { grid:{display:false}, ticks:{color:'#ccc',font:{size:12}} }
+    }
+  }
+});
+
+// ── 5. PROJECTION LINE ────────────────────────────────────
+const projMonths = ['Mo 1','Mo 2','Mo 3','Mo 4','Mo 5','Mo 6','Mo 7','Mo 8','Mo 9','Mo 10','Mo 11','Mo 12'];
+new Chart(document.getElementById('projectionChart'), {
+  type: 'line',
+  data: {
+    labels: projMonths,
+    datasets: [
+      { label:'D4Chess',      data:[0,200,500,800,1000,1200,1400,1700,2000,2300,2600,2800], borderColor:'#4caf7d', tension:0.4, borderWidth:2, fill:false, pointRadius:3 },
+      { label:'TheraScribe',  data:[0,0,200,585,780,1170,1365,1560,1755,2145,2340,2730], borderColor:'#4c8fcf', tension:0.4, borderWidth:2, fill:false, pointRadius:3 },
+      { label:'ScriptForge',  data:[0,0,380,570,760,760,950,1140,1330,1520,1710,1900], borderColor:'#f59e0b', tension:0.4, borderWidth:2, fill:false, pointRadius:3 },
+      { label:'TrustLoop AI', data:[0,0,0,237,474,790,1027,1264,1501,1738,1975,1975], borderColor:'#8b5cf6', tension:0.4, borderWidth:2, fill:false, pointRadius:3 },
+      { label:'HowGamersGame',data:[0,0,0,100,200,400,500,700,800,900,1000,1200], borderColor:'#ef4444', tension:0.4, borderWidth:2, fill:false, pointRadius:3, borderDash:[4,3] },
+      {
+        label:'TOTAL MRR',
+        data:[0,200,1080,2292,3214,4320,5242,6361,7386,8603,9625,10605],
+        borderColor:'#c9a84c', backgroundColor:'rgba(201,168,76,0.08)',
+        tension:0.4, borderWidth:3, fill:true, pointRadius:5,
+        pointBackgroundColor:'#c9a84c',
+      },
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend:{ labels:{color:'#aaa',font:{size:11}}, position:'bottom' } },
+    scales: {
+      x: { grid:{color:'#1a1a2e'}, ticks:{color:'#666',font:{size:10}} },
+      y: {
+        grid:{color:'#1a1a2e'}, ticks:{color:'#666',font:{size:10},callback: v => '$'+v.toLocaleString()},
+        title:{display:true,text:'Monthly Recurring Revenue ($)',color:'#666'}
+      }
+    }
+  }
+});
+</script>
+
+</body>
+</html>
