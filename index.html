@@ -383,8 +383,9 @@
         document.getElementById('lightbox').style.display = 'none';
     }
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
+    const desktopMenu = window.matchMedia('(min-width: 769px)');
+    desktopMenu.addEventListener('change', (event) => {
+        if (event.matches) {
             closeMenu();
         }
     });

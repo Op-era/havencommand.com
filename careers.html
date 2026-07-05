@@ -239,8 +239,9 @@
             setMenuOpen(false);
         }
 
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768) {
+        const desktopMenu = window.matchMedia('(min-width: 769px)');
+        desktopMenu.addEventListener('change', (event) => {
+            if (event.matches) {
                 closeMenu();
             }
         });
