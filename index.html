@@ -383,9 +383,9 @@
         document.getElementById('lightbox').style.display = 'none';
     }
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
-    const desktopMenu = window.matchMedia('(min-width: 769px)');
-    desktopMenu.addEventListener('change', (event) => {
-        if (event.matches) {
+    const mobileBreakpoint = window.matchMedia('(max-width: 768px)');
+    mobileBreakpoint.addEventListener('change', (event) => {
+        if (!event.matches) {
             closeMenu();
         }
     });
