@@ -34,11 +34,43 @@
         header {
             background-color: rgba(0, 0, 0, 0.7);
             padding: 20px;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
         }
         header h1 {
+            margin: 0;
+            flex: 1;
             color: #00f;
+            text-align: center;
             text-shadow: 0 0 10px #00f, 0 0 20px #00f, 0 0 30px #00f;
+        }
+        .menu-toggle {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 6px;
+            background: transparent;
+            cursor: pointer;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background-color: #fff;
+            border-radius: 999px;
+        }
+        .menu-spacer {
+            display: none;
+            width: 44px;
+            flex-shrink: 0;
         }
         nav {
             background-color: rgba(0, 0, 0, 0.8);
@@ -104,20 +136,50 @@
             text-align: center;
             margin-top: 20px;
         }
+        @media screen and (max-width: 768px) {
+            .menu-toggle {
+                display: inline-flex;
+            }
+            .menu-spacer {
+                display: block;
+            }
+            nav {
+                display: none;
+                padding: 0;
+            }
+            body.nav-open nav {
+                display: block;
+            }
+            nav a {
+                display: block;
+                margin: 0;
+                padding: 14px 20px;
+                border-top: 1px solid rgba(255, 255, 255, 0.15);
+            }
+            header h1 {
+                font-size: 1.5rem;
+            }
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
+        <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <h1>H.A.V.E.N. Command</h1>
+        <div class="menu-spacer" aria-hidden="true"></div>
     </header>
-    <nav>
-        <a href="index.html#home">Home</a>
-        <a href="index.html#about">About Us</a>
-        <a href="index.html#approach">Our Approach</a>
-        <a href="index.html#projects">Projects</a>
-        <a href="careers.html">Careers</a>
-        <a href="index.html#contact">Contact Us</a>
+    <nav id="site-nav">
+        <a href="index.html#home" onclick="closeMenu()">Home</a>
+        <a href="index.html#about" onclick="closeMenu()">About Us</a>
+        <a href="index.html#approach" onclick="closeMenu()">Our Approach</a>
+        <a href="index.html#projects" onclick="closeMenu()">Projects</a>
+        <a href="careers.html" onclick="closeMenu()">Careers</a>
+        <a href="index.html#contact" onclick="closeMenu()">Contact Us</a>
     </nav>
     <div class="container">
         <h2>Careers at H.A.V.E.N. Command</h2>
@@ -159,5 +221,30 @@
     <footer>
         <p>&copy; 2024 H.A.V.E.N. Command. All rights reserved.</p>
     </footer>
+    <script>
+        function setMenuOpen(isOpen) {
+            document.body.classList.toggle('nav-open', isOpen);
+            const menuButton = document.querySelector('.menu-toggle');
+            if (menuButton) {
+                menuButton.setAttribute('aria-expanded', String(isOpen));
+                menuButton.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+            }
+        }
+
+        function toggleMenu() {
+            setMenuOpen(!document.body.classList.contains('nav-open'));
+        }
+
+        function closeMenu() {
+            setMenuOpen(false);
+        }
+
+        const mobileBreakpoint = window.matchMedia('(max-width: 768px)');
+        mobileBreakpoint.addEventListener('change', (event) => {
+            if (!event.matches) {
+                closeMenu();
+            }
+        });
+    </script>
 </body>
 </html>
