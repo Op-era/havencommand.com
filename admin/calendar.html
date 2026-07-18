@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<script>
+const _valid = new Set([
+  '2122ce7828b5a346e9edff2441b7dfa491a99197cd944af85696dcb95c0870fb',
+  '43f421304d1699f9d2f010353bf9f5eb9eb7ed1f45dca6cc3d31661df2be9c4e'
+]);
+if (!_valid.has(sessionStorage.getItem('hc_admin'))) {
+  window.location.replace('/admin/index.html');
+}
+</script>
+<title>Content Calendar — Haven Command</title>
+<style>
+:root {
+  --bg: #0e0d0b;
+  --surface: #171512;
+  --surface2: #1e1b18;
+  --border: #2c2925;
+  --border2: #3a3631;
+  --ink: #e4e0d8;
+  --muted: #6b6560;
+  --muted2: #888;
+  --red: #cc0000;
+  --red-dim: rgba(204,0,0,.12);
+  --today-ring: #cc0000;
+  --radius: 6px;
+  font-size: 14px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  padding: 1.5rem 1rem 4rem;
+}
+
+/* ── HEADER ───────────────────────────────────────── */
+.cal-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.8rem;
+  flex-wrap: wrap;
+}
+.cal-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  flex: 1;
+}
+.cal-title span {
+  color: var(--red);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: .1rem;
+}
+.btn {
+  font-size: .78rem;
+  font-weight: 600;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border2);
+  background: var(--surface2);
+  color: var(--ink);
+  cursor: pointer;
+  letter-spacing: .02em;
+  transition: background .15s, border-color .15s;
+}
+.btn:hover { background: var(--border2); }
+.btn-primary {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+.btn-primary:hover { background: #aa0000; border-color: #aa0000; }
+
+/* ── WEEK ACCORDION ───────────────────────────────── */
+.weeks { display: flex; flex-direction: column; gap: .5rem; }
+
+.week {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.week.current-week { border-color: var(--border2); }
+.week.open { border-color: var(--border2); }
+
+.week-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .75rem 1rem;
+  background: var(--surface);
+  border: none;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  transition: background .15s;
+}
+.week-header:hover { background: var(--surface2); }
+.week.open .week-header { background: var(--surface2); }
+
+.week-range {
+  font-weight: 700;
+  font-size: .9rem;
+  flex: 1;
+}
+.week-label {
+  font-size: .68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  padding: .2rem .55rem;
+  border-radius: 3px;
+  background: var(--red-dim);
+  color: var(--red);
+}
+.week-count {
+  font-size: .75rem;
+  color: var(--muted2);
+}
+.week-chevron {
+  font-size: .65rem;
+  color: var(--muted);
+  transition: transform .25s;
+  flex-shrink: 0;
+}
+.week.open .week-chevron { transform: rotate(180deg); }
+
+/* ── WEEK CONTENT (accordion panel) ──────────────── */
+.week-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .3s cubic-bezier(.4,0,.2,1);
+}
+
+.day-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-top: 1px solid var(--border);
+  min-height: 130px;
+}
+
+.day-col {
+  border-right: 1px solid var(--border);
+  padding: .55rem .5rem .7rem;
+  min-height: 130px;
+  position: relative;
+}
+.day-col:last-child { border-right: none; }
+
+.day-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: .45rem;
+}
+.day-name {
+  font-size: .6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--muted);
+}
+.day-num {
+  font-size: .95rem;
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--muted2);
+  width: 1.8rem;
+  height: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.day-col.is-today .day-num {
+  background: var(--red);
+  color: #fff;
+}
+.day-col.is-today .day-name { color: var(--red); }
+.day-col.is-past .day-num { color: var(--muted); }
+.day-col.is-past .day-name { color: var(--border2); }
+
+.day-events { display: flex; flex-direction: column; gap: .3rem; }
+
+/* ── EVENT CHIPS ──────────────────────────────────── */
+.chip {
+  border-radius: 3px;
+  padding: .25rem .4rem;
+  font-size: .65rem;
+  line-height: 1.35;
+  border-left: 3px solid;
+  background: var(--surface);
+  cursor: pointer;
+  transition: filter .15s;
+  word-break: break-word;
+}
+.chip:hover { filter: brightness(1.2); }
+.chip .chip-time { color: var(--muted2); display: block; font-size: .58rem; }
+.chip .chip-title { display: block; font-weight: 600; color: var(--ink); }
+
+/* ── ADD EVENT BUTTON on day ──────────────────────── */
+.add-to-day {
+  margin-top: auto;
+  width: 100%;
+  font-size: .6rem;
+  padding: .2rem;
+  border: 1px dashed var(--border);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  text-align: center;
+  opacity: 0;
+  transition: opacity .15s;
+}
+.day-col:hover .add-to-day { opacity: 1; }
+.add-to-day:hover { background: var(--surface2); color: var(--ink); border-color: var(--border2); }
+
+/* ── MODAL ────────────────────────────────────────── */
+.modal-bg {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.65);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.modal-bg.open { display: flex; }
+
+.modal-box {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  padding: 1.4rem;
+  width: 100%;
+  max-width: 400px;
+}
+.modal-box h3 {
+  font-size: .95rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.field { margin-bottom: .75rem; }
+.field label {
+  display: block;
+  font-size: .7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--muted2);
+  margin-bottom: .3rem;
+}
+.field input, .field select, .field textarea {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 5px;
+  color: var(--ink);
+  font-size: .85rem;
+  padding: .5rem .7rem;
+  font-family: inherit;
+  transition: border-color .15s;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none;
+  border-color: var(--red);
+}
+.field textarea { min-height: 70px; resize: vertical; }
+.field select option { background: #1e1b18; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+.modal-actions { display: flex; gap: .6rem; margin-top: 1rem; justify-content: flex-end; }
+.delete-btn {
+  font-size: .75rem; color: var(--muted); background: none;
+  border: none; cursor: pointer; padding: .45rem .6rem; margin-right: auto;
+}
+.delete-btn:hover { color: var(--red); }
+
+/* ── PLATFORM LEGEND ──────────────────────────────── */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem .9rem;
+  margin-bottom: 1.4rem;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+  font-size: .7rem;
+  color: var(--muted2);
+}
+.legend-dot {
+  width: 8px; height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+</style>
+
+<!-- ADD EVENT MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal-box">
+    <h3 id="modal-title">Add Event</h3>
+    <div class="field-row">
+      <div class="field">
+        <label>Date</label>
+        <input type="date" id="ev-date">
+      </div>
+      <div class="field">
+        <label>Time</label>
+        <input type="time" id="ev-time" value="09:00">
+      </div>
+    </div>
+    <div class="field">
+      <label>Platform</label>
+      <select id="ev-platform"></select>
+    </div>
+    <div class="field">
+      <label>Title</label>
+      <input type="text" id="ev-title" placeholder="e.g. Blog launch post">
+    </div>
+    <div class="field">
+      <label>Notes</label>
+      <textarea id="ev-notes" placeholder="Optional notes or copy..."></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="delete-btn" id="delete-btn" onclick="deleteEvent()" style="display:none">Delete event</button>
+      <button class="btn" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveEvent()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="cal-header">
+  <div class="cal-title">
+    <span>Haven Command</span>
+    Content Calendar
+  </div>
+  <button class="btn" onclick="jumpToday()">Today</button>
+  <button class="btn btn-primary" onclick="openModal()">+ Add Event</button>
+</div>
+
+<div class="legend" id="legend"></div>
+
+<div class="weeks" id="weeks"></div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────
+const PLATFORMS = {
+  blog:      { name: 'Blog Post',    color: '#cc0000' },
+  linkedin:  { name: 'LinkedIn',     color: '#0077b5' },
+  x:         { name: 'X / Twitter',  color: '#aaa'    },
+  hn:        { name: 'Hacker News',  color: '#ff6600' },
+  reddit:    { name: 'Reddit',       color: '#ff4500' },
+  facebook:  { name: 'Facebook',     color: '#1877f2' },
+  instagram: { name: 'Instagram',    color: '#e1306c' },
+  email:     { name: 'Email',        color: '#22a060' },
+  other:     { name: 'Other',        color: '#888'    },
+};
+
+const SEED_EVENTS = [
+  { id:'s1', date:'2026-07-21', time:'08:00', platform:'linkedin', title:'Blog launch post — Joy, AI & the 49-Year View', notes:'Full personal intro + link. Schedule via Buffer.' },
+  { id:'s2', date:'2026-07-21', time:'09:00', platform:'hn',       title:'Submit to Hacker News', notes:'Title: "Joy, AI, and the 49-Year View – on what AI actually can\'t automate"' },
+  { id:'s3', date:'2026-07-22', time:'09:00', platform:'x',        title:'X thread — 7 tweets (49-Year View)', notes:'Schedule via Buffer. Open with hook tweet.' },
+  { id:'s4', date:'2026-07-23', time:'08:00', platform:'linkedin', title:'Standalone aphorism post', notes:'"The craft gets you in the room. The discernment determines whether you stay." — no link needed.' },
+  { id:'s5', date:'2026-07-23', time:'10:00', platform:'reddit',   title:'r/gamedev — essay post', notes:'Text post. Title: "Been sitting on this essay about AI and game dev skills..."' },
+  { id:'s6', date:'2026-07-24', time:'10:00', platform:'reddit',   title:'r/ChatGPT — "Fear is a business model"', notes:'Lead with the provocative angle. Expect arguments — that\'s the reach.' },
+  { id:'s7', date:'2026-07-25', time:'09:00', platform:'facebook', title:'Facebook groups — indie dev communities', notes:'Post to: Indie Game Developers, Game Dev League. Facebook native scheduler.' },
+];
+
+const STORAGE_KEY = 'hc-cal-events-v1';
+
+function loadEvents() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch(e) {}
+  // First load — seed with distribution plan
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(SEED_EVENTS));
+  return [...SEED_EVENTS];
+}
+
+function saveEvents(evts) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(evts));
+}
+
+let events = loadEvents();
+
+// ── DATE UTILS ────────────────────────────────────────
+const TODAY = new Date();
+TODAY.setHours(0,0,0,0);
+
+function toISO(d) {
+  return d.toISOString().slice(0,10);
+}
+
+function getMondayOf(d) {
+  const day = new Date(d);
+  const dow = day.getDay();
+  const diff = dow === 0 ? -6 : 1 - dow; // Mon = 1
+  day.setDate(day.getDate() + diff);
+  day.setHours(0,0,0,0);
+  return day;
+}
+
+function addDays(d, n) {
+  const r = new Date(d);
+  r.setDate(r.getDate() + n);
+  return r;
+}
+
+const DAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function fmtDate(d) {
+  return `${MONTH_NAMES[d.getMonth()]} ${d.getDate()}`;
+}
+
+// ── BUILD LEGEND ──────────────────────────────────────
+function buildLegend() {
+  const el = document.getElementById('legend');
+  el.innerHTML = Object.entries(PLATFORMS).map(([k,p]) =>
+    `<div class="legend-item">
+      <div class="legend-dot" style="background:${p.color}"></div>
+      ${p.name}
+    </div>`
+  ).join('');
+}
+
+// ── BUILD CALENDAR ────────────────────────────────────
+function buildCalendar() {
+  const container = document.getElementById('weeks');
+  container.innerHTML = '';
+
+  const monday = getMondayOf(TODAY);
+  // Show 2 weeks back + 10 weeks forward
+  const start = addDays(monday, -14);
+
+  for (let w = 0; w < 13; w++) {
+    const weekStart = addDays(start, w * 7);
+    const weekEnd   = addDays(weekStart, 6);
+
+    const isCurrentWeek = toISO(TODAY) >= toISO(weekStart) && toISO(TODAY) <= toISO(weekEnd);
+    const isPastWeek    = toISO(weekEnd) < toISO(TODAY);
+
+    // Collect events for this week
+    const weekISOs = Array.from({length:7}, (_,i) => toISO(addDays(weekStart,i)));
+    const weekEvts = events.filter(e => weekISOs.includes(e.date));
+    weekEvts.sort((a,b) => a.time.localeCompare(b.time));
+
+    const weekEl = document.createElement('div');
+    weekEl.className = 'week' + (isCurrentWeek ? ' current-week' : '');
+    weekEl.dataset.weekStart = toISO(weekStart);
+
+    // Header
+    const headerEl = document.createElement('button');
+    headerEl.className = 'week-header';
+    headerEl.innerHTML = `
+      <span class="week-range">${fmtDate(weekStart)} – ${fmtDate(weekEnd)}, ${weekEnd.getFullYear()}</span>
+      ${isCurrentWeek ? '<span class="week-label">This week</span>' : ''}
+      <span class="week-count">${weekEvts.length > 0 ? weekEvts.length + ' event' + (weekEvts.length > 1 ? 's' : '') : ''}</span>
+      <span class="week-chevron">▼</span>
+    `;
+    headerEl.addEventListener('click', () => toggleWeek(weekEl));
+
+    // Content panel
+    const contentEl = document.createElement('div');
+    contentEl.className = 'week-content';
+
+    // Day grid
+    const gridEl = document.createElement('div');
+    gridEl.className = 'day-grid';
+
+    for (let d = 0; d < 7; d++) {
+      const day = addDays(weekStart, d);
+      const iso = toISO(day);
+      const isToday = iso === toISO(TODAY);
+      const isPast  = day < TODAY;
+
+      const dayEl = document.createElement('div');
+      dayEl.className = 'day-col' + (isToday ? ' is-today' : isPast ? ' is-past' : '');
+      dayEl.dataset.date = iso;
+
+      const dayEvts = events.filter(e => e.date === iso)
+                            .sort((a,b) => a.time.localeCompare(b.time));
+
+      dayEl.innerHTML = `
+        <div class="day-head">
+          <span class="day-name">${DAY_NAMES[day.getDay()]}</span>
+          <span class="day-num">${day.getDate()}</span>
+        </div>
+        <div class="day-events">
+          ${dayEvts.map(e => chipHTML(e)).join('')}
+        </div>
+        <button class="add-to-day" data-date="${iso}" onclick="openModal('${iso}')">+ add</button>
+      `;
+
+      gridEl.appendChild(dayEl);
+    }
+
+    contentEl.appendChild(gridEl);
+    weekEl.appendChild(headerEl);
+    weekEl.appendChild(contentEl);
+    container.appendChild(weekEl);
+
+    // Auto-open current week
+    if (isCurrentWeek) {
+      requestAnimationFrame(() => openWeek(weekEl));
+    }
+  }
+
+  // Wire chip clicks
+  container.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', e => {
+      e.stopPropagation();
+      const id = chip.dataset.id;
+      const ev = events.find(x => x.id === id);
+      if (ev) openModal(ev.date, ev);
+    });
+  });
+}
+
+function chipHTML(e) {
+  const p = PLATFORMS[e.platform] || PLATFORMS.other;
+  const fmt = e.time ? e.time.replace(/^0/, '').replace(':00','') + (parseInt(e.time) < 12 ? 'am' : 'pm') : '';
+  return `<div class="chip" data-id="${e.id}" style="border-left-color:${p.color}">
+    <span class="chip-time">${p.name} ${fmt ? '· ' + fmt : ''}</span>
+    <span class="chip-title">${e.title}</span>
+  </div>`;
+}
+
+// ── ACCORDION ─────────────────────────────────────────
+function openWeek(weekEl) {
+  const content = weekEl.querySelector('.week-content');
+  weekEl.classList.add('open');
+  content.style.maxHeight = content.scrollHeight + 'px';
+}
+
+function closeWeek(weekEl) {
+  const content = weekEl.querySelector('.week-content');
+  weekEl.classList.remove('open');
+  content.style.maxHeight = '0';
+}
+
+function toggleWeek(weekEl) {
+  const isOpen = weekEl.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.week.open').forEach(w => closeWeek(w));
+  // Open this one if it wasn't open
+  if (!isOpen) openWeek(weekEl);
+}
+
+function jumpToday() {
+  const currentWeekEl = document.querySelector('.week.current-week');
+  if (!currentWeekEl) return;
+  document.querySelectorAll('.week.open').forEach(w => closeWeek(w));
+  openWeek(currentWeekEl);
+  currentWeekEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── MODAL ─────────────────────────────────────────────
+let editingId = null;
+
+function buildPlatformSelect() {
+  const sel = document.getElementById('ev-platform');
+  sel.innerHTML = Object.entries(PLATFORMS).map(([k,p]) =>
+    `<option value="${k}">${p.name}</option>`
+  ).join('');
+}
+
+function openModal(date, existingEvent) {
+  editingId = existingEvent ? existingEvent.id : null;
+  document.getElementById('modal-title').textContent = existingEvent ? 'Edit Event' : 'Add Event';
+  document.getElementById('ev-date').value  = date || toISO(TODAY);
+  document.getElementById('ev-time').value  = existingEvent ? existingEvent.time  : '09:00';
+  document.getElementById('ev-platform').value = existingEvent ? existingEvent.platform : 'linkedin';
+  document.getElementById('ev-title').value = existingEvent ? existingEvent.title : '';
+  document.getElementById('ev-notes').value = existingEvent ? existingEvent.notes : '';
+  document.getElementById('delete-btn').style.display = existingEvent ? 'block' : 'none';
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  editingId = null;
+}
+
+function saveEvent() {
+  const date     = document.getElementById('ev-date').value;
+  const time     = document.getElementById('ev-time').value;
+  const platform = document.getElementById('ev-platform').value;
+  const title    = document.getElementById('ev-title').value.trim();
+  const notes    = document.getElementById('ev-notes').value.trim();
+
+  if (!date || !title) {
+    document.getElementById(title ? 'ev-date' : 'ev-title').focus();
+    return;
+  }
+
+  if (editingId) {
+    events = events.map(e => e.id === editingId ? { ...e, date, time, platform, title, notes } : e);
+  } else {
+    events.push({ id: 'e' + Date.now(), date, time, platform, title, notes });
+  }
+
+  saveEvents(events);
+  closeModal();
+  buildCalendar();
+}
+
+function deleteEvent() {
+  if (!editingId) return;
+  events = events.filter(e => e.id !== editingId);
+  saveEvents(events);
+  closeModal();
+  buildCalendar();
+}
+
+// Close modal on bg click
+document.getElementById('modal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeModal();
+});
+
+// ── INIT ──────────────────────────────────────────────
+buildLegend();
+buildPlatformSelect();
+buildCalendar();
+</script>
+
+</html>

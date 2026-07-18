@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Haven Command — Essays</title>
+<meta name="description" content="Essays on building games and software, AI, creativity, and what joy actually is. From Haven Command founder Shane Foster.">
+<link rel="canonical" href="https://havencommand.com/blog">
+<style>
+:root {
+  --paper: #ffffff;
+  --ink: #111111;
+  --muted: #666666;
+  --red: #cc0000;
+  --rule: #111111;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --paper:#0d0c09; --ink:#e4e0d8; --muted:#888; --red:#dd2020; --rule:#e4e0d8; }
+}
+:root[data-theme="dark"]  { --paper:#0d0c09; --ink:#e4e0d8; --muted:#888; --red:#dd2020; --rule:#e4e0d8; }
+:root[data-theme="light"] { --paper:#ffffff; --ink:#111111; --muted:#666; --red:#cc0000; --rule:#111111; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Georgia, 'Times New Roman', serif;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.2rem 5rem;
+}
+a { color: inherit; text-decoration-color: var(--red); }
+a:hover { color: var(--red); }
+
+.masthead {
+  border-top: 4px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  padding: .5rem 0;
+  margin-bottom: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .7rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.masthead a { text-decoration: none; color: var(--muted); }
+.masthead a:hover { color: var(--red); }
+.site-name {
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  text-align: center;
+  margin-bottom: .4rem;
+  line-height: 1;
+}
+.tagline {
+  text-align: center;
+  font-size: .75rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: .35rem 0;
+  margin-bottom: 2.5rem;
+}
+
+h2 {
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: .4rem;
+  margin-bottom: 1.5rem;
+}
+
+.post-list { list-style: none; }
+.post-item {
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 15%, transparent);
+  padding: 1.4rem 0;
+}
+.post-item:first-child { padding-top: 0; }
+
+.post-eyebrow {
+  font-size: .65rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--red);
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  margin-bottom: .35rem;
+}
+.post-title {
+  font-size: 1.35rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: .4rem;
+  text-wrap: balance;
+}
+.post-title a { text-decoration: none; }
+.post-title a:hover { color: var(--red); }
+.post-deck {
+  font-size: .92rem;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: .6rem;
+}
+.post-meta {
+  font-size: .7rem;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: var(--muted);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.read-link {
+  font-size: .72rem;
+  font-weight: 700;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--red);
+  text-decoration: none;
+}
+.read-link:hover { text-decoration: underline; }
+.read-link::after { content: ' →'; }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <a href="https://havencommand.com">havencommand.com</a>
+  <span>Est. 2025 &middot; Fresno, California</span>
+</div>
+
+<div class="site-name">The Haven Command</div>
+<div class="tagline">Essays on Building, AI, and What Joy Actually Is</div>
+
+<h2>&#9632;&nbsp; All Essays</h2>
+
+<ul class="post-list">
+  <li class="post-item">
+    <div class="post-eyebrow">Inaugural Essay &middot; July 2026</div>
+    <div class="post-title"><a href="/blog/joy-ai-49-year-view.html">Joy, AI, and the 49-Year View</a></div>
+    <div class="post-deck">On making games, the death of skill, fear as a business model, and what joy actually is.</div>
+    <div class="post-meta">
+      <span>Shane Foster</span>
+      <span>&middot;</span>
+      <span>15 min read</span>
+      <span>&middot;</span>
+      <a class="read-link" href="/blog/joy-ai-49-year-view.html">Read</a>
+    </div>
+  </li>
+</ul>
+
+</body>
+</html>
