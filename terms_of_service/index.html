@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | H.A.V.E.N. Command — Software and Game Development Studio</title>
+    <meta name="description" content="Terms of service for havencommand.com, the site for Haven Command LLC, a software and game development studio.">
+    <meta name="keywords" content="Haven Command terms of service, Haven Command LLC, terms and conditions">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://havencommand.com/terms_of_service/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://havencommand.com/terms_of_service/">
+    <meta property="og:title" content="Terms of Service | H.A.V.E.N. Command">
+    <meta property="og:description" content="Terms of service for havencommand.com, the site for Haven Command LLC, a software and game development studio.">
+    <meta property="og:image" content="https://havencommand.com/images/HavenIcon.png">
+    <meta property="og:site_name" content="H.A.V.E.N. Command">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Terms of Service | H.A.V.E.N. Command">
+    <meta name="twitter:description" content="Terms of service for havencommand.com, the site for Haven Command LLC, a software and game development studio.">
+    <meta name="twitter:image" content="https://havencommand.com/images/HavenIcon.png">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Terms of Service",
+      "url": "https://havencommand.com/terms_of_service/",
+      "isPartOf": {
+        "@type": "Organization",
+        "name": "Haven Command LLC",
+        "url": "https://havencommand.com"
+      }
+    }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        header h1 {
+            margin: 0;
+            flex: 1;
+            color: #00f;
+            text-align: center;
+            text-shadow: 0 0 10px #00f, 0 0 20px #00f, 0 0 30px #00f;
+        }
+        .menu-toggle {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 6px;
+            background: transparent;
+            cursor: pointer;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background-color: #fff;
+            border-radius: 999px;
+        }
+        .menu-spacer {
+            display: none;
+            width: 44px;
+            flex-shrink: 0;
+        }
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+            text-shadow: 0 0 10px #00f, 0 0 20px #00f, 0 0 30px #00f;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px 30px 40px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            line-height: 1.6;
+        }
+        .container h2 {
+            margin-top: 34px;
+        }
+        .container h2:first-of-type {
+            margin-top: 10px;
+        }
+        .container p, .container li {
+            color: #ddd;
+        }
+        .container a {
+            color: #6cf;
+        }
+        .updated {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        @media screen and (max-width: 768px) {
+            .menu-toggle {
+                display: inline-flex;
+            }
+            .menu-spacer {
+                display: block;
+            }
+            nav {
+                display: none;
+                padding: 0;
+            }
+            body.nav-open nav {
+                display: block;
+            }
+            nav a {
+                display: block;
+                margin: 0;
+                padding: 14px 20px;
+                border-top: 1px solid rgba(255, 255, 255, 0.15);
+            }
+            header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <h1>H.A.V.E.N. Command</h1>
+        <div class="menu-spacer" aria-hidden="true"></div>
+    </header>
+    <nav id="site-nav">
+        <a href="/index.html#home" onclick="closeMenu()">Home</a>
+        <a href="/index.html#about" onclick="closeMenu()">About Us</a>
+        <a href="/index.html#approach" onclick="closeMenu()">Our Approach</a>
+        <a href="/index.html#projects" onclick="closeMenu()">Projects</a>
+        <a href="/careers.html" onclick="closeMenu()">Careers</a>
+        <a href="/index.html#contact" onclick="closeMenu()">Contact Us</a>
+    </nav>
+    <div class="container">
+        <h2>Terms of Service</h2>
+        <p class="updated">Effective date: August 6, 2026</p>
+
+        <p>These terms govern your use of havencommand.com, operated by Haven Command LLC ("Haven Command," "we," "us," or "our"). By using this site, you agree to these terms.</p>
+
+        <h2>About This Site</h2>
+        <p>havencommand.com is an informational and marketing site for Haven Command LLC, a software and game development studio. It describes our company, our approach, and the products we build, and includes a Careers page for internship and role applications.</p>
+
+        <h2>Our Products</h2>
+        <p>Haven Command LLC builds and operates separate products, including <a href="https://d4chess.club" target="_blank" rel="noopener noreferrer">D4 Chess Club™</a> and <a href="https://scriptforgeai.studio" target="_blank" rel="noopener noreferrer">ScriptForge AI</a>. Each of those products has its own terms of service and privacy policy governing its use — these terms cover havencommand.com only.</p>
+
+        <h2>Intellectual Property</h2>
+        <p>The content on this site — including text, graphics, logos, and the Haven Command name and marks — belongs to Haven Command LLC unless otherwise noted, and may not be copied or reused without our permission.</p>
+
+        <h2>Careers Applications</h2>
+        <p>Submitting an application through the Careers page does not guarantee an interview, offer, or position. See our <a href="/privacy_policy/">Privacy Policy</a> for how application information is handled.</p>
+
+        <h2>No Warranty</h2>
+        <p>This site and its content are provided "as is," without warranties of any kind, express or implied. We make reasonable efforts to keep information accurate and the site available, but we don't guarantee uninterrupted or error-free access.</p>
+
+        <h2>Limitation of Liability</h2>
+        <p>To the fullest extent permitted by law, Haven Command LLC is not liable for any indirect, incidental, or consequential damages arising from your use of this site.</p>
+
+        <h2>Third-Party Links</h2>
+        <p>This site links to third-party sites and to our own product sites. We aren't responsible for the content or practices of external sites you reach through those links.</p>
+
+        <h2>Governing Law</h2>
+        <p>These terms are governed by the laws of the State of California, without regard to conflict-of-law principles.</p>
+
+        <h2>Changes to These Terms</h2>
+        <p>We may update these terms from time to time. Continued use of the site after a change means you accept the updated terms.</p>
+
+        <h2>Contact Us</h2>
+        <p>Questions about these terms can be sent to <a href="mailto:contact@havencommand.com">contact@havencommand.com</a>.</p>
+    </div>
+    <footer>
+        <p>&copy; 2026 H.A.V.E.N. Command. All rights reserved.</p>
+    </footer>
+    <script>
+        function setMenuOpen(isOpen) {
+            document.body.classList.toggle('nav-open', isOpen);
+            const menuButton = document.querySelector('.menu-toggle');
+            if (menuButton) {
+                menuButton.setAttribute('aria-expanded', String(isOpen));
+                menuButton.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+            }
+        }
+
+        function toggleMenu() {
+            setMenuOpen(!document.body.classList.contains('nav-open'));
+        }
+
+        function closeMenu() {
+            setMenuOpen(false);
+        }
+
+        const mobileBreakpoint = window.matchMedia('(max-width: 768px)');
+        mobileBreakpoint.addEventListener('change', (event) => {
+            if (!event.matches) {
+                closeMenu();
+            }
+        });
+    </script>
+</body>
+</html>
