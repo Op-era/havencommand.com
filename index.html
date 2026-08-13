@@ -44,6 +44,70 @@
       "sameAs": []
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Haven Command LLC Products",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "D4Chess",
+            "applicationCategory": "Chess Training Software",
+            "url": "https://d4chess.club",
+            "description": "AI chess training platform that coaches players through their own mistakes instead of just supplying the best move."
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "ScriptForge AI",
+            "applicationCategory": "Screenwriting Software",
+            "url": "https://scriptforgeai.studio",
+            "description": "AI-assisted screenwriting platform with agents that track story structure, continuity, and character psychology."
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "VideoGame",
+            "name": "Emoji Isle",
+            "genre": "Multiplayer Survival",
+            "url": "https://emoji-isle.havencommand.com",
+            "description": "Isometric multiplayer survival game — hunting, gathering, crafting, building, and raiding on a shared island."
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "AutoSocial",
+            "applicationCategory": "Marketing Automation Software",
+            "url": "https://autosocial.havencommand.com",
+            "description": "AI marketing automation platform that turns one idea into a week of platform-ready social content."
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "VideoGame",
+            "name": "Cognition",
+            "genre": "Psychological Puzzle",
+            "url": "https://havencommand.com/#projects",
+            "description": "Psychological puzzle game in active development, navigating a maze built from the mind of a coma patient."
+          }
+        }
+      ]
+    }
+    </script>
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -172,19 +236,157 @@
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
         }
 
-        .project {
-            margin-bottom: 20px;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
+        .hero {
+            padding: 40px 10px 50px;
+            text-align: center;
         }
 
-        .project img {
-            width: 150px;
-            border-radius: 8px;
-            margin-right: 20px;
+        .hero .eyebrow {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 0.2em;
+            color: #9cf;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .hero h2 {
+            font-size: 2.6rem;
+            line-height: 1.2;
+            margin: 0 0 18px;
+        }
+
+        .hero p {
+            max-width: 640px;
+            margin: 0 auto 26px;
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.6;
+        }
+
+        .hero .scroll-cue {
+            display: inline-block;
+            color: #9cf;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid rgba(153,204,255,0.4);
+            border-radius: 999px;
+            padding: 10px 22px;
+        }
+
+        .hero .scroll-cue:hover {
+            background: rgba(153,204,255,0.1);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 22px;
+            margin-bottom: 20px;
+        }
+
+        .project-card {
+            position: relative;
+            display: block;
+            min-height: 320px;
+            border-radius: 10px;
+            overflow: hidden;
+            text-decoration: none;
+            color: #fff;
+            background-color: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 0 0 rgba(0,0,0,0);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        a.project-card:hover, a.project-card:focus-visible {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+            border-color: var(--accent, rgba(255,255,255,0.3));
+        }
+
+        .project-card .card-art {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .project-card .card-scrim {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.92) 100%);
+        }
+
+        .project-card.no-art {
+            background: linear-gradient(160deg, var(--accent-dark, #10131c) 0%, #05060a 100%);
+        }
+
+        .project-card .card-body {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 22px;
+            box-sizing: border-box;
+        }
+
+        .project-card .card-eyebrow {
+            font-size: 0.72rem;
+            font-weight: bold;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent, #9cf);
+            margin-bottom: 8px;
+        }
+
+        .project-card h4 {
+            margin: 0 0 10px;
+            font-size: 1.6rem;
+        }
+
+        .project-card p {
+            margin: 0 0 16px;
+            font-size: 0.95rem;
+            line-height: 1.55;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .project-card .card-cta {
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: var(--accent, #9cf);
+        }
+
+        .project-card .card-badge {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: bold;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 999px;
+            padding: 4px 12px;
+            width: fit-content;
+        }
+
+        .project-card.mystery {
+            display: flex;
+        }
+
+        .project-card.mystery .card-body {
+            justify-content: center;
+            text-align: center;
+        }
+
+        .project-card.mystery .glyph {
+            font-size: 2.2rem;
+            letter-spacing: 0.4em;
+            color: rgba(255,255,255,0.3);
+            margin-bottom: 12px;
         }
 
         footer {
@@ -247,28 +449,15 @@
                 margin-top: 100px;
             }
 
-            .project img {
-                width: 120px;
+            .hero h2 {
+                font-size: 1.9rem;
+            }
+
+            .project-card {
+                min-height: 260px;
             }
         }
 
-        #lightbox {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.92);
-            z-index: 1000;
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-        }
-        #lightbox img {
-            max-width: 90%;
-            max-height: 90vh;
-            border-radius: 6px;
-            box-shadow: 0 0 40px rgba(0,0,0,0.8);
-        }
     </style>
 </head>
 <body>
@@ -295,64 +484,84 @@
     <a href="careers.html" onclick="closeMenu()">Careers</a>
 </nav>
     <div class="container">
-        
+        <div class="hero" id="home">
+            <div class="eyebrow">Haven Command LLC</div>
+            <h2>We build the tools we couldn't find anywhere else.</h2>
+            <p>Five real, live products — an AI chess coach, a screenwriting studio, a multiplayer island, a marketing engine, and a psychological puzzle game in the works. One small studio, actually shipping. Plus two more we're not ready to talk about yet.</p>
+            <a href="#projects" class="scroll-cue">See what we've built ↓</a>
+        </div>
         <h3 id="about">About Us</h3>
         <p>Haven Command, LLC is a software studio. We build AI-powered products, business tools, and original games — not one category to the exclusion of the others. A chess platform that coaches you through your own mistakes. A screenwriting assistant with agents that track story structure. Marketing automation. Original game worlds. Different problems, same approach underneath.</p>
         <p>Our mission is to build software that actually works and actually ships — then keep going. We believe the test of a product is whether real people use it, not how ambitious it sounded at the start. Join us as we keep building.</p>
         <h3 id="approach">Our Approach</h3>
         <p>At Haven Command, LLC, we believe in shipping real, working products over polished pitches. Our team builds across categories — AI-assisted software, business tools, and games — with the same standard applied everywhere: is it technically solid, and does it actually do what it claims. We'd rather ship something smaller that works than something ambitious that doesn't.</p>
         <h3 id="projects">Our Projects</h3>
-        <div id="lightbox" onclick="closeLightbox()">
-            <img id="lightbox-img" src="" alt="Full screen preview">
-        </div>
-
-        <div class="project">
-    <a href="https://d4chess.club" target="_blank"><img src="images/d4chess-logo.png" alt="D4Chess Logo" style="cursor:pointer;"></a>
-        <div>
-            <h4>D4Chess</h4>
-            <p>An AI chess training platform that coaches you through your own mistakes instead of just handing you the best move. <strong>Live now</strong> — get started at <a href="https://d4chess.club" target="_blank" style="color:#fff;">d4chess.club</a>.</p>
-        </div>
-    </div>
-    <div class="project">
-    <img src="images/HavenIcon.png" alt="ScriptForge AI">
-        <div>
-            <h4>ScriptForge AI</h4>
-            <p>An AI-assisted screenwriting platform — agents that track story structure, continuity, and character psychology as you write. <strong>Live now</strong> at <a href="https://scriptforgeai.studio" target="_blank" style="color:#fff;">scriptforgeai.studio</a>.</p>
-        </div>
-    </div>
-    <div class="project">
-            <img src="images/websiteCognitionBG.jpg" alt="Cognition Concept Art" style="cursor:pointer;" onclick="openLightbox(this.src)">
-            <div>
+        <div class="projects-grid">
+        <a class="project-card" href="https://d4chess.club" target="_blank" style="--accent:#e0c496; --accent-dark:#1a140a;">
+            <div class="card-art" style="background-image:url('images/d4chess-card.jpg');"></div>
+            <div class="card-scrim"></div>
+            <div class="card-body">
+                <div class="card-eyebrow">AI Chess Training · Live</div>
+                <h4>D4Chess</h4>
+                <p>Most chess bots hand you the best move. D4Chess makes you find it first — then shows you exactly where your thinking went wrong.</p>
+                <div class="card-cta">Train at d4chess.club →</div>
+            </div>
+        </a>
+        <a class="project-card" href="https://scriptforgeai.studio" target="_blank" style="--accent:#e8a566; --accent-dark:#1c130a;">
+            <div class="card-art" style="background-image:url('images/scriptforge-card.jpg');"></div>
+            <div class="card-scrim"></div>
+            <div class="card-body">
+                <div class="card-eyebrow">AI Screenwriting · Live</div>
+                <h4>ScriptForge AI</h4>
+                <p>Story-structure agents that catch the plot hole three acts before you do. Built for writers who finish drafts, not just start them.</p>
+                <div class="card-cta">Write at scriptforgeai.studio →</div>
+            </div>
+        </a>
+        <a class="project-card" href="https://emoji-isle.havencommand.com" target="_blank" style="--accent:#7fe0c9; --accent-dark:#081713;">
+            <div class="card-art" style="background-image:url('images/emojiisle-card.jpg');"></div>
+            <div class="card-scrim"></div>
+            <div class="card-body">
+                <div class="card-eyebrow">Multiplayer Survival · Live</div>
+                <h4>Emoji Isle</h4>
+                <p>One island, everyone's emoji. Hunt, craft, build, and raid in real time — with strangers who might burn your base down.</p>
+                <div class="card-cta">Play at emoji-isle.havencommand.com →</div>
+            </div>
+        </a>
+        <a class="project-card" href="https://autosocial.havencommand.com" target="_blank" style="--accent:#a9a4f5; --accent-dark:#0c0a1c;">
+            <div class="card-art no-art"></div>
+            <div class="card-body">
+                <div class="card-eyebrow">AI Marketing Automation · Live</div>
+                <h4><em>AutoSocial</em></h4>
+                <p>Feed it one idea. Get a week of platform-ready content back — written, scheduled, and adapted for wherever your audience actually is.</p>
+                <div class="card-cta">Try it at autosocial.havencommand.com →</div>
+            </div>
+        </a>
+        <div class="project-card" style="--accent:#9fb4e8;">
+            <div class="card-art" style="background-image:url('images/websiteCognitionBG.jpg'); background-position: top center;"></div>
+            <div class="card-scrim"></div>
+            <div class="card-body">
+                <div class="card-badge" style="margin-bottom:8px;">In Development</div>
                 <h4>Cognition</h4>
-                <p>A maze of the mind. Unlock the various parts of your brain to escape a coma, navigating intricate puzzles and evading deadly traps along the way. In active development.</p>
+                <p>A maze built out of your own mind. Unlock the parts of your brain you'll need to escape a coma — before whatever's hunting you in there gets there first.</p>
             </div>
         </div>
-    <div class="project">
-    <img src="images/HavenIcon.png" alt="Emoji Isle">
-        <div>
-            <h4>Emoji Isle</h4>
-            <p>An isometric multiplayer survival game — hunting, gathering, crafting, building, and raiding on a shared island.</p>
+        <a class="project-card mystery" href="/xibrary/">
+            <div class="card-body">
+                <div class="glyph">? ? ?</div>
+                <h4>???</h4>
+                <p>Something new is taking shape at Haven Command. We're not ready to say what it is yet — but we're documenting the build as it happens.</p>
+                <div class="card-cta">Follow along →</div>
+            </div>
+        </a>
+        <a class="project-card mystery" href="/ghosthunter/">
+            <div class="card-body">
+                <div class="glyph">? ? ?</div>
+                <h4>???</h4>
+                <p>A second project, still under wraps. If it works the way we think it will, you'll understand why we waited to explain it.</p>
+                <div class="card-cta">Follow along →</div>
+            </div>
+        </a>
         </div>
-    </div>
-    <div class="project">
-    <img src="images/HavenIcon.png" alt="AutoSocial">
-        <div>
-            <h4>AutoSocial</h4>
-            <p>A marketing automation platform for social media — plan, generate, and adapt content across channels from one workspace.</p>
-        </div>
-    </div>
-    <div class="project" style="border:1px solid rgba(255,255,255,0.15);">
-        <div>
-            <h4>???</h4>
-            <p>Something new is taking shape at Haven Command. We're not ready to say what it is yet — but we're documenting the build as it happens. <a href="/xibrary/" style="color:#9cf;">Follow along →</a></p>
-        </div>
-    </div>
-    <div class="project" style="border:1px solid rgba(255,255,255,0.15);">
-        <div>
-            <h4>???</h4>
-            <p>A second project, still under wraps. If it works the way we think it will, you'll understand why we waited to explain it. <a href="/ghosthunter/" style="color:#9cf;">Follow along →</a></p>
-        </div>
-    </div>
     <div class="contact" id="contact">
     <h3>Contact Us</h3>
     <p>For general inquiries, email <a href="mailto:contact@havencommand.com">contact@havencommand.com</a>.</p>
@@ -380,15 +589,6 @@
         setMenuOpen(false);
     }
 
-    function openLightbox(src) {
-        const lb = document.getElementById('lightbox');
-        document.getElementById('lightbox-img').src = src;
-        lb.style.display = 'flex';
-    }
-    function closeLightbox() {
-        document.getElementById('lightbox').style.display = 'none';
-    }
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
     const mobileBreakpoint = window.matchMedia('(max-width: 768px)');
     mobileBreakpoint.addEventListener('change', (event) => {
         if (!event.matches) {
