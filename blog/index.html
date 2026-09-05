@@ -1,398 +1,340 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Haven Command Insights — Notes from Software We Ship</title>
-<meta name="description" content="Insights from Haven Command LLC. What broke in software we build and operate — D4Chess, ScriptForge AI, AutoSocial, and others — and what the experience became after the fix. Products are evidence, not walkthroughs."/>
-<meta name="keywords" content="Haven Command insights, custom software development, production notes, D4Chess, ScriptForge AI, AutoSocial"/>
-<meta name="author" content="Haven Command LLC"/>
-<meta name="robots" content="index, follow"/>
-<link rel="canonical" href="https://havencommand.com/blog/"/>
-<meta property="og:type" content="website"/>
-<meta property="og:url" content="https://havencommand.com/blog/"/>
-<meta property="og:title" content="Haven Command Insights — Notes from Software We Ship"/>
-<meta property="og:description" content="What broke in Haven Command products, and what the experience became after the fix. Products are evidence, not walkthroughs."/>
-<meta property="og:image" content="https://havencommand.com/images/HavenIcon.png"/>
-<meta property="og:site_name" content="Haven Command LLC"/>
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Haven Command Insights — Notes from Software We Ship"/>
-<meta name="twitter:description" content="Each note: what broke in a product, what the experience became after the fix. Evidence, not a walkthrough."/>
-<meta name="twitter:image" content="https://havencommand.com/images/HavenIcon.png"/>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Blog",
-  "name": "The Haven Command",
-  "url": "https://havencommand.com/blog/",
-  "description": "Production notes from Haven Command LLC — what live products had to survive, and what the experience became after the fix.",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Haven Command LLC",
-    "url": "https://havencommand.com"
-  },
-  "author": {
-    "@type": "Organization",
-    "name": "Haven Command LLC",
-    "url": "https://havencommand.com"
-  }
-}
-</script>
-<style>
-:root {
-  --paper: #ffffff;
-  --ink: #111111;
-  --muted: #666666;
-  --red: #cc0000;
-  --rule: #111111;
-}
-@media (prefers-color-scheme: dark) {
-  :root { --paper:#0d0c09; --ink:#e4e0d8; --muted:#888; --red:#dd2020; --rule:#e4e0d8; }
-}
-:root[data-theme="dark"]  { --paper:#0d0c09; --ink:#e4e0d8; --muted:#888; --red:#dd2020; --rule:#e4e0d8; }
-:root[data-theme="light"] { --paper:#ffffff; --ink:#111111; --muted:#666; --red:#cc0000; --rule:#111111; }
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: Georgia, 'Times New Roman', serif;
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 2rem 1.2rem 5rem;
-}
-a { color: inherit; text-decoration-color: var(--red); }
-a:hover { color: var(--red); }
-
-.masthead {
-  border-top: 4px solid var(--ink);
-  border-bottom: 2px solid var(--ink);
-  padding: .5rem 0;
-  margin-bottom: 2.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: .7rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.masthead a { text-decoration: none; color: var(--muted); }
-.masthead a:hover { color: var(--red); }
-.site-name {
-  font-size: clamp(1.6rem, 5vw, 2.6rem);
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: .04em;
-  text-align: center;
-  margin-bottom: .4rem;
-  line-height: 1;
-}
-.site-name a { text-decoration: none; }
-.tagline {
-  text-align: center;
-  font-size: .75rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--muted);
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  padding: .35rem 0;
-  margin-bottom: 1.4rem;
-}
-.index-intro {
-  font-size: 1rem;
-  line-height: 1.65;
-  margin-bottom: 2.5rem;
-  color: var(--ink);
-}
-
-h2 {
-  font-size: .72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .12em;
-  color: var(--muted);
-  border-bottom: 1px solid var(--rule);
-  padding-bottom: .4rem;
-  margin-bottom: 1.5rem;
-}
-
-.post-list { list-style: none; }
-.post-item {
-  border-bottom: 1px solid color-mix(in srgb, var(--ink) 15%, transparent);
-  padding: 1.4rem 0;
-}
-.post-item:first-child { padding-top: 0; }
-
-.post-eyebrow {
-  font-size: .65rem;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  color: var(--red);
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  margin-bottom: .35rem;
-}
-.post-title {
-  font-size: 1.35rem;
-  font-weight: 900;
-  line-height: 1.2;
-  margin-bottom: .4rem;
-  text-wrap: balance;
-}
-.post-title a { text-decoration: none; }
-.post-title a:hover { color: var(--red); }
-.post-deck {
-  font-size: .92rem;
-  color: var(--muted);
-  line-height: 1.55;
-  margin-bottom: .6rem;
-}
-.post-meta {
-  font-size: .7rem;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  color: var(--muted);
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.read-link {
-  font-size: .72rem;
-  font-weight: 700;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  color: var(--red);
-  text-decoration: none;
-}
-.read-link:hover { text-decoration: underline; }
-.read-link::after { content: ' →'; }
-
-#theme-btn {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 100;
-  background: var(--paper);
-  color: var(--muted);
-  border: 1px solid var(--rule);
-  border-radius: 50%;
-  width: 2rem;
-  height: 2rem;
-  font-size: .85rem;
-  cursor: pointer;
-  opacity: 0.55;
-}
-#theme-btn:hover { opacity: 1; color: var(--red); border-color: var(--red); }
-
-.page-foot {
-  margin-top: 2.5rem;
-  padding-top: .8rem;
-  border-top: 2px solid var(--rule);
-  font-size: .72rem;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  display: flex;
-  justify-content: space-between;
-  gap: .8rem;
-  flex-wrap: wrap;
-}
-.page-foot a { color: var(--red); text-decoration: none; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="manifest" href="/images/site.webmanifest">
+    <title>Insights — Notes from Software We Build | Haven Command</title>
+    <meta name="description" content="Insights from Haven Command, a custom software development and digital product studio. Production failures, AI reliability, deploy, auth, and billing — from products already in the room, and from work still in development.">
+    <meta name="keywords" content="Haven Command insights, custom software development, AI applications, production notes, digital products">
+    <meta name="author" content="Haven Command LLC">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://havencommand.com/blog/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://havencommand.com/blog/">
+    <meta property="og:title" content="Insights — Notes from Software We Build | Haven Command">
+    <meta property="og:description" content="What broke in software Haven Command builds and operates — and what the experience became. Products are evidence, not walkthroughs.">
+    <meta property="og:image" content="https://havencommand.com/images/HavenIcon.png">
+    <meta property="og:site_name" content="Haven Command LLC">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Insights — Haven Command">
+    <meta name="twitter:description" content="Production notes from a custom software studio. The products are already in the room.">
+    <meta name="twitter:image" content="https://havencommand.com/images/HavenIcon.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Blog",
+          "name": "Haven Command Insights",
+          "url": "https://havencommand.com/blog/",
+          "description": "Production notes from Haven Command LLC — a custom software development and digital product studio. What broke, what we decided, and what the experience became.",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Haven Command LLC",
+            "url": "https://havencommand.com",
+            "logo": "https://havencommand.com/images/HavenIcon.png"
+          },
+          "author": {
+            "@type": "Organization",
+            "name": "Haven Command LLC",
+            "url": "https://havencommand.com"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is Haven Command Insights?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Dated notes from software Haven Command builds and keeps: production failures, AI reliability, deploy, auth, billing, and prototypes that fail. Not SEO filler and not walkthroughs of proprietary systems."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does Haven Command build custom software?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Haven Command LLC is a custom software development and digital product studio. It builds custom applications, AI-powered software, automation, APIs, portals, and digital products — and operates its own products as proof."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Are these client case studies?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. The products in these notes are Haven Command’s own systems. Live products can be opened. Work in development is labeled as such. There are no invented clients or metrics."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is TrustLoopAI live?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. TrustLoopAI is in development and is not a public product. Insights that mention it are build notes, not launch claims."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I start a project with Haven Command?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Name the software and the problem on the Start a Project page. Haven Command will say whether it is a fit."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="/css/insights.css">
 </head>
 <body>
+    <div class="site-backdrop" aria-hidden="true"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <a class="brand" href="/">
+            <img src="/images/HavenIcon.png" alt="">
+            <span class="brand-text"><span class="haven-font">H.A.V.E.N.</span> Command</span>
+        </a>
+        <nav id="site-nav" class="site-nav" aria-label="Primary">
+            <a href="/custom-software/">What We Build</a>
+            <a href="/products/">Products</a>
+            <a href="/how-we-work/">How We Work</a>
+            <a href="/about/">About</a>
+            <a href="/blog/">Insights</a>
+        </nav>
+        <div class="header-actions">
+            <a class="btn btn-primary" href="/start/">Start a Project</a>
+            <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+    <main id="main" class="page">
+        <header class="hero hero-compact insight-hero">
+            <p class="eyebrow">Insights · Haven Command LLC</p>
+            <h1 class="page-title">Notes from software we build and keep.</h1>
+            <p class="lede">Haven Command is a custom software development and digital product studio. These notes are weeks after a build: production failures, AI that has to stay honest, deploy and auth and billing, prototypes that fail, and architecture decisions you can talk about without a recipe. Own products are the evidence. They are already in the room.</p>
+            <p class="insight-links">
+                <a href="/custom-software/">What we build</a>
+                <a href="/products/">Products</a>
+                <a href="/how-we-work/">How we work</a>
+                <a href="/start/">Start a project</a>
+            </p>
+        </header>
 
-<button id="theme-btn" title="Toggle theme" type="button">&#9680;</button>
+        <section class="panel" aria-labelledby="what-title">
+            <h2 id="what-title">What this is</h2>
+            <p>A dated record of how the studio thinks. Live products are labeled live. TrustLoopAI and other unfinished work stay labeled in development. Nothing here is a client case study, a testimonial, or a walkthrough of internals.</p>
+            <p>If you are trying to build the same class of thing — a custom application, an AI-powered workflow, an integration that has to publish, a product that has to come back as one world — <a href="/start/">start a project</a>. If you want to see the software, <a href="/products/">open the products</a>.</p>
+        </section>
 
-<div class="masthead">
-  <a href="https://havencommand.com">havencommand.com</a>
-  <span>Est. 2025 &middot; Fresno, California</span>
-</div>
-
-<div class="site-name"><a href="/blog/">The Haven Command</a></div>
-<div class="tagline">Insights · Notes from software we ship and keep</div>
-
-<p class="index-intro">Each note is a week after a build: what the user felt when it broke, and what the experience became after Haven Command LLC shipped the fix. Products are evidence — not walkthroughs. <a href="/custom-software/">What we build</a> · <a href="/products/">Products</a> · <a href="https://havencommand.com/start/">Start a project</a>.</p>
-
-<h2>&#9632;&nbsp; All notes</h2>
-
-<ul class="post-list">
-  <li class="post-item">
-    <div class="post-eyebrow">D4Chess · August 31, 2026</div>
-    <div class="post-title"><a href="/blog/why-d4chess-grounds-coach-answers-on-stockfish-pvs.html">Why did the D4Chess coach invent a game that never happened?</a></div>
-    <div class="post-deck">Players studied a game that never happened. After the fix, the D4Chess lesson matches the board they played — or the coach stays quiet.</div>
-    <div class="post-meta">
-      <span>Shane Foster</span>
-      <span>&middot;</span>
-      <span>7 min read</span>
-      <span>&middot;</span>
-      <a class="read-link" href="/blog/why-d4chess-grounds-coach-answers-on-stockfish-pvs.html">Read</a>
-    </div>
-  </li>
-  <li class="post-item">
-    <div class="post-eyebrow">D4Chess · August 24, 2026</div>
-    <div class="post-title"><a href="/blog/why-the-d4chess-post-game-coach-went-silent.html">Why was the D4Chess post-game coach silent — or talking over itself?</a></div>
-    <div class="post-deck">After a real game, players got silence — or two voices at once. After the fix, one lesson, or a clean quiet.</div>
-    <div class="post-meta">
-      <span>Shane Foster</span>
-      <span>&middot;</span>
-      <span>6 min read</span>
-      <span>&middot;</span>
-      <a class="read-link" href="/blog/why-the-d4chess-post-game-coach-went-silent.html">Read</a>
-    </div>
-  </li>
-  <li class="post-item">
-    <div class="post-eyebrow">D4Chess · August 17, 2026</div>
-    <div class="post-title"><a href="/blog/how-d4chess-roastme-explains-without-engine-jargon.html">Why must a non-expert explanation still be honest?</a></div>
-    <div class="post-deck">A punchy explanation almost invented a blunder. After the fix, the human layer is about the real game — or it does not run.</div>
-    <div class="post-meta">
-      <span>Shane Foster</span>
-      <span>&middot;</span>
-      <span>6 min read</span>
-      <span>&middot;</span>
-      <a class="read-link" href="/blog/how-d4chess-roastme-explains-without-engine-jargon.html">Read</a>
-    </div>
-  </li>
-  <li class="post-item">
-    <div class="post-eyebrow">ScriptForge · August 10, 2026</div>
-    <div class="post-title"><a href="/blog/how-scriptforge-locks-a-live-script-from-ai-overwrite.html">Why did an AI agent overwrite a writer’s live draft?</a></div>
-    <div class="post-deck">Writers lost live drafts to “helpful” passes. After the fix, the writer still owns the script — even after a suggestion they later regret.</div>
-    <div class="post-meta">
-      <span>Shane Foster</span>
-      <span>&middot;</span>
-      <span>7 min read</span>
-      <span>&middot;</span>
-      <a class="read-link" href="/blog/how-scriptforge-locks-a-live-script-from-ai-overwrite.html">Read</a>
-    </div>
-  </li>
-  <li class="post-item">
-    <div class="post-eyebrow">ScriptForge · August 3, 2026</div>
-    <div class="post-title"><a href="/blog/why-scriptforge-keeps-a-blank-script-tab.html">Why do AI writing tools trap you in an empty state you cannot type into?</a></div>
-    <div class="post-deck">The writing day almost started with a prompt. After the fix, a writer can start the page immediately — the job does not wait on the model.</div>
-    <div class="post-meta">
-      <span>Shane Foster</span>
-      <span>&middot;</span>
-      <span>5 min read</span>
-      <span>&middot;</span>
-      <a class="read-link" href="/blog/why-scriptforge-keeps-a-blank-script-tab.html">Read</a>
-    </div>
-  </li>
-  <li class="post-item">
-    <div class="post-eyebrow">AutoSocial · July 20, 2026</div>
-    <div class="post-title"><a href="/blog/why-autosocial-publishes-through-the-instagram-graph-api.html">Why did the week’s posts never go out after a “working” demo?</a></div>
-    <div class="post-deck">The calendar looked connected in the meeting. A week later nothing published. After the fix, the week actually goes out.</div>
-    <div class="post-meta">
-      <span>Shane Foster</span>
-      <span>&middot;</span>
-      <span>7 min read</span>
-      <span>&middot;</span>
-      <a class="read-link" href="/blog/why-autosocial-publishes-through-the-instagram-graph-api.html">Read</a>
-    </div>
-  </li>
-  <li class="post-item">
-    <div class="post-eyebrow">AutoSocial · July 13, 2026</div>
-    <div class="post-title"><a href="/blog/how-autosocial-ships-owner-only-production-login.html">Why was the owner locked out of the product they operate?</a></div>
-    <div class="post-deck">The owner could not open the product they operate. After the fix, the person on the hook can still get in.</div>
-    <div class="post-meta">
-      <span>Shane Foster</span>
-      <span>&middot;</span>
-      <span>6 min read</span>
-      <span>&middot;</span>
-      <a class="read-link" href="/blog/how-autosocial-ships-owner-only-production-login.html">Read</a>
-    </div>
-  </li>
-  <li class="post-item">
-    <div class="post-eyebrow">AutoSocial · July 6, 2026</div>
-    <div class="post-title"><a href="/blog/why-empty-vite-firebase-config-black-screened-autosocial.html">Why did a “finished” AutoSocial deploy hand buyers a black screen?</a></div>
-    <div class="post-deck">Production looked deployed and painted black. After the fix, a product that cannot boot is not allowed to pretend it is live.</div>
-    <div class="post-meta">
-      <span>Shane Foster</span>
-      <span>&middot;</span>
-      <span>6 min read</span>
-      <span>&middot;</span>
-      <a class="read-link" href="/blog/why-empty-vite-firebase-config-black-screened-autosocial.html">Read</a>
-    </div>
-  </li>
-  <li class="post-item">
-    <div class="post-eyebrow">Inaugural Essay · July 1, 2026</div>
-    <div class="post-title"><a href="/blog/joy-ai-49-year-view.html">Joy, AI, and the 49-Year View</a></div>
-    <div class="post-deck">On making games, the death of skill, fear as a business model, and what joy actually is.</div>
-    <div class="post-meta">
-      <span>Shane Foster</span>
-      <span>&middot;</span>
-      <span>15 min read</span>
-      <span>&middot;</span>
-      <a class="read-link" href="/blog/joy-ai-49-year-view.html">Read</a>
-    </div>
-  </li>
-  <li class="post-item">
-    <div class="post-eyebrow">TrustLoopAI · June 29, 2026</div>
-    <div class="post-title"><a href="/blog/what-trustloopai-does-when-deepseek-fails.html">Why did the live SMS conversation die mid-thread?</a></div>
-    <div class="post-deck">A live SMS thread went silent mid-conversation. After the fix, the next message still arrives. The customer never sees the autopsy.</div>
-    <div class="post-meta">
-      <span>Shane Foster</span>
-      <span>&middot;</span>
-      <span>7 min read</span>
-      <span>&middot;</span>
-      <a class="read-link" href="/blog/what-trustloopai-does-when-deepseek-fails.html">Read</a>
-    </div>
-  </li>
-  <li class="post-item">
-    <div class="post-eyebrow">TrustLoopAI · June 22, 2026</div>
-    <div class="post-title"><a href="/blog/how-trustloopai-productized-referrals-and-payg-caps.html">Why did usage become an invoice nobody planned?</a></div>
-    <div class="post-deck">Usage had no ceiling. After the fix, referrals and pay-as-you-go have a limit the product enforces — not a spreadsheet after the fire.</div>
-    <div class="post-meta">
-      <span>Shane Foster</span>
-      <span>&middot;</span>
-      <span>6 min read</span>
-      <span>&middot;</span>
-      <a class="read-link" href="/blog/how-trustloopai-productized-referrals-and-payg-caps.html">Read</a>
-    </div>
-  </li>
-  <li class="post-item">
-    <div class="post-eyebrow">Emoji Isle · June 15, 2026</div>
-    <div class="post-title"><a href="/blog/why-emoji-isle-positions-desynced-after-restart.html">Why does a restart kill multi-user products — including AI ones?</a></div>
-    <div class="post-deck">After a restart, players were not in the same world. After the fix, everyone is on the same island again.</div>
-    <div class="post-meta">
-      <span>Shane Foster</span>
-      <span>&middot;</span>
-      <span>6 min read</span>
-      <span>&middot;</span>
-      <a class="read-link" href="/blog/why-emoji-isle-positions-desynced-after-restart.html">Read</a>
-    </div>
-  </li>
-</ul>
-
-<div class="page-foot">
-  <span>&copy; 2026 Haven Command LLC</span>
-  <span>
-    <a href="https://havencommand.com/">Home</a>
-    &nbsp;&middot;&nbsp;
-    <a href="https://havencommand.com/products/">Products</a>
-    &nbsp;&middot;&nbsp;
-    <a href="https://havencommand.com/start/">Start a Project</a>
-    &nbsp;&middot;&nbsp;
-    <a href="mailto:contact@havencommand.com">contact@havencommand.com</a>
-  </span>
-</div>
-
-<script>
-const btn = document.getElementById('theme-btn');
-const root = document.documentElement;
-let theme = localStorage.getItem('hc-theme') || 'auto';
-function apply(t) {
-  root.removeAttribute('data-theme');
-  if (t !== 'auto') root.setAttribute('data-theme', t);
-  btn.innerHTML = t === 'dark' ? '&#9728;' : t === 'light' ? '&#9679;' : '&#9680;';
-  localStorage.setItem('hc-theme', t);
-}
-apply(theme);
-btn.addEventListener('click', () => {
-  theme = theme === 'auto' ? 'dark' : theme === 'dark' ? 'light' : 'auto';
-  apply(theme);
-});
-</script>
+        <section class="panel" aria-labelledby="notes-title">
+            <h2 id="notes-title">All insights</h2>
+            <ul class="insight-list">
+            <li class="insight-item">
+                <div class="eyebrow-row">
+                    <span class="badge badge-live">Live product</span>
+                    <span class="note-meta" style="margin:0;">D4Chess · August 31, 2026</span>
+                </div>
+                <h2><a href="/blog/why-d4chess-grounds-coach-answers-on-stockfish-pvs.html">Why did the D4Chess coach invent a game that never happened?</a></h2>
+                <p class="deck">Players studied a fluent lesson about a game that never happened. After the fix, the coach matches the board they played — or stays quiet.</p>
+                <div class="insight-meta">
+                    <span>Shane Foster</span>
+                    <span>7 min read</span>
+                    <a href="/blog/why-d4chess-grounds-coach-answers-on-stockfish-pvs.html">Read</a>
+                </div>
+            </li>
+            <li class="insight-item">
+                <div class="eyebrow-row">
+                    <span class="badge badge-live">Live product</span>
+                    <span class="note-meta" style="margin:0;">D4Chess · August 24, 2026</span>
+                </div>
+                <h2><a href="/blog/why-the-d4chess-post-game-coach-went-silent.html">Why was the D4Chess post-game coach silent — or talking over itself?</a></h2>
+                <p class="deck">After a real game, players got silence — or two voices at once. After the fix, one lesson, or a clean quiet.</p>
+                <div class="insight-meta">
+                    <span>Shane Foster</span>
+                    <span>6 min read</span>
+                    <a href="/blog/why-the-d4chess-post-game-coach-went-silent.html">Read</a>
+                </div>
+            </li>
+            <li class="insight-item">
+                <div class="eyebrow-row">
+                    <span class="badge badge-live">Live product</span>
+                    <span class="note-meta" style="margin:0;">D4Chess · August 17, 2026</span>
+                </div>
+                <h2><a href="/blog/how-d4chess-roastme-explains-without-engine-jargon.html">Why must a non-expert explanation still be honest?</a></h2>
+                <p class="deck">A punchy explanation almost invented a blunder. After the fix, the human layer is about the real game — or it does not run.</p>
+                <div class="insight-meta">
+                    <span>Shane Foster</span>
+                    <span>6 min read</span>
+                    <a href="/blog/how-d4chess-roastme-explains-without-engine-jargon.html">Read</a>
+                </div>
+            </li>
+            <li class="insight-item">
+                <div class="eyebrow-row">
+                    <span class="badge badge-live">Live product</span>
+                    <span class="note-meta" style="margin:0;">ScriptForge · August 10, 2026</span>
+                </div>
+                <h2><a href="/blog/how-scriptforge-locks-a-live-script-from-ai-overwrite.html">Why did an AI agent overwrite a writer’s live draft?</a></h2>
+                <p class="deck">Writers lost live drafts to “helpful” passes. After the fix, the writer still owns the script — even after a suggestion they later regret.</p>
+                <div class="insight-meta">
+                    <span>Shane Foster</span>
+                    <span>7 min read</span>
+                    <a href="/blog/how-scriptforge-locks-a-live-script-from-ai-overwrite.html">Read</a>
+                </div>
+            </li>
+            <li class="insight-item">
+                <div class="eyebrow-row">
+                    <span class="badge badge-live">Live product</span>
+                    <span class="note-meta" style="margin:0;">ScriptForge · August 3, 2026</span>
+                </div>
+                <h2><a href="/blog/why-scriptforge-keeps-a-blank-script-tab.html">Why do AI writing tools trap you in an empty state you cannot type into?</a></h2>
+                <p class="deck">The writing day almost started with a prompt. After the fix, a writer can start the page immediately — the job does not wait on the model.</p>
+                <div class="insight-meta">
+                    <span>Shane Foster</span>
+                    <span>5 min read</span>
+                    <a href="/blog/why-scriptforge-keeps-a-blank-script-tab.html">Read</a>
+                </div>
+            </li>
+            <li class="insight-item">
+                <div class="eyebrow-row">
+                    <span class="badge badge-live">Live product</span>
+                    <span class="note-meta" style="margin:0;">AutoSocial · July 20, 2026</span>
+                </div>
+                <h2><a href="/blog/why-autosocial-publishes-through-the-instagram-graph-api.html">Why did the week’s posts never go out after a “working” demo?</a></h2>
+                <p class="deck">The calendar looked connected in the meeting. A week later nothing published. After the fix, the week actually goes out.</p>
+                <div class="insight-meta">
+                    <span>Shane Foster</span>
+                    <span>7 min read</span>
+                    <a href="/blog/why-autosocial-publishes-through-the-instagram-graph-api.html">Read</a>
+                </div>
+            </li>
+            <li class="insight-item">
+                <div class="eyebrow-row">
+                    <span class="badge badge-live">Live product</span>
+                    <span class="note-meta" style="margin:0;">AutoSocial · July 13, 2026</span>
+                </div>
+                <h2><a href="/blog/how-autosocial-ships-owner-only-production-login.html">Why was the owner locked out of the product they operate?</a></h2>
+                <p class="deck">The owner could not open the product they operate. After the fix, the person on the hook can still get in.</p>
+                <div class="insight-meta">
+                    <span>Shane Foster</span>
+                    <span>6 min read</span>
+                    <a href="/blog/how-autosocial-ships-owner-only-production-login.html">Read</a>
+                </div>
+            </li>
+            <li class="insight-item">
+                <div class="eyebrow-row">
+                    <span class="badge badge-live">Live product</span>
+                    <span class="note-meta" style="margin:0;">AutoSocial · July 6, 2026</span>
+                </div>
+                <h2><a href="/blog/why-empty-vite-firebase-config-black-screened-autosocial.html">Why did a “finished” AutoSocial deploy hand buyers a black screen?</a></h2>
+                <p class="deck">Production looked deployed and painted black. After the fix, a product that cannot boot is not allowed to pretend it is live.</p>
+                <div class="insight-meta">
+                    <span>Shane Foster</span>
+                    <span>6 min read</span>
+                    <a href="/blog/why-empty-vite-firebase-config-black-screened-autosocial.html">Read</a>
+                </div>
+            </li>
+            <li class="insight-item">
+                <div class="eyebrow-row">
+                    <span class="badge badge-concept">Essay</span>
+                    <span class="note-meta" style="margin:0;">Essay · July 1, 2026</span>
+                </div>
+                <h2><a href="/blog/joy-ai-49-year-view.html">Joy, AI, and the 49-Year View</a></h2>
+                <p class="deck">On making games, the death of skill, fear as a business model, and what joy actually is — from the founder of a software studio.</p>
+                <div class="insight-meta">
+                    <span>Shane Foster</span>
+                    <span>15 min read</span>
+                    <a href="/blog/joy-ai-49-year-view.html">Read</a>
+                </div>
+            </li>
+            <li class="insight-item">
+                <div class="eyebrow-row">
+                    <span class="badge badge-dev">In development</span>
+                    <span class="note-meta" style="margin:0;">TrustLoopAI · June 29, 2026</span>
+                </div>
+                <h2><a href="/blog/what-trustloopai-does-when-deepseek-fails.html">Why does an SMS conversation die when the model vendor fails?</a></h2>
+                <p class="deck">TrustLoopAI is in development. A vendor failure went silent mid-thread. The decision: the next message still has to arrive.</p>
+                <div class="insight-meta">
+                    <span>Shane Foster</span>
+                    <span>7 min read</span>
+                    <a href="/blog/what-trustloopai-does-when-deepseek-fails.html">Read</a>
+                </div>
+            </li>
+            <li class="insight-item">
+                <div class="eyebrow-row">
+                    <span class="badge badge-dev">In development</span>
+                    <span class="note-meta" style="margin:0;">TrustLoopAI · June 22, 2026</span>
+                </div>
+                <h2><a href="/blog/how-trustloopai-productized-referrals-and-payg-caps.html">Why did usage become an invoice nobody planned?</a></h2>
+                <p class="deck">In development. Usage without a ceiling is an invoice after the fire. The product has to enforce the cap.</p>
+                <div class="insight-meta">
+                    <span>Shane Foster</span>
+                    <span>6 min read</span>
+                    <a href="/blog/how-trustloopai-productized-referrals-and-payg-caps.html">Read</a>
+                </div>
+            </li>
+            <li class="insight-item">
+                <div class="eyebrow-row">
+                    <span class="badge badge-live">Live product</span>
+                    <span class="note-meta" style="margin:0;">Emoji Isle · June 15, 2026</span>
+                </div>
+                <h2><a href="/blog/why-emoji-isle-positions-desynced-after-restart.html">Why does a restart kill multi-user products?</a></h2>
+                <p class="deck">After a restart, players were not in the same world. After the fix, everyone is on the same island again.</p>
+                <div class="insight-meta">
+                    <span>Shane Foster</span>
+                    <span>6 min read</span>
+                    <a href="/blog/why-emoji-isle-positions-desynced-after-restart.html">Read</a>
+                </div>
+            </li>
+            </ul>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div>
+                <h2>Haven Command LLC</h2>
+                <p>Custom software development and digital products. Fresno, California.</p>
+            </div>
+            <div>
+                <h2>Studio</h2>
+                <ul>
+                    <li><a href="/custom-software/">What We Build</a></li>
+                    <li><a href="/products/">Products</a></li>
+                    <li><a href="/how-we-work/">How We Work</a></li>
+                    <li><a href="/about/">About</a></li>
+                </ul>
+            </div>
+            <div>
+                <h2>More</h2>
+                <ul>
+                    <li><a href="/blog/">Insights</a></li>
+                    <li><a href="/start/">Start a Project</a></li>
+                    <li><a href="/careers.html">Careers</a></li>
+                    <li><a href="https://mail.zoho.com" rel="nofollow">Email login</a></li>
+                </ul>
+            </div>
+            <div>
+                <h2>Legal</h2>
+                <ul>
+                    <li><a href="/privacy_policy/">Privacy Policy</a></li>
+                    <li><a href="/terms_of_service/">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-base">
+            <span>© 2026 Haven Command LLC. All rights reserved.</span>
+            <span>The products are already in the room.</span>
+        </div>
+    </footer>
+    <script src="/js/site.js"></script>
 </body>
 </html>
