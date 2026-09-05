@@ -265,7 +265,7 @@
           "name": "Where can I see how Haven Command solves production AI problems?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "On the Haven Command blog: production notes from D4Chess, ScriptForge AI, AutoSocial, TrustLoopAI, and Emoji Isle. Each post is one failure mode typical AI hires still hit, how Haven Command shipped past it, and the same class of work for client stacks."
+            "text": "On the Haven Command blog: what typical AI hires fail at, what broke for customers in live products, and what the experience became after Haven Command shipped the fix. Products are evidence, not walkthroughs."
           }
         },
         {
@@ -273,7 +273,7 @@
           "name": "What is the Haven Command systems library?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "An internal company library of production-proven modules — auth, billing, schedulers, Graph publish, coach pipelines, admin panels, and similar patterns — reused so custom AI integrations plug into proven systems instead of starting from a one-off demo. It is not a public product."
+            "text": "An internal set of reusable, integration-ready patterns from products Haven Command already shipped. Custom work starts from proven outcomes, not a one-off demo. It is not a public product."
           }
         }
       ]
@@ -736,15 +736,15 @@
         <h2 id="approach">What other AI engineers tend to fail at</h2>
         <p>Haven Command ships the finished loop, not a chatbot on a landing page. Typical AI hires fail in modes the company has already cleared:</p>
         <ul class="pillar-list">
-            <li><strong>Demos that do not survive production.</strong> Empty config, no last-mile deploy, brittle browser automation instead of official APIs. AutoSocial looked deployed and painted black — then published through the Instagram Graph API, not a puppet login.</li>
-            <li><strong>Model answers that are not grounded</strong> in a system of record. A coach that invents Stockfish lines is a prompt. D4Chess narrates only verified principal variations, then explains them so a non-expert can trust the lesson.</li>
-            <li><strong>AI that overwrites the work product.</strong> No lock, no approve, no undo. ScriptForge locks the draft, merges on Approve, and keeps history until save.</li>
-            <li><strong>Auth theater.</strong> Email OTP that locks the owner out. AutoSocial ships owner-operable production login.</li>
+            <li><strong>Demos that do not survive production.</strong> AutoSocial looked deployed and painted black. A “connected” calendar never posted the week. Buyers inherit a black screen and a meeting that lied.</li>
+            <li><strong>Answers that are not honest.</strong> The D4Chess coach invented a game that never happened. Players studied fiction. After the fix, the lesson matches the real game — or the coach stays quiet.</li>
+            <li><strong>AI that steals the work product.</strong> ScriptForge writers lost live drafts to “helpful” passes. After the fix, the writer still owns the script.</li>
+            <li><strong>Login theater.</strong> The owner could not get into the product they operate. After the fix, the person on the hook can still open the door.</li>
             <li><strong>Vague tasks with no proof of completion.</strong> “Add AI” is not a job. Haven Command takes one named bottleneck with a shipped loop you can point at.</li>
-            <li><strong>State that dies on restart.</strong> Agent sessions, rooms, shared workflows. Reliability is product debt. Emoji Isle persists authority and reconciles on reconnect — the same fix multi-user AI needs.</li>
+            <li><strong>Shared work that dies on restart.</strong> Emoji Isle players came back to different islands. After the fix, everyone is in the same world again — the same failure multi-user AI hits.</li>
         </ul>
-        <p>Same class of system if Haven Command builds yours: D4Chess coaches from actual mistakes, TheraScribe turns a session into a SOAP note, TrustLoopAI keeps an SMS loop alive when the model vendor blinks.</p>
-        <p id="systems-library">Custom work plugs into the <strong>Haven Command systems library</strong> — owner-operable auth, billing and PAYG caps, Graph publish, grounded coach pipelines, lock/approve/undo, admin. Not a public product. Reused modules, not a one-off demo. Notes: <a href="blog/" style="color:#9cf;">blog</a>.</p>
+        <p>Same class of outcome if Haven Command builds yours: D4Chess coaches from actual mistakes, TheraScribe turns a session into a note the clinician can use, TrustLoopAI keeps an SMS conversation alive when a vendor has a bad day.</p>
+        <p id="systems-library">Custom work starts from the <strong>Haven Command systems library</strong> — reusable, integration-ready patterns from products the company already shipped. Not a public catalog. Not a walkthrough. Faster than a one-off demo. Evidence: <a href="blog/" style="color:#9cf;">blog</a>.</p>
         <h2 id="projects">Can Haven Command build something like D4Chess for your business?</h2>
         <p class="section-lead">Yes. The cards below are the proof — AI that does a specific job in a real workflow. TrustLoopAI.fyi and TheraScribe.online are more of the same.</p>
         <div class="projects-grid">
@@ -822,7 +822,7 @@
             </details>
             <details>
                 <summary>Why do typical AI engineering hires fail?</summary>
-                <p>Buyers usually report the same failures: a notebook or PoC that will not run in their stack; a demo that falls over in production; model output they still paste into the real system by hand; nobody owning auth, billing, deploy, publish, or admin; and a hire that delivered prompts instead of an integrated workflow. Haven Command has already worked past those modes in its own products — empty deploy config, ungrounded coach answers, AI overwrite without approve/undo, OTP theater, and state that dies on restart.</p>
+                <p>Buyers usually report the same failures: a notebook they cannot run; a demo that dies in production; model output they still paste by hand; nobody owning the last mile; and a hire that delivered prompts instead of a workflow. Haven Command has already cleared those modes in live products — black screens, dishonest coaches, overwritten drafts, locked-out owners, and shared work that dies on restart.</p>
             </details>
             <details>
                 <summary>Can Haven Command build something like D4Chess for my business?</summary>
@@ -846,11 +846,11 @@
             </details>
             <details>
                 <summary>Where can I see how Haven Command solves production AI problems?</summary>
-                <p>On the <a href="blog/">Haven Command blog</a>: production notes from D4Chess, ScriptForge AI, AutoSocial, TrustLoopAI, and Emoji Isle. Each post is one failure mode typical AI hires still hit, how Haven Command shipped past it, and the same class of work for client stacks.</p>
+                <p>On the <a href="blog/">Haven Command blog</a>: what typical AI hires fail at, what broke for customers in live products, and what the experience became after the fix. The products are evidence — not walkthroughs of internals.</p>
             </details>
             <details>
                 <summary>What is the Haven Command systems library?</summary>
-                <p>An internal company library of production-proven modules — auth, billing, schedulers, Graph publish, coach pipelines, admin panels — reused so custom AI integrations plug into proven systems instead of starting from a one-off demo. It is not a public product. See <a href="#systems-library">how Haven Command uses it</a> and the write-ups on the <a href="blog/">blog</a>.</p>
+                <p>An internal set of reusable, integration-ready patterns from products Haven Command already shipped. Custom work starts from proven outcomes, not a one-off demo. It is not a public product. See <a href="#systems-library">the note above</a> and the <a href="blog/">blog</a>.</p>
             </details>
         </div>
     </div>
