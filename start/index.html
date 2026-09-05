@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="manifest" href="/images/site.webmanifest">
+    <title>Start a Project — Haven Command</title>
+    <meta name="description" content="Start a custom software project with Haven Command. Tell us what you are trying to build and what problem you are trying to solve.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://havencommand.com/start/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://havencommand.com/start/">
+    <meta property="og:title" content="Start a Project — Haven Command">
+    <meta property="og:description" content="Name the software and the problem. Haven Command will say whether it is a fit.">
+    <meta property="og:image" content="https://havencommand.com/images/HavenIcon.png">
+    <meta property="og:site_name" content="Haven Command LLC">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Start a Project — Haven Command">
+    <meta name="twitter:description" content="Commission custom software from Haven Command.">
+    <meta name="twitter:image" content="https://havencommand.com/images/HavenIcon.png">
+    <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+    <div class="site-backdrop" aria-hidden="true"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <a class="brand" href="/">
+            <img src="/images/HavenIcon.png" alt="">
+            <span class="brand-text"><span class="haven-font">H.A.V.E.N.</span> Command</span>
+        </a>
+        <nav id="site-nav" class="site-nav" aria-label="Primary">
+            <a href="/custom-software/">What We Build</a>
+            <a href="/products/">Products</a>
+            <a href="/how-we-work/">How We Work</a>
+            <a href="/about/">About</a>
+            <a href="/blog/">Insights</a>
+        </nav>
+        <div class="header-actions">
+            <a class="btn btn-primary" href="/start/">Start a Project</a>
+            <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main id="main" class="page">
+        <header class="hero hero-compact">
+            <p class="eyebrow">Contact</p>
+            <h1 class="page-title">Have something you need built?</h1>
+            <p class="lede">Name the software and the problem. This form opens your email app with a structured message to contact@havencommand.com — nothing is stored on this site.</p>
+        </header>
+
+        <section class="panel page-narrow" style="margin-left:0;" aria-labelledby="form-title">
+            <h2 id="form-title">Start a Project</h2>
+            <form id="project-form" action="mailto:contact@havencommand.com" method="get">
+                <label>
+                    Name
+                    <input type="text" name="name" autocomplete="name" required maxlength="200">
+                </label>
+                <label>
+                    Email
+                    <input type="email" name="email" autocomplete="email" required maxlength="200">
+                </label>
+                <label>
+                    Company / project
+                    <input type="text" name="company" autocomplete="organization" required maxlength="200">
+                </label>
+                <label>
+                    What are you trying to build?
+                    <textarea name="build" required maxlength="4000" placeholder="A customer portal, an internal tool, an AI-assisted workflow, a product…"></textarea>
+                </label>
+                <label>
+                    What problem are you trying to solve?
+                    <textarea name="problem" required maxlength="4000" placeholder="The off-the-shelf tool almost works, except…"></textarea>
+                </label>
+                <label>
+                    Budget range <span class="optional">(optional)</span>
+                    <select name="budget">
+                        <option value="Not specified">Prefer not to say</option>
+                        <option value="Exploring / not sure yet">Exploring / not sure yet</option>
+                        <option value="A focused tool or workflow">A focused tool or workflow</option>
+                        <option value="A larger product or platform">A larger product or platform</option>
+                    </select>
+                </label>
+                <p class="form-help">Submitting opens a draft email. If that fails, write <a href="mailto:contact@havencommand.com">contact@havencommand.com</a> directly.</p>
+                <p id="form-status" class="form-help" role="status" hidden></p>
+                <div class="cta-row" style="justify-content:flex-start;">
+                    <button class="btn btn-primary" type="submit">Open email draft</button>
+                    <a class="btn" href="mailto:contact@havencommand.com">Email instead</a>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div>
+                <h2>Haven Command LLC</h2>
+                <p>Custom software development and digital products. Fresno, California.</p>
+            </div>
+            <div>
+                <h2>Studio</h2>
+                <ul>
+                    <li><a href="/custom-software/">What We Build</a></li>
+                    <li><a href="/products/">Products</a></li>
+                    <li><a href="/how-we-work/">How We Work</a></li>
+                    <li><a href="/about/">About</a></li>
+                </ul>
+            </div>
+            <div>
+                <h2>More</h2>
+                <ul>
+                    <li><a href="/blog/">Insights</a></li>
+                    <li><a href="/start/">Start a Project</a></li>
+                    <li><a href="/careers.html">Careers</a></li>
+                    <li><a href="https://mail.zoho.com" rel="nofollow">Email login</a></li>
+                </ul>
+            </div>
+            <div>
+                <h2>Legal</h2>
+                <ul>
+                    <li><a href="/privacy_policy/">Privacy Policy</a></li>
+                    <li><a href="/terms_of_service/">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-base">
+            <span>© 2026 Haven Command LLC. All rights reserved.</span>
+            <span>The products are already in the room.</span>
+        </div>
+    </footer>
+    <script src="/js/site.js"></script>
+</body>
+</html>
