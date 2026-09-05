@@ -3,23 +3,24 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Why did an empty Vite Firebase config black-screen AutoSocial on Fly? — Haven Command Blog</title>
-<meta name="description" content="AutoSocial’s Fly deploy black-screened because Vite baked empty Firebase config at build time. A Haven Command note on SPA env as a production integration, not a local .env habit."/>
-<meta name="keywords" content="Vite Firebase environment variables, Fly.io build args, black screen SPA, AutoSocial, production deploy, Haven Command"/>
+<title>Why did a “finished” AutoSocial deploy hand buyers a black screen? — Haven Command Blog</title>
+<meta name="description" content="Typical AI vendors leave a PoC you cannot run in your stack. AutoSocial looked deployed on Fly and painted black because the production build had empty config. Haven Command made missing last-mile config fail the deploy."/>
+<meta name="keywords" content="last mile deploy, empty production config, AI demo vs production, AutoSocial, hire Haven Command"/>
 <meta name="author" content="Shane Foster"/>
 <meta name="robots" content="index, follow"/>
-<link rel="canonical" href="https://havencommand.com/blog/why-empty-vite-firebase-config-black-screened-autosocial"/>
+<link rel="canonical" href="https://havencommand.com/blog/why-empty-vite-firebase-config-black-screened-autosocial.html"/>
 <meta property="og:type" content="article"/>
-<meta property="og:url" content="https://havencommand.com/blog/why-empty-vite-firebase-config-black-screened-autosocial"/>
-<meta property="og:title" content="Why did an empty Vite Firebase config black-screen AutoSocial on Fly?"/>
-<meta property="og:description" content="Vite inlines env at build time. If Fly builds without the public Firebase args, the bundle boots with empty config and the UI dies. Pass the args at build."/>
+<meta property="og:url" content="https://havencommand.com/blog/why-empty-vite-firebase-config-black-screened-autosocial.html"/>
+<meta property="og:title" content="Why did a “finished” AutoSocial deploy hand buyers a black screen?"/>
+<meta property="og:description" content="Typical AI hires deliver a laptop demo that looks done. The production build ships empty config. The buyer inherits a black screen. Haven Command treats a deploy that cannot boot as a failed deploy."/>
 <meta property="og:image" content="https://havencommand.com/images/HavenIcon.png"/>
 <meta property="og:site_name" content="Haven Command LLC"/>
 <meta property="article:published_time" content="2026-07-06"/>
+<meta property="article:modified_time" content="2026-09-05"/>
 <meta property="article:author" content="Shane Foster"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Why did an empty Vite Firebase config black-screen AutoSocial on Fly?"/>
-<meta name="twitter:description" content="Vite inlines env at build time. If Fly builds without the public Firebase args, the bundle boots with empty config and the UI dies. Pass the args at build."/>
+<meta name="twitter:title" content="Why did a “finished” AutoSocial deploy hand buyers a black screen?"/>
+<meta name="twitter:description" content="Typical AI hires deliver a laptop demo that looks done. The production build ships empty config. The buyer inherits a black screen. Haven Command treats a deploy that cannot boot as a failed deploy."/>
 <meta name="twitter:image" content="https://havencommand.com/images/HavenIcon.png"/>
 <script type="application/ld+json">
 {
@@ -27,10 +28,10 @@
   "@graph": [
     {
       "@type": "Article",
-      "headline": "Why did an empty Vite Firebase config black-screen AutoSocial on Fly?",
-      "description": "AutoSocial\u2019s Fly deploy black-screened because Vite baked empty Firebase config at build time. A Haven Command note on SPA env as a production integration, not a local .env habit.",
+      "headline": "Why did a “finished” AutoSocial deploy hand buyers a black screen?",
+      "description": "Typical AI vendors leave a PoC you cannot run in your stack. AutoSocial looked deployed on Fly and painted black because the production build had empty config. Haven Command made missing last-mile config fail the deploy.",
       "datePublished": "2026-07-06",
-      "dateModified": "2026-07-06",
+      "dateModified": "2026-09-05",
       "author": {
         "@type": "Person",
         "name": "Shane Foster",
@@ -46,8 +47,8 @@
         "url": "https://havencommand.com",
         "logo": "https://havencommand.com/images/HavenIcon.png"
       },
-      "mainEntityOfPage": "https://havencommand.com/blog/why-empty-vite-firebase-config-black-screened-autosocial",
-      "keywords": "Vite Firebase environment variables, Fly.io build args, black screen SPA, AutoSocial, production deploy, Haven Command",
+      "mainEntityOfPage": "https://havencommand.com/blog/why-empty-vite-firebase-config-black-screened-autosocial.html",
+      "keywords": "last mile deploy, empty production config, AI demo vs production, AutoSocial, hire Haven Command",
       "about": {
         "@type": "SoftwareApplication",
         "name": "AutoSocial",
@@ -59,26 +60,34 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Why was AutoSocial a black screen on Fly?",
+          "name": "What do typical AI hires fail at here?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The Vite build ran without Firebase public config, so the shipped JavaScript initialized an empty app. The UI never reached a usable state."
+            "text": "They leave a demo that runs on one machine. Production ships empty config. The buyer inherits a black screen and a repo they cannot run in their stack."
           }
         },
         {
           "@type": "Question",
-          "name": "Why didn\u2019t a runtime env var on the VM fix it?",
+          "name": "What broke on AutoSocial?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Vite replaces VITE_ variables at compile time. A process env on the running machine does not rewrite the already-built bundle."
+            "text": "The production build initialized an empty client app. The UI never reached a usable state. The deploy still looked “successful.”"
           }
         },
         {
           "@type": "Question",
-          "name": "What is the client takeaway?",
+          "name": "What did Haven Command change?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Treat frontend config as a build input. Document it. Fail the deploy if required public keys are missing \u2014 do not ship a quiet black screen."
+            "text": "Required public config at build time. Missing keys fail the deploy. A quiet black screen is not an acceptable shipped state."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why hire Haven Command for this?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Last-mile deploy is part of the integration. Haven Command already hit this on a live product and closed it. Client work does not start from a laptop .env."
           }
         }
       ]
@@ -107,48 +116,58 @@
 <article>
 <div class="art-head">
   <p class="art-eyebrow">&#9632;&nbsp;AutoSocial · Production Notes&nbsp;&#9632;</p>
-  <h1>Why did an empty Vite Firebase config black-screen AutoSocial on Fly?</h1>
-  <p class="art-deck">Vite inlines env at build time. If Fly builds without the public Firebase args, the bundle boots with empty config and the UI dies. Pass the args at build.</p>
+  <h1>Why did a “finished” AutoSocial deploy hand buyers a black screen?</h1>
+  <p class="art-deck">Typical AI hires deliver a laptop demo that looks done. The production build ships empty config. The buyer inherits a black screen. Haven Command treats a deploy that cannot boot as a failed deploy.</p>
   <p class="art-byline"><span>Shane Foster</span> &nbsp;&middot;&nbsp; Founder, <a href="https://havencommand.com">Haven Command LLC</a> &nbsp;&middot;&nbsp; July 6, 2026</p>
 </div>
 
 <div class="article-body">
   <div class="sec-head">
-    <h2>What problem did we actually hit?</h2>
-    <span class="sec-tag">Problem</span>
+    <h2>What do typical AI hires fail at here?</h2>
+    <span class="sec-tag">Fail</span>
   </div>
-  <p class="drop">Locally, <a href="https://autosocial.havencommand.com">AutoSocial</a> loaded. On Fly, it was a black screen. No stack trace for the user. The app “was deployed.” It just could not become itself.</p>
-  <p>Vite embeds VITE_-prefixed values when it builds. If the Fly build runs without those public Firebase config values, the bundle contains empty strings. Firebase never initializes. React has nowhere to go. This is not mysterious once you have seen it. It is very mysterious at 1 a.m. if you only exported the vars on the running machine.</p>
+  <p class="drop">They build a notebook or a SPA that runs on one laptop. “It works” means a local <code>.env</code> and a warm cache. They hand you a repo, or they “deploy” it, and you inherit a black screen: empty public config, no keys at build time, no fail-closed check. Nobody owns the last mile.</p>
+  <p>That is the buyer sentence: “They built a PoC we can’t run in our stack.” The model never got a chance. The product never became itself.</p>
   <div class="sec-head">
-    <h2>How did Haven Command solve it?</h2>
-    <span class="sec-tag">Solution</span>
+    <h2>What broke in production?</h2>
+    <span class="sec-tag">Broke</span>
   </div>
-  <p>The Fly build now receives the Firebase public config as build arguments so Vite can inline real values. The runtime still needs whatever the server needs; the client needs what it needed at compile time.</p>
-  <p>We treat a missing public config as a failed deploy, not a page that paints black and shrugs. Same standard as an empty <a href="/blog/why-the-d4chess-post-game-coach-went-silent.html">coach payload</a>: “resolved” is not the same as “usable.”</p>
+  <p>Locally, <a href="https://autosocial.havencommand.com">AutoSocial</a> loaded. On Fly, it was a black screen. No stack trace for the user. The app “was deployed.” It could not initialize Firebase. The UI never reached a usable state.</p>
+  <p>The mechanism is ordinary: the frontend bundle inlines public config at build time. The production build ran without those values, so it shipped empty strings. A runtime env on the VM does not rewrite a bundle that already baked the hole. Haven Command hit this on its own product — the same class of bug a client would have inherited on day one.</p>
+  <div class="sec-head">
+    <h2>What did Haven Command change?</h2>
+    <span class="sec-tag">Change</span>
+  </div>
+  <p>The production build now receives the public config as a required input. Missing values fail the deploy. The page is not allowed to paint black and shrug. “Resolved” is not the same as “usable” — same standard as an <a href="/blog/why-the-d4chess-post-game-coach-went-silent.html">empty coach payload</a>.</p>
+  <p>Last-mile deploy discipline is now part of how the company ships, not a footnote after the model looks smart.</p>
   <div class="pull">
     <div class="pull-inner">
-      <blockquote>A client bundle cannot read the secrets you remembered after the build. Vite already baked the empty string.</blockquote>
+      <blockquote>A finished-looking AI app with empty production config is not finished. The buyer just cannot see why.</blockquote>
     </div>
   </div>
   <div class="sec-head">
-    <h2>Why does this help someone hiring custom AI work?</h2>
-    <span class="sec-tag">For clients</span>
+    <h2>Why hire Haven Command LLC?</h2>
+    <span class="sec-tag">Hire</span>
   </div>
-  <p>Most AI products are a model plus a SPA plus a host. The host is where they die. Typical AI hires leave a notebook you cannot run in your stack. Haven Command deploys and operates its own products, so it hits the Vite/Fly class of bug before a client does — then does not repeat it on their dime.</p>
-  <p>If you need a custom AI workflow shipped through a real deploy, not a laptop demo, hire Haven Command. <a href="https://havencommand.com/#contact">Work with Haven Command</a> · <a href="mailto:contact@havencommand.com">contact@havencommand.com</a>.</p>
+  <p>Most AI products are a model plus a SPA plus a host. The host is where typical hires die. Haven Command deploys and operates its own products, so it takes the black-screen class of bug before a client does — then does not repeat it on their dime.</p>
+  <p>If you need a custom AI workflow shipped through a real deploy, not a laptop demo, <a href="https://havencommand.com/#contact">work with Haven Command</a>.</p>
   <div class="faq-block" id="faq">
     <h2>Questions this write-up answers</h2>
     <details>
-      <summary>Why was AutoSocial a black screen on Fly?</summary>
-      <p>The Vite build ran without Firebase public config, so the shipped JavaScript initialized an empty app. The UI never reached a usable state.</p>
+      <summary>What do typical AI hires fail at here?</summary>
+      <p>They leave a demo that runs on one machine. Production ships empty config. The buyer inherits a black screen and a repo they cannot run in their stack.</p>
     </details>
     <details>
-      <summary>Why didn’t a runtime env var on the VM fix it?</summary>
-      <p>Vite replaces VITE_ variables at compile time. A process env on the running machine does not rewrite the already-built bundle.</p>
+      <summary>What broke on AutoSocial?</summary>
+      <p>The production build initialized an empty client app. The UI never reached a usable state. The deploy still looked “successful.”</p>
     </details>
     <details>
-      <summary>What is the client takeaway?</summary>
-      <p>Treat frontend config as a build input. Document it. Fail the deploy if required public keys are missing — do not ship a quiet black screen.</p>
+      <summary>What did Haven Command change?</summary>
+      <p>Required public config at build time. Missing keys fail the deploy. A quiet black screen is not an acceptable shipped state.</p>
+    </details>
+    <details>
+      <summary>Why hire Haven Command for this?</summary>
+      <p>Last-mile deploy is part of the integration. Haven Command already hit this on a live product and closed it. Client work does not start from a laptop .env.</p>
     </details>
   </div>
   <div class="related">
@@ -157,12 +176,11 @@
       <li><a href="/blog/how-autosocial-ships-owner-only-production-login.html">How do you ship production login that doesn’t depend on broken email OTP?</a></li>
       <li><a href="/blog/why-autosocial-publishes-through-the-instagram-graph-api.html">Why publish to Instagram through the Graph API instead of a browser login?</a></li>
       <li><a href="/blog/what-trustloopai-does-when-deepseek-fails.html">What does TrustLoopAI do when DeepSeek fails in a live SMS loop?</a></li>
-      <li><a href="/blog/joy-ai-49-year-view.html">Joy, AI, and the 49-Year View</a></li>
     </ul>
   </div>
   <div class="cta-box">
-    <p><strong>Haven Command shipped this. Commission a build.</strong> Typical AI hires leave a PoC that black-screens in your stack. AutoSocial died on Fly with empty Vite config — then Haven Command fixed the deploy so the demo cannot quietly fail. Hire the company that already hit this.</p>
-    <p><a href="https://autosocial.havencommand.com">Open AutoSocial</a> · <a href="https://havencommand.com/">Haven Command home</a> · <a href="mailto:contact@havencommand.com">contact@havencommand.com</a> · <a href="/blog/">More production notes</a></p>
+    <p><strong>Hire Haven Command.</strong> Typical AI hires leave a PoC that black-screens in your stack. AutoSocial looked deployed and was unusable — then Haven Command made a boot that cannot start fail the deploy. Hire the company that already owns that last mile.</p>
+    <p><a href="https://autosocial.havencommand.com">Open AutoSocial</a> · <a href="https://havencommand.com/#contact">Work with Haven Command</a> · <a href="mailto:contact@havencommand.com">contact@havencommand.com</a> · <a href="/blog/">More production notes</a></p>
   </div>
   <div class="signoff">
     <p class="signoff-name">- Shane Foster</p>
