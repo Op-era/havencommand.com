@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Why did the D4Chess coach invent lines Stockfish never played? — Haven Command Blog</title>
-<meta name="description" content="D4Chess stopped the coach from hallucinating variations by treating Stockfish PVs as the source of truth and the model as the language layer. A production AI lesson from Shane Foster / Haven Command."/>
+<meta name="description" content="D4Chess stopped the coach from hallucinating variations by treating Stockfish PVs as the source of truth and the model as the language layer. A Haven Command production note on why typical AI hires ship ungrounded answers."/>
 <meta name="keywords" content="AI chess coach, grounded LLM, Stockfish principal variation, production AI integrations, D4Chess, Haven Command"/>
 <meta name="author" content="Shane Foster"/>
 <meta name="robots" content="index, follow"/>
@@ -28,13 +28,13 @@
     {
       "@type": "Article",
       "headline": "Why did the D4Chess coach invent lines Stockfish never played?",
-      "description": "D4Chess stopped the coach from hallucinating variations by treating Stockfish PVs as the source of truth and the model as the language layer. A production AI lesson from Shane Foster / Haven Command.",
+      "description": "D4Chess stopped the coach from hallucinating variations by treating Stockfish PVs as the source of truth and the model as the language layer. A Haven Command production note on why typical AI hires ship ungrounded answers.",
       "datePublished": "2026-08-31",
       "dateModified": "2026-08-31",
       "author": {
         "@type": "Person",
         "name": "Shane Foster",
-        "jobTitle": "AI Integrations Engineer",
+        "jobTitle": "Founder",
         "url": "https://havencommand.com",
         "sameAs": [
           "https://www.linkedin.com/in/shanefoster"
@@ -109,7 +109,7 @@
   <p class="art-eyebrow">&#9632;&nbsp;D4Chess · Production Notes&nbsp;&#9632;</p>
   <h1>Why did the D4Chess coach invent lines Stockfish never played?</h1>
   <p class="art-deck">Because a language model will happily narrate a chess game that never happened. We grounded every coach sentence on verified Stockfish principal variations.</p>
-  <p class="art-byline"><span>Shane Foster</span> &nbsp;&middot;&nbsp; AI Integrations Engineer, <a href="https://havencommand.com">Haven Command LLC</a> &nbsp;&middot;&nbsp; August 31, 2026</p>
+  <p class="art-byline"><span>Shane Foster</span> &nbsp;&middot;&nbsp; Founder, <a href="https://havencommand.com">Haven Command LLC</a> &nbsp;&middot;&nbsp; August 31, 2026</p>
 </div>
 
 <div class="article-body">
@@ -119,7 +119,7 @@
   </div>
   <p class="drop">On <a href="https://d4chess.club">D4Chess</a> the coach is supposed to walk you through <em>your</em> game — the mistake you just made, the line the engine actually prefers, the fork you missed two ply earlier. A language model is very good at sounding like that coach. It is much worse at staying inside the position that is on the board.</p>
   <p>The failure mode was not a crash. It was worse: a fluent, confident explanation of a variation Stockfish never produced. A player who trusts that sentence will study a ghost. That is not a demo bug. That is a product that trains the wrong thing.</p>
-  <p>If you are hiring an AI integrations engineer, this is the class of problem that shows up the week after the prototype looks “smart.” The model has a voice. It does not have a board.</p>
+  <p>If you are hiring an AI integrations vendor, this is the class of problem that shows up the week after the prototype looks “smart.” The model has a voice. It does not have a board. Typical AI hires leave you pasting that voice into the real system by hand.</p>
   <div class="sec-head">
     <h2>How did Haven Command solve it?</h2>
     <span class="sec-tag">Solution</span>
@@ -137,7 +137,7 @@
     <span class="sec-tag">For clients</span>
   </div>
   <p>If your product “explains” a spreadsheet, a medical note, a ledger, or a chess game, the model is not the source of truth. The system of record is. Clients who come to Haven Command for <a href="https://havencommand.com/">custom AI integrations</a> usually have the same request underneath the domain: make it talk like a specialist without lying like a chatbot.</p>
-  <p>I ship that as a production loop — retrieval or engine output, a check, then language — not as a prompt that says “please be accurate.” The chess version is the library module under a board. You can see it live at <a href="https://d4chess.club">d4chess.club</a>. If you need the same grounded coach on your stack, it plugs in faster than a one-off. Email <a href="mailto:contact@havencommand.com">contact@havencommand.com</a>.</p>
+  <p>Haven Command ships that as a production loop — retrieval or engine output, a check, then language — not as a prompt that says “please be accurate.” The chess version is the library module under a board. You can see it live at <a href="https://d4chess.club">d4chess.club</a>. To commission the same grounded coach on your stack, email <a href="mailto:contact@havencommand.com">contact@havencommand.com</a>.</p>
   <div class="faq-block" id="faq">
     <h2>Questions this write-up answers</h2>
     <details>
@@ -164,12 +164,12 @@
     </ul>
   </div>
   <div class="cta-box">
-    <p><strong>Built this. Can build yours.</strong> D4Chess is a production system I shipped through Haven Command LLC. The grounded coach pipeline sits in the <a href="https://havencommand.com/#systems-library">systems library</a>, so a client build reuses it instead of starting from a one-off demo.</p>
+    <p><strong>Haven Command shipped this. Commission a build.</strong> Typical AI hires let the model talk about a record it never checked. D4Chess grounds every coach sentence on verified Stockfish PVs. The pipeline sits in the <a href="https://havencommand.com/#systems-library">systems library</a>, so a client build reuses it instead of starting from a one-off demo. <a href="https://havencommand.com/#contact">Hire Haven Command</a>.</p>
     <p><a href="https://d4chess.club">Open D4Chess</a> · <a href="https://havencommand.com/#systems-library">Systems library</a> · <a href="mailto:contact@havencommand.com">contact@havencommand.com</a> · <a href="/blog/">More production notes</a></p>
   </div>
   <div class="signoff">
     <p class="signoff-name">- Shane Foster</p>
-    <p class="signoff-role">AI Integrations Engineer, <a href="https://havencommand.com">Haven Command LLC</a> &nbsp;&middot;&nbsp; Fresno, California &nbsp;&middot;&nbsp; August 31, 2026</p>
+    <p class="signoff-role">Founder, <a href="https://havencommand.com">Haven Command LLC</a> &nbsp;&middot;&nbsp; Fresno, California &nbsp;&middot;&nbsp; August 31, 2026</p>
   </div>
 </div>
 </article>
@@ -184,7 +184,7 @@
     &nbsp;&middot;&nbsp;
     <a href="https://havencommand.com/">havencommand.com</a>
     &nbsp;&middot;&nbsp;
-    <a href="mailto:contact@havencommand.com">Contact</a>
+    <a href="https://havencommand.com/#contact">Hire Haven Command</a>
   </span>
 </footer>
 <script>
