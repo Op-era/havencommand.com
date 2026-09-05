@@ -1,222 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Why did the live SMS conversation die mid-thread? — Haven Command Blog</title>
-<meta name="description" content="TrustLoopAI customers would have been dropped mid-SMS. Haven Command LLC shipped a loop that survives a vendor bad day — the next message still arrives."/>
-<meta name="keywords" content="production SMS, vendor outage, TrustLoopAI"/>
-<meta name="author" content="Shane Foster"/>
-<meta name="robots" content="index, follow"/>
-<link rel="canonical" href="https://havencommand.com/blog/what-trustloopai-does-when-deepseek-fails.html"/>
-<meta property="og:type" content="article"/>
-<meta property="og:url" content="https://havencommand.com/blog/what-trustloopai-does-when-deepseek-fails.html"/>
-<meta property="og:title" content="Why did the live SMS conversation die mid-thread?"/>
-<meta property="og:description" content="A live SMS thread went silent mid-conversation. After the fix, the conversation keeps going. The customer never sees the autopsy."/>
-<meta property="og:image" content="https://havencommand.com/images/HavenIcon.png"/>
-<meta property="og:site_name" content="Haven Command LLC"/>
-<meta property="article:published_time" content="2026-06-29"/>
-<meta property="article:modified_time" content="2026-09-05"/>
-<meta property="article:author" content="Shane Foster"/>
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Why did the live SMS conversation die mid-thread?"/>
-<meta name="twitter:description" content="A live SMS thread went silent mid-conversation. After the fix, the conversation keeps going. The customer never sees the autopsy."/>
-<meta name="twitter:image" content="https://havencommand.com/images/HavenIcon.png"/>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="manifest" href="/images/site.webmanifest">
+    <title>Why does an SMS conversation die when the model vendor fails? — Haven Command Insights</title>
+    <meta name="description" content="A TrustLoopAI build note from Haven Command. The product is in development, not live. When a model vendor fails, an SMS loop still has to send the next useful message.">
+    <meta name="keywords" content="AI reliability, vendor outage, SMS automation, TrustLoopAI, Haven Command">
+    <meta name="author" content="Shane Foster">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://havencommand.com/blog/what-trustloopai-does-when-deepseek-fails.html">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://havencommand.com/blog/what-trustloopai-does-when-deepseek-fails.html">
+    <meta property="og:title" content="Why does an SMS conversation die when the model vendor fails?">
+    <meta property="og:description" content="TrustLoopAI is in development — not a live product. While building the SMS loop, a vendor failure went silent mid-thread. The decision: the next message still has to arrive. The person on the phone never sees the autopsy.">
+    <meta property="og:image" content="https://havencommand.com/images/HavenIcon.png">
+    <meta property="og:site_name" content="Haven Command LLC">
+    <meta property="article:published_time" content="2026-06-29">
+    <meta property="article:modified_time" content="2026-09-05">
+    <meta property="article:author" content="Shane Foster">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Why does an SMS conversation die when the model vendor fails?">
+    <meta name="twitter:description" content="TrustLoopAI is in development — not a live product. While building the SMS loop, a vendor failure went silent mid-thread. The decision: the next message still has to arrive. The person on the phone never sees the autopsy.">
+    <meta name="twitter:image" content="https://havencommand.com/images/HavenIcon.png">
+    <script type="application/ld+json">
     {
-      "@type": "Article",
-      "headline": "Why did the live SMS conversation die mid-thread?",
-      "description": "TrustLoopAI customers would have been dropped mid-SMS. Haven Command LLC shipped a loop that survives a vendor bad day.",
-      "datePublished": "2026-06-29",
-      "dateModified": "2026-09-05",
-      "author": {
-        "@type": "Person",
-        "name": "Shane Foster",
-        "jobTitle": "Founder",
-        "url": "https://havencommand.com",
-        "sameAs": [
-          "https://www.linkedin.com/in/shanefoster"
-        ]
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Haven Command LLC",
-        "url": "https://havencommand.com",
-        "logo": "https://havencommand.com/images/HavenIcon.png"
-      },
-      "mainEntityOfPage": "https://havencommand.com/blog/what-trustloopai-does-when-deepseek-fails.html",
-      "keywords": "production SMS, vendor outage, TrustLoopAI",
-      "about": {
-        "@type": "SoftwareApplication",
-        "name": "TrustLoopAI",
-        "url": "https://havencommand.com/products/#in-development"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "headline": "Why does an SMS conversation die when the model vendor fails?",
+          "description": "A TrustLoopAI build note from Haven Command. The product is in development, not live. When a model vendor fails, an SMS loop still has to send the next useful message.",
+          "datePublished": "2026-06-29",
+          "dateModified": "2026-09-05",
+          "inLanguage": "en",
+          "author": {
+            "@type": "Person",
+            "name": "Shane Foster",
+            "jobTitle": "Founder",
+            "url": "https://havencommand.com/about/",
+            "sameAs": ["https://www.linkedin.com/in/shanefoster"]
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Haven Command LLC",
+            "url": "https://havencommand.com",
+            "logo": "https://havencommand.com/images/HavenIcon.png"
+          },
+          "mainEntityOfPage": "https://havencommand.com/blog/what-trustloopai-does-when-deepseek-fails.html",
+          "isPartOf": {
+            "@type": "Blog",
+            "name": "Haven Command Insights",
+            "url": "https://havencommand.com/blog/"
+          },
+          "keywords": "AI reliability, vendor outage, SMS automation, TrustLoopAI, Haven Command",
+          "about": {
+            "@type": "SoftwareApplication",
+            "name": "TrustLoopAI",
+            "url": "https://havencommand.com/products/#in-development"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is TrustLoopAI a live product?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. TrustLoopAI is a real Haven Command project in development. It is not launched, not production-ready, and has no public product site."
+          }
+        },
         {
           "@type": "Question",
           "name": "What happens when the conversation dies mid-thread?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "One model in the meeting. When the vendor blinks, the customer is dropped."
+            "text": "One model in the meeting. When that vendor blinks, the person on the phone is dropped."
           }
         },
         {
           "@type": "Question",
-          "name": "What broke for the customer?",
+          "name": "What did the build hit?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A live SMS thread went silent mid-conversation."
+            "text": "A test SMS thread went silent mid-conversation when the model vendor failed. A connected-looking loop that cannot finish the next message is still a demo."
           }
         },
         {
           "@type": "Question",
-          "name": "What does the customer experience after the fix?",
+          "name": "What is the design decision?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The next message still arrives. No autopsy in the thread."
+            "text": "The next useful message still arrives. The person on the phone does not get an autopsy in the thread. The loop has to survive someone else’s bad day."
           }
+        }
+          ]
         },
         {
-          "@type": "Question",
-          "name": "What does this prove about Haven Command?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Haven Command LLC already shipped a loop that survives a vendor bad day."
-          }
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://havencommand.com/"},
+            {"@type": "ListItem", "position": 2, "name": "Insights", "item": "https://havencommand.com/blog/"},
+            {"@type": "ListItem", "position": 3, "name": "Why does an SMS conversation die when the model vendor fails?", "item": "https://havencommand.com/blog/what-trustloopai-does-when-deepseek-fails.html"}
+          ]
         }
       ]
     }
-  ]
-}
-</script>
-<link rel="stylesheet" href="post.css"/>
+    </script>
+    <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="/css/insights.css">
 </head>
 <body>
-<header class="masthead">
-  <div class="mast-top">
-    <span>Fresno, California &middot; Est. 2025</span>
-    <a href="/blog/">havencommand.com/blog</a>
-  </div>
-  <div class="mast-name"><a href="/blog/">The Haven Command</a></div>
-  <div class="mast-sub">
-    <span>Vol.&nbsp;1, No.&nbsp;3</span>
-    <span>Shipped products, not walkthroughs</span>
-    <span>June 2026 &middot; Free</span>
-  </div>
-</header>
-<button id="theme-btn" title="Toggle theme" type="button">&#9680;</button>
+    <div class="site-backdrop" aria-hidden="true"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <a class="brand" href="/">
+            <img src="/images/HavenIcon.png" alt="">
+            <span class="brand-text"><span class="haven-font">H.A.V.E.N.</span> Command</span>
+        </a>
+        <nav id="site-nav" class="site-nav" aria-label="Primary">
+            <a href="/custom-software/">What We Build</a>
+            <a href="/products/">Products</a>
+            <a href="/how-we-work/">How We Work</a>
+            <a href="/about/">About</a>
+            <a href="/blog/">Insights</a>
+        </nav>
+        <div class="header-actions">
+            <a class="btn btn-primary" href="/start/">Start a Project</a>
+            <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+    <main id="main" class="page page-narrow">
+        <article class="insight-article">
+            <header class="hero hero-compact">
+                <div class="insight-kicker">
+                    <span class="badge badge-dev">In development</span>
+                    <p class="eyebrow" style="margin:0;">Insights · TrustLoopAI · June 29, 2026</p>
+                </div>
+                <h1 class="page-title">Why does an SMS conversation die when the model vendor fails?</h1>
+                <p class="lede">TrustLoopAI is in development — not a live product. While building the SMS loop, a vendor failure went silent mid-thread. The decision: the next message still has to arrive. The person on the phone never sees the autopsy.</p>
+                <p class="insight-byline"><a href="/about/">Shane Foster</a> · Founder, Haven Command LLC</p>
+            </header>
+            <div class="panel insight-body prose">
+                <h2>Is TrustLoopAI live?</h2>
+                <p>No. <a href="/products/#in-development">TrustLoopAI</a> is a Haven Command project in development: customer-engagement software built around SMS loops — reminders, follow-ups, and conversations that have to keep going. There is no public product URL. These notes are from the build, not from a launched commercial site.</p>
+                <p>That honesty matters. A product that is not up does not get to borrow the word “live.”</p>
+                <h2>What happens when the conversation dies mid-thread?</h2>
+                <p>The slide has a single logo. When that vendor blinks, the conversation dies. The person on the phone gets “try again later.”</p>
+                <p>The sentence is already known: “It worked in the demo then fell over in production.” Nobody owned the loop.</p>
+                <h2>What did the build hit?</h2>
+                <p>While building the SMS path, a vendor failure went silent mid-thread. The person we are building for — a salon, a clinic, a coach — would still be sitting on that thread. A connected-looking product that cannot finish the next message is a demo with a phone number.</p>
+                <p>They would not care which logo failed. They would care that the business went silent.</p>
+                <h2>What is the design decision?</h2>
+                <p>The next useful message still has to arrive. The thread does not get an autopsy. The loop has to survive someone else’s bad day.</p>
+                <p>How vendors are chosen or routed is not on this page. The decision is the public part. Current status lives with the other in-development work on <a href="/products/">products</a>.</p>
+                <div class="pull"><blockquote>The person is still on the thread. “Try again later” is not a product.</blockquote></div>
+                <h2>Why does this show up in custom software?</h2>
+                <p>Commissioned automation fails the same way: one vendor in the meeting, silence on Tuesday. Haven Command is designing that loop before TrustLoopAI is public — and already ran related reliability failures on live products like <a href="/products/d4chess/">D4Chess</a> and <a href="/products/autosocial/">AutoSocial</a>. The products that are up are the proof. This note is the thinking.</p>
 
-<div class="page">
-<article>
-<div class="art-head">
-  <p class="art-eyebrow">&#9632;&nbsp;TrustLoopAI · Evidence&nbsp;&#9632;</p>
-  <h1>Why did the live SMS conversation die mid-thread?</h1>
-  <p class="art-deck">When the vendor has a bad day, the customer is sitting on a dead thread. After the fix, the conversation keeps going. The customer never sees the autopsy.</p>
-  <p class="art-byline"><span>Shane Foster</span> &nbsp;&middot;&nbsp; Founder, <a href="https://havencommand.com">Haven Command LLC</a> &nbsp;&middot;&nbsp; June 29, 2026</p>
-</div>
-
-<div class="article-body">
-  <div class="sec-head">
-    <h2>What happens when the conversation dies mid-thread?</h2>
-    <span class="sec-tag">Stake</span>
-  </div>
-  <p class="drop">The slide has a single logo. When that vendor blinks, the conversation dies. The customer gets “try again later” on their phone.</p>
-  <p>The sentence is already known: “It worked in the demo then fell over in production.” Nobody owned the loop.</p>
-  <div class="sec-head">
-    <h2>What broke for the customer?</h2>
-    <span class="sec-tag">Broke</span>
-  </div>
-  <p><a href="https://havencommand.com/products/#in-development">TrustLoopAI</a> is a live conversation over SMS. When the model vendor failed, the customer was still sitting on the thread. A connected-looking product that cannot finish the next message is a demo with a phone number.</p>
-  <p>The customer does not care which logo failed. They care that the salon, clinic, or coach went silent.</p>
-  <div class="sec-head">
-    <h2>What did the customer get after Haven Command fixed it?</h2>
-    <span class="sec-tag">After</span>
-  </div>
-  <p>The next useful message still arrives. They do not get an autopsy in the text thread. The loop survives someone else’s bad day.</p>
-  <p>TrustLoopAI is evidence Haven Command ships a conversation that stays up. It is not a roster of vendors or a routing diagram.</p>
-  <div class="pull">
-    <div class="pull-inner">
-      <blockquote>The customer is still on the thread. “Try again later” is not a product.</blockquote>
-    </div>
-  </div>
-  <div class="sec-head">
-    <h2>What does this prove?</h2>
-    <span class="sec-tag">Live</span>
-  </div>
-  <p>Production AI has to survive a vendor bad day. TrustLoopAI already kept a live SMS loop alive.</p>
-  <p>TrustLoopAI is in development — current status is on the <a href="https://havencommand.com/products/#in-development">products page</a>. The same class of loop starts at <a href="mailto:contact@havencommand.com">contact@havencommand.com</a>.</p>
-  <div class="faq-block" id="faq">
-    <h2>Questions this write-up answers</h2>
-    <details>
-      <summary>What happens when the conversation dies mid-thread?</summary>
-      <p>One model in the meeting. When the vendor blinks, the customer is dropped.</p>
-    </details>
-    <details>
-      <summary>What broke for the customer?</summary>
-      <p>A live SMS thread went silent mid-conversation.</p>
-    </details>
-    <details>
-      <summary>What does the customer experience after the fix?</summary>
-      <p>The next message still arrives. No autopsy in the thread.</p>
-    </details>
-    <details>
-      <summary>What does this prove about Haven Command?</summary>
-      <p>Haven Command LLC already shipped a loop that survives a vendor bad day.</p>
-    </details>
-  </div>
-  <div class="related">
-    <h2>Related reading</h2>
-    <ul>
-      <li><a href="/blog/how-trustloopai-productized-referrals-and-payg-caps.html">Why did usage become an invoice nobody planned?</a></li>
-      <li><a href="/blog/why-d4chess-grounds-coach-answers-on-stockfish-pvs.html">Why did the D4Chess coach invent a game that never happened?</a></li>
-      <li><a href="/blog/why-empty-vite-firebase-config-black-screened-autosocial.html">Why did a “finished” AutoSocial deploy hand buyers a black screen?</a></li>
-    </ul>
-  </div>
-  <div class="cta-box">
-    <p>TrustLoopAI customers still get the next message when a vendor blinks. The loop, not the slide: <a href="mailto:contact@havencommand.com">contact@havencommand.com</a>.</p>
-    <p><a href="https://havencommand.com/products/#in-development">TrustLoopAI status</a> · <a href="https://havencommand.com/start/">Work with Haven Command</a> · <a href="mailto:contact@havencommand.com">contact@havencommand.com</a> · <a href="/blog/">More notes</a></p>
-  </div>
-  <div class="signoff">
-    <p class="signoff-name">- Shane Foster</p>
-    <p class="signoff-role">Founder, <a href="https://havencommand.com">Haven Command LLC</a> &nbsp;&middot;&nbsp; Fresno, California &nbsp;&middot;&nbsp; June 29, 2026</p>
-  </div>
-</div>
-</article>
-</div>
-
-<footer class="page-footer">
-  <span>&copy; 2026 Haven Command LLC &middot; All Rights Reserved</span>
-  <span>
-    <a href="/blog/">All notes</a>
-    &nbsp;&middot;&nbsp;
-    <a href="https://havencommand.com/products/#in-development">TrustLoopAI</a>
-    &nbsp;&middot;&nbsp;
-    <a href="https://havencommand.com/">havencommand.com</a>
-    &nbsp;&middot;&nbsp;
-    <a href="https://havencommand.com/start/">Contact</a>
-  </span>
-</footer>
-<script>
-const btn = document.getElementById('theme-btn');
-const root = document.documentElement;
-let theme = localStorage.getItem('hc-theme') || 'auto';
-function apply(t) {
-  root.removeAttribute('data-theme');
-  if (t !== 'auto') root.setAttribute('data-theme', t);
-  btn.innerHTML = t === 'dark' ? '&#9728;' : t === 'light' ? '&#9679;' : '&#9680;';
-  localStorage.setItem('hc-theme', t);
-}
-apply(theme);
-btn.addEventListener('click', () => {
-  theme = theme === 'auto' ? 'dark' : theme === 'dark' ? 'light' : 'auto';
-  apply(theme);
-});
-</script>
+                <section class="insight-faq faq-list" id="faq" aria-labelledby="faq-title">
+                    <h2 id="faq-title">Questions this note answers</h2>
+                <details>
+                    <summary>Is TrustLoopAI a live product?</summary>
+                    <p>No. TrustLoopAI is a real Haven Command project in development. It is not launched, not production-ready, and has no public product site.</p>
+                </details>
+                <details>
+                    <summary>What happens when the conversation dies mid-thread?</summary>
+                    <p>One model in the meeting. When that vendor blinks, the person on the phone is dropped.</p>
+                </details>
+                <details>
+                    <summary>What did the build hit?</summary>
+                    <p>A test SMS thread went silent mid-conversation when the model vendor failed. A connected-looking loop that cannot finish the next message is still a demo.</p>
+                </details>
+                <details>
+                    <summary>What is the design decision?</summary>
+                    <p>The next useful message still arrives. The person on the phone does not get an autopsy in the thread. The loop has to survive someone else’s bad day.</p>
+                </details>
+                </section>
+                <section class="insight-related" aria-labelledby="related-title">
+                    <h2 id="related-title">Related</h2>
+                    <ul>
+                    <li><a href="/blog/how-trustloopai-productized-referrals-and-payg-caps.html">Why did usage become an invoice nobody planned?</a></li>
+                    <li><a href="/blog/why-d4chess-grounds-coach-answers-on-stockfish-pvs.html">Why did the D4Chess coach invent a game that never happened?</a></li>
+                    <li><a href="/products/#in-development">Products in development</a></li>
+                    <li><a href="/custom-software/">AI applications and automation</a></li>
+                    </ul>
+                </section>
+                <section class="insight-cta" aria-labelledby="cta-title">
+                    <h2 id="cta-title">If you are building the same class of thing</h2>
+                    <p>TrustLoopAI is not something you can open yet. The note is about a reliability decision we are already making while we build it. Live products that already ran related failures are on the products page.</p>
+                    <div class="cta-row" style="justify-content:flex-start;">
+                        <a class="btn btn-primary" href="/start/">Start a Project</a>
+                        <a class="btn" href="/products/#in-development">TrustLoopAI status</a>
+                    </div>
+                </section>
+                <div class="insight-signoff">
+                    <p class="name">— Shane Foster</p>
+                    <p class="role">Founder, <a href="/about/">Haven Command LLC</a> · Fresno, California · June 29, 2026</p>
+                </div>
+            </div>
+        </article>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div>
+                <h2>Haven Command LLC</h2>
+                <p>Custom software development and digital products. Fresno, California.</p>
+            </div>
+            <div>
+                <h2>Studio</h2>
+                <ul>
+                    <li><a href="/custom-software/">What We Build</a></li>
+                    <li><a href="/products/">Products</a></li>
+                    <li><a href="/how-we-work/">How We Work</a></li>
+                    <li><a href="/about/">About</a></li>
+                </ul>
+            </div>
+            <div>
+                <h2>More</h2>
+                <ul>
+                    <li><a href="/blog/">Insights</a></li>
+                    <li><a href="/start/">Start a Project</a></li>
+                    <li><a href="/careers.html">Careers</a></li>
+                    <li><a href="https://mail.zoho.com" rel="nofollow">Email login</a></li>
+                </ul>
+            </div>
+            <div>
+                <h2>Legal</h2>
+                <ul>
+                    <li><a href="/privacy_policy/">Privacy Policy</a></li>
+                    <li><a href="/terms_of_service/">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-base">
+            <span>© 2026 Haven Command LLC. All rights reserved.</span>
+            <span>The products are already in the room.</span>
+        </div>
+    </footer>
+    <script src="/js/site.js"></script>
 </body>
 </html>
