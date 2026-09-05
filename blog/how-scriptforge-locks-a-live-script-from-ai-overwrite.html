@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>How do you stop an AI agent from overwriting a live script? — Haven Command Blog</title>
+<meta name="description" content="ScriptForge AI locks the live script and uses a red/green Approve review so agents cannot clobber a draft in progress. A Haven Command production pattern for client writing tools."/>
+<meta name="keywords" content="human in the loop AI, approve reject rewrite, ScriptForge AI, lock draft from overwrite, custom AI product development"/>
+<meta name="author" content="Shane Foster"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://havencommand.com/blog/how-scriptforge-locks-a-live-script-from-ai-overwrite"/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://havencommand.com/blog/how-scriptforge-locks-a-live-script-from-ai-overwrite"/>
+<meta property="og:title" content="How do you stop an AI agent from overwriting a live script?"/>
+<meta property="og:description" content="Lock the draft. Let the agent propose. Merge only on a red/green Approve. The live script is not a chat buffer."/>
+<meta property="og:image" content="https://havencommand.com/images/HavenIcon.png"/>
+<meta property="og:site_name" content="Haven Command LLC"/>
+<meta property="article:published_time" content="2026-08-10"/>
+<meta property="article:author" content="Shane Foster"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="How do you stop an AI agent from overwriting a live script?"/>
+<meta name="twitter:description" content="Lock the draft. Let the agent propose. Merge only on a red/green Approve. The live script is not a chat buffer."/>
+<meta name="twitter:image" content="https://havencommand.com/images/HavenIcon.png"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "How do you stop an AI agent from overwriting a live script?",
+      "description": "ScriptForge AI locks the live script and uses a red/green Approve review so agents cannot clobber a draft in progress. A Haven Command production pattern for client writing tools.",
+      "datePublished": "2026-08-10",
+      "dateModified": "2026-08-10",
+      "author": {
+        "@type": "Person",
+        "name": "Shane Foster",
+        "jobTitle": "AI Integrations Engineer",
+        "url": "https://havencommand.com",
+        "sameAs": [
+          "https://www.linkedin.com/in/shanefoster"
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Haven Command LLC",
+        "url": "https://havencommand.com",
+        "logo": "https://havencommand.com/images/HavenIcon.png"
+      },
+      "mainEntityOfPage": "https://havencommand.com/blog/how-scriptforge-locks-a-live-script-from-ai-overwrite",
+      "keywords": "human in the loop AI, approve reject rewrite, ScriptForge AI, lock draft from overwrite, custom AI product development",
+      "about": {
+        "@type": "SoftwareApplication",
+        "name": "ScriptForge AI",
+        "url": "https://scriptforgeai.studio"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What was the ScriptForge overwrite problem?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An agent rewrite could land on the live script a writer was still editing. The draft disappeared into the model\u2019s last pass."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the red/green Approve review?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The agent proposes a change. The writer accepts (green) or rejects (red). Nothing hits the locked script until that decision."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do client tools need the same lock?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, if an LLM can edit a record humans also edit \u2014 contracts, notes, CRM fields, screenplays. Dual-write without a lock is data loss with better grammar."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="post.css"/>
+</head>
+<body>
+<header class="masthead">
+  <div class="mast-top">
+    <span>Fresno, California &middot; Est. 2025</span>
+    <a href="/blog/">havencommand.com/blog</a>
+  </div>
+  <div class="mast-name"><a href="/blog/">The Haven Command</a></div>
+  <div class="mast-sub">
+    <span>Vol.&nbsp;1, No.&nbsp;10</span>
+    <span>Production AI integrations — shipped systems, not demos</span>
+    <span>August 2026 &middot; Free</span>
+  </div>
+</header>
+<button id="theme-btn" title="Toggle theme" type="button">&#9680;</button>
+
+<div class="page">
+<article>
+<div class="art-head">
+  <p class="art-eyebrow">&#9632;&nbsp;ScriptForge · Production Notes&nbsp;&#9632;</p>
+  <h1>How do you stop an AI agent from overwriting a live script?</h1>
+  <p class="art-deck">Lock the draft. Let the agent propose. Merge only on a red/green Approve. The live script is not a chat buffer.</p>
+  <p class="art-byline"><span>Shane Foster</span> &nbsp;&middot;&nbsp; AI Integrations Engineer, <a href="https://havencommand.com">Haven Command LLC</a> &nbsp;&middot;&nbsp; August 10, 2026</p>
+</div>
+
+<div class="article-body">
+  <div class="sec-head">
+    <h2>What problem did we actually hit?</h2>
+    <span class="sec-tag">Problem</span>
+  </div>
+  <p class="drop"><a href="https://scriptforgeai.studio">ScriptForge AI</a> is a screenwriting product, not a chat window with a .fountain export. Writers stay in a live script for hours. Agents track structure, continuity, and character. Those two facts collide the moment an agent write lands on the same document the human is typing.</p>
+  <p>The failure is obvious after it happens and invisible in a demo: you asked for a polish on scene three and the live draft you were finishing is gone. “The model was helpful” is not a comfort. I will not ship a writing tool that treats the script as a disposable buffer.</p>
+  <div class="sec-head">
+    <h2>How did Haven Command solve it?</h2>
+    <span class="sec-tag">Solution</span>
+  </div>
+  <p>The live script locks. Agents do not write through it. They propose a rewrite. The writer sees a review and hits green to approve or red to throw it away. Until then, the draft on the page is the draft on the page.</p>
+  <p>That sounds like product taste. It is also an integration rule: there is one source of truth for the document, and the model is a petitioner. Same rule as grounding the <a href="/blog/why-d4chess-grounds-coach-answers-on-stockfish-pvs.html">D4Chess coach on Stockfish PVs</a> — the model does not get to be the ledger.</p>
+  <p>Approve is not a modal for show. It is the merge. Reject leaves the lock intact. The writer stays in flow instead of reconstructing a scene from memory.</p>
+  <div class="pull">
+    <div class="pull-inner">
+      <blockquote>If the model can write the document, it can destroy the document. Put a lock on the live copy.</blockquote>
+    </div>
+  </div>
+  <div class="sec-head">
+    <h2>Why does this help someone hiring custom AI work?</h2>
+    <span class="sec-tag">For clients</span>
+  </div>
+  <p>Companies ask for “AI that edits our docs.” The production version is AI that <em>proposes</em> edits to a locked record, with an explicit accept. Founders funding a build usually discover this after the first overwrite. I build it in on purpose.</p>
+  <p>If you need that class of human-in-the-loop writing or review on your stack, that is Haven Command work. Use <a href="https://scriptforgeai.studio">scriptforgeai.studio</a>, then email <a href="mailto:contact@havencommand.com">contact@havencommand.com</a>.</p>
+  <div class="faq-block" id="faq">
+    <h2>Questions this write-up answers</h2>
+    <details>
+      <summary>What was the ScriptForge overwrite problem?</summary>
+      <p>An agent rewrite could land on the live script a writer was still editing. The draft disappeared into the model’s last pass.</p>
+    </details>
+    <details>
+      <summary>What is the red/green Approve review?</summary>
+      <p>The agent proposes a change. The writer accepts (green) or rejects (red). Nothing hits the locked script until that decision.</p>
+    </details>
+    <details>
+      <summary>Do client tools need the same lock?</summary>
+      <p>Yes, if an LLM can edit a record humans also edit — contracts, notes, CRM fields, screenplays. Dual-write without a lock is data loss with better grammar.</p>
+    </details>
+  </div>
+  <div class="related">
+    <h2>Related reading</h2>
+    <ul>
+      <li><a href="/blog/why-scriptforge-keeps-a-blank-script-tab.html">Why does ScriptForge keep a blank Script tab you can always type in?</a></li>
+      <li><a href="/blog/why-scriptforge-keeps-undo-after-approved-rewrites.html">Why keep undo history after a writer approves an AI rewrite?</a></li>
+      <li><a href="/blog/why-d4chess-grounds-coach-answers-on-stockfish-pvs.html">Why did the D4Chess coach invent lines Stockfish never played?</a></li>
+      <li><a href="/blog/joy-ai-49-year-view.html">Joy, AI, and the 49-Year View</a></li>
+    </ul>
+  </div>
+  <div class="cta-box">
+    <p><strong>Built this. Can build yours.</strong> ScriptForge AI is a production system I shipped through Haven Command LLC. The same class of work — one bottleneck, end-to-end — is what I custom-build for founders funding a build and companies hiring AI integration help.</p>
+    <p><a href="https://scriptforgeai.studio">Open ScriptForge AI</a> · <a href="https://havencommand.com/">Haven Command home</a> · <a href="mailto:contact@havencommand.com">contact@havencommand.com</a> · <a href="/blog/">More production notes</a></p>
+  </div>
+  <div class="signoff">
+    <p class="signoff-name">- Shane Foster</p>
+    <p class="signoff-role">AI Integrations Engineer, <a href="https://havencommand.com">Haven Command LLC</a> &nbsp;&middot;&nbsp; Fresno, California &nbsp;&middot;&nbsp; August 10, 2026</p>
+  </div>
+</div>
+</article>
+</div>
+
+<footer class="page-footer">
+  <span>&copy; 2026 Haven Command LLC &middot; All Rights Reserved</span>
+  <span>
+    <a href="/blog/">All notes</a>
+    &nbsp;&middot;&nbsp;
+    <a href="https://scriptforgeai.studio">ScriptForge AI</a>
+    &nbsp;&middot;&nbsp;
+    <a href="https://havencommand.com/">havencommand.com</a>
+    &nbsp;&middot;&nbsp;
+    <a href="mailto:contact@havencommand.com">Contact</a>
+  </span>
+</footer>
+<script>
+const btn = document.getElementById('theme-btn');
+const root = document.documentElement;
+let theme = localStorage.getItem('hc-theme') || 'auto';
+function apply(t) {
+  root.removeAttribute('data-theme');
+  if (t !== 'auto') root.setAttribute('data-theme', t);
+  btn.innerHTML = t === 'dark' ? '&#9728;' : t === 'light' ? '&#9679;' : '&#9680;';
+  localStorage.setItem('hc-theme', t);
+}
+apply(theme);
+btn.addEventListener('click', () => {
+  theme = theme === 'auto' ? 'dark' : theme === 'dark' ? 'light' : 'auto';
+  apply(theme);
+});
+</script>
+</body>
+</html>

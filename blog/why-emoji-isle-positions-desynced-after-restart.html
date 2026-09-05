@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Why did Emoji Isle positions desync after a server restart? — Haven Command Blog</title>
+<meta name="description" content="Emoji Isle fixed position desync after restarts by persisting authoritative state and reconciling clients on reconnect. Shane Foster on stateful systems — games or AI workflows."/>
+<meta name="keywords" content="multiplayer desync, game state persistence, Emoji Isle, server restart, Haven Command, production systems"/>
+<meta name="author" content="Shane Foster"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://havencommand.com/blog/why-emoji-isle-positions-desynced-after-restart"/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://havencommand.com/blog/why-emoji-isle-positions-desynced-after-restart"/>
+<meta property="og:title" content="Why did Emoji Isle positions desync after a server restart?"/>
+<meta property="og:description" content="Memory is not persistence. If the authority dies, clients keep a ghost island. We persist state and reconcile on reconnect."/>
+<meta property="og:image" content="https://havencommand.com/images/HavenIcon.png"/>
+<meta property="og:site_name" content="Haven Command LLC"/>
+<meta property="article:published_time" content="2026-06-15"/>
+<meta property="article:author" content="Shane Foster"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Why did Emoji Isle positions desync after a server restart?"/>
+<meta name="twitter:description" content="Memory is not persistence. If the authority dies, clients keep a ghost island. We persist state and reconcile on reconnect."/>
+<meta name="twitter:image" content="https://havencommand.com/images/HavenIcon.png"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Why did Emoji Isle positions desync after a server restart?",
+      "description": "Emoji Isle fixed position desync after restarts by persisting authoritative state and reconciling clients on reconnect. Shane Foster on stateful systems \u2014 games or AI workflows.",
+      "datePublished": "2026-06-15",
+      "dateModified": "2026-06-15",
+      "author": {
+        "@type": "Person",
+        "name": "Shane Foster",
+        "jobTitle": "AI Integrations Engineer",
+        "url": "https://havencommand.com",
+        "sameAs": [
+          "https://www.linkedin.com/in/shanefoster"
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Haven Command LLC",
+        "url": "https://havencommand.com",
+        "logo": "https://havencommand.com/images/HavenIcon.png"
+      },
+      "mainEntityOfPage": "https://havencommand.com/blog/why-emoji-isle-positions-desynced-after-restart",
+      "keywords": "multiplayer desync, game state persistence, Emoji Isle, server restart, Haven Command, production systems",
+      "about": {
+        "@type": "SoftwareApplication",
+        "name": "Emoji Isle",
+        "url": "https://emoji-isle.havencommand.com"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What desynced on Emoji Isle?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "After a restart, players could appear in old positions or on a map the server no longer agreed with. Everyone had a private island for a few ugly seconds \u2014 or longer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How was it fixed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Authoritative state is persisted. On reconnect, the client takes the server\u2019s world, not the last local guess."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is a game bug on an AI-integrations blog?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Because stateful products fail the same way \u2014 coaches, SMS loops, multiplayer rooms. Persistence and reconciliation are the job, whatever the skin."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="post.css"/>
+</head>
+<body>
+<header class="masthead">
+  <div class="mast-top">
+    <span>Fresno, California &middot; Est. 2025</span>
+    <a href="/blog/">havencommand.com/blog</a>
+  </div>
+  <div class="mast-name"><a href="/blog/">The Haven Command</a></div>
+  <div class="mast-sub">
+    <span>Vol.&nbsp;1, No.&nbsp;2</span>
+    <span>Production AI integrations — shipped systems, not demos</span>
+    <span>June 2026 &middot; Free</span>
+  </div>
+</header>
+<button id="theme-btn" title="Toggle theme" type="button">&#9680;</button>
+
+<div class="page">
+<article>
+<div class="art-head">
+  <p class="art-eyebrow">&#9632;&nbsp;Emoji Isle · Production Notes&nbsp;&#9632;</p>
+  <h1>Why did Emoji Isle positions desync after a server restart?</h1>
+  <p class="art-deck">Memory is not persistence. If the authority dies, clients keep a ghost island. We persist state and reconcile on reconnect.</p>
+  <p class="art-byline"><span>Shane Foster</span> &nbsp;&middot;&nbsp; AI Integrations Engineer, <a href="https://havencommand.com">Haven Command LLC</a> &nbsp;&middot;&nbsp; June 15, 2026</p>
+</div>
+
+<div class="article-body">
+  <div class="sec-head">
+    <h2>What problem did we actually hit?</h2>
+    <span class="sec-tag">Problem</span>
+  </div>
+  <p class="drop"><a href="https://emoji-isle.havencommand.com">Emoji Isle</a> is a live multiplayer island. People hunt, build, and raid in real time. After a server restart, positions and world state could disagree: one player still standing on a hut the server had forgotten, another snapping back to spawn, a third interacting with a ghost.</p>
+  <p>That is a desync. It is also a persistence bug. If the authority lived only in memory, a restart was an amnesia event. Clients filled the gap with whatever they last believed.</p>
+  <div class="sec-head">
+    <h2>How did Haven Command solve it?</h2>
+    <span class="sec-tag">Solution</span>
+  </div>
+  <p>The server’s world is persisted. Restart loads that world. Clients reconcile on reconnect — they do not get to outvote the authority with a stale transform. Brief interruption beats a permanent private map.</p>
+  <p>This is the same family as <a href="/blog/why-the-d4chess-post-game-coach-went-silent.html">owning the coach audio channel</a> and <a href="/blog/how-scriptforge-locks-a-live-script-from-ai-overwrite.html">locking a live script</a>: one source of truth, everyone else syncs to it.</p>
+  <div class="pull">
+    <div class="pull-inner">
+      <blockquote>If the server forgets the island, the clients will invent three islands. Persist the authority.</blockquote>
+    </div>
+  </div>
+  <div class="sec-head">
+    <h2>Why does this help someone hiring custom AI work?</h2>
+    <span class="sec-tag">For clients</span>
+  </div>
+  <p>I ship games and I ship AI products. The production lesson is identical: if two nodes can disagree about the record, they will. Workflow tools, agent sessions, and multiplayer rooms all need an authority and a reconnect story.</p>
+  <p>Play the island at <a href="https://emoji-isle.havencommand.com">emoji-isle.havencommand.com</a>. If your system loses state on deploy, that is a custom build I take. <a href="https://havencommand.com/">Haven Command</a> · <a href="mailto:contact@havencommand.com">contact@havencommand.com</a>.</p>
+  <div class="faq-block" id="faq">
+    <h2>Questions this write-up answers</h2>
+    <details>
+      <summary>What desynced on Emoji Isle?</summary>
+      <p>After a restart, players could appear in old positions or on a map the server no longer agreed with. Everyone had a private island for a few ugly seconds — or longer.</p>
+    </details>
+    <details>
+      <summary>How was it fixed?</summary>
+      <p>Authoritative state is persisted. On reconnect, the client takes the server’s world, not the last local guess.</p>
+    </details>
+    <details>
+      <summary>Why is a game bug on an AI-integrations blog?</summary>
+      <p>Because stateful products fail the same way — coaches, SMS loops, multiplayer rooms. Persistence and reconciliation are the job, whatever the skin.</p>
+    </details>
+  </div>
+  <div class="related">
+    <h2>Related reading</h2>
+    <ul>
+      <li><a href="/blog/why-the-d4chess-post-game-coach-went-silent.html">Why was the D4Chess post-game coach silent — or talking over itself?</a></li>
+      <li><a href="/blog/why-empty-vite-firebase-config-black-screened-autosocial.html">Why did an empty Vite Firebase config black-screen AutoSocial on Fly?</a></li>
+      <li><a href="/blog/how-scriptforge-locks-a-live-script-from-ai-overwrite.html">How do you stop an AI agent from overwriting a live script?</a></li>
+      <li><a href="/blog/joy-ai-49-year-view.html">Joy, AI, and the 49-Year View</a></li>
+    </ul>
+  </div>
+  <div class="cta-box">
+    <p><strong>Built this. Can build yours.</strong> Emoji Isle is a production system I shipped through Haven Command LLC. The same class of work — one bottleneck, end-to-end — is what I custom-build for founders funding a build and companies hiring AI integration help.</p>
+    <p><a href="https://emoji-isle.havencommand.com">Open Emoji Isle</a> · <a href="https://havencommand.com/">Haven Command home</a> · <a href="mailto:contact@havencommand.com">contact@havencommand.com</a> · <a href="/blog/">More production notes</a></p>
+  </div>
+  <div class="signoff">
+    <p class="signoff-name">- Shane Foster</p>
+    <p class="signoff-role">AI Integrations Engineer, <a href="https://havencommand.com">Haven Command LLC</a> &nbsp;&middot;&nbsp; Fresno, California &nbsp;&middot;&nbsp; June 15, 2026</p>
+  </div>
+</div>
+</article>
+</div>
+
+<footer class="page-footer">
+  <span>&copy; 2026 Haven Command LLC &middot; All Rights Reserved</span>
+  <span>
+    <a href="/blog/">All notes</a>
+    &nbsp;&middot;&nbsp;
+    <a href="https://emoji-isle.havencommand.com">Emoji Isle</a>
+    &nbsp;&middot;&nbsp;
+    <a href="https://havencommand.com/">havencommand.com</a>
+    &nbsp;&middot;&nbsp;
+    <a href="mailto:contact@havencommand.com">Contact</a>
+  </span>
+</footer>
+<script>
+const btn = document.getElementById('theme-btn');
+const root = document.documentElement;
+let theme = localStorage.getItem('hc-theme') || 'auto';
+function apply(t) {
+  root.removeAttribute('data-theme');
+  if (t !== 'auto') root.setAttribute('data-theme', t);
+  btn.innerHTML = t === 'dark' ? '&#9728;' : t === 'light' ? '&#9679;' : '&#9680;';
+  localStorage.setItem('hc-theme', t);
+}
+apply(theme);
+btn.addEventListener('click', () => {
+  theme = theme === 'auto' ? 'dark' : theme === 'dark' ? 'light' : 'auto';
+  apply(theme);
+});
+</script>
+</body>
+</html>
