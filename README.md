@@ -1,9 +1,9 @@
 # havencommand.com
 
-Company site for **Haven Command LLC** — production AI integrations and custom AI product builds.
+Company site for **Haven Command LLC** — production AI products and custom AI integrations.
 
-The live products here (D4Chess, ScriptForge AI, and others) are proof the company ships the last mile typical AI hires skip. Haven Command custom-builds the same class of systems for founders funding a build and companies hiring the work.
+The live products here (D4Chess, ScriptForge AI, TrustLoopAI, TheraScribe, AutoSocial) are the evidence. Haven Command custom-builds the same class of systems for founders funding a build and companies commissioning the work.
 
-The [blog](blog/) is a dated archive of those production problems — one bottleneck per post.
+The [blog](blog/) is a dated archive of what those products had to survive — one bottleneck per post.
 
 Static site. Deploys to GitHub Pages on push to `main`.
