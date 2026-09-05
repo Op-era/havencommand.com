@@ -3,9 +3,43 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>The Haven Command — Essays</title>
-<meta name="description" content="Essays on building games and software, AI, creativity, and what joy actually is. From Haven Command founder Shane Foster.">
-<link rel="canonical" href="https://havencommand.com/blog">
+<title>Haven Command Blog — Production AI Integration Notes | Shane Foster</title>
+<meta name="description" content="Production notes from Shane Foster, AI integrations engineer at Haven Command LLC. Real problems shipped in D4Chess, ScriptForge, AutoSocial, TrustLoopAI, and Emoji Isle — and how the same class of work is built for clients."/>
+<meta name="keywords" content="AI integrations engineer blog, production AI notes, custom AI product development, D4Chess, ScriptForge AI, AutoSocial, TrustLoopAI, Haven Command, Shane Foster"/>
+<meta name="author" content="Shane Foster"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://havencommand.com/blog/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://havencommand.com/blog/"/>
+<meta property="og:title" content="Haven Command Blog — Production AI Integration Notes"/>
+<meta property="og:description" content="Shipped problems, not slideware. Shane Foster writes up the bottlenecks behind D4Chess, ScriptForge, AutoSocial, and TrustLoopAI."/>
+<meta property="og:image" content="https://havencommand.com/images/HavenIcon.png"/>
+<meta property="og:site_name" content="Haven Command LLC"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Haven Command Blog — Production AI Integration Notes"/>
+<meta name="twitter:description" content="Real production problems from shipped AI products — and how Haven Command solves the same class of work for clients."/>
+<meta name="twitter:image" content="https://havencommand.com/images/HavenIcon.png"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "The Haven Command",
+  "url": "https://havencommand.com/blog/",
+  "description": "Production AI integration notes from Shane Foster / Haven Command LLC.",
+  "author": {
+    "@type": "Person",
+    "name": "Shane Foster",
+    "jobTitle": "AI Integrations Engineer",
+    "url": "https://havencommand.com",
+    "sameAs": ["https://www.linkedin.com/in/shanefoster"]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Haven Command LLC",
+    "url": "https://havencommand.com"
+  }
+}
+</script>
 <style>
 :root {
   --paper: #ffffff;
@@ -56,6 +90,7 @@ a:hover { color: var(--red); }
   margin-bottom: .4rem;
   line-height: 1;
 }
+.site-name a { text-decoration: none; }
 .tagline {
   text-align: center;
   font-size: .75rem;
@@ -116,6 +151,7 @@ h2 {
   display: flex;
   gap: 1rem;
   align-items: center;
+  flex-wrap: wrap;
 }
 .read-link {
   font-size: .72rem;
@@ -128,23 +164,165 @@ h2 {
 }
 .read-link:hover { text-decoration: underline; }
 .read-link::after { content: ' →'; }
+
+#theme-btn {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
+  background: var(--paper);
+  color: var(--muted);
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  font-size: .85rem;
+  cursor: pointer;
+  opacity: 0.55;
+}
+#theme-btn:hover { opacity: 1; color: var(--red); border-color: var(--red); }
+
+.page-foot {
+  margin-top: 2.5rem;
+  padding-top: .8rem;
+  border-top: 2px solid var(--rule);
+  font-size: .72rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  gap: .8rem;
+  flex-wrap: wrap;
+}
+.page-foot a { color: var(--red); text-decoration: none; }
 </style>
 </head>
 <body>
+
+<button id="theme-btn" title="Toggle theme" type="button">&#9680;</button>
 
 <div class="masthead">
   <a href="https://havencommand.com">havencommand.com</a>
   <span>Est. 2025 &middot; Fresno, California</span>
 </div>
 
-<div class="site-name">The Haven Command</div>
-<div class="tagline">Essays on Building, AI, and What Joy Actually Is</div>
+<div class="site-name"><a href="/blog/">The Haven Command</a></div>
+<div class="tagline">Production notes on shipping AI systems — not demos</div>
 
-<h2>&#9632;&nbsp; All Essays</h2>
+<h2>&#9632;&nbsp; All notes</h2>
 
 <ul class="post-list">
   <li class="post-item">
-    <div class="post-eyebrow">Inaugural Essay &middot; July 2026</div>
+    <div class="post-eyebrow">D4Chess · August 31, 2026</div>
+    <div class="post-title"><a href="/blog/why-d4chess-grounds-coach-answers-on-stockfish-pvs.html">Why did the D4Chess coach invent lines Stockfish never played?</a></div>
+    <div class="post-deck">Because a language model will happily narrate a chess game that never happened. We grounded every coach sentence on verified Stockfish principal variations.</div>
+    <div class="post-meta">
+      <span>Shane Foster</span>
+      <span>&middot;</span>
+      <span>7 min read</span>
+      <span>&middot;</span>
+      <a class="read-link" href="/blog/why-d4chess-grounds-coach-answers-on-stockfish-pvs.html">Read</a>
+    </div>
+  </li>
+  <li class="post-item">
+    <div class="post-eyebrow">D4Chess · August 24, 2026</div>
+    <div class="post-title"><a href="/blog/why-the-d4chess-post-game-coach-went-silent.html">Why was the D4Chess post-game coach silent — or talking over itself?</a></div>
+    <div class="post-deck">An empty coach payload and overlapping audio are the same race: two async paths, no owner of the channel. We gated playback on a complete result.</div>
+    <div class="post-meta">
+      <span>Shane Foster</span>
+      <span>&middot;</span>
+      <span>6 min read</span>
+      <span>&middot;</span>
+      <a class="read-link" href="/blog/why-the-d4chess-post-game-coach-went-silent.html">Read</a>
+    </div>
+  </li>
+  <li class="post-item">
+    <div class="post-eyebrow">D4Chess · August 17, 2026</div>
+    <div class="post-title"><a href="/blog/how-d4chess-roastme-explains-without-engine-jargon.html">How do you make engine analysis go viral without the jargon?</a></div>
+    <div class="post-deck">RoastMe is an explainability layer: same verified line, human language. People share a roast. They do not share +1.4 at move 23.</div>
+    <div class="post-meta">
+      <span>Shane Foster</span>
+      <span>&middot;</span>
+      <span>6 min read</span>
+      <span>&middot;</span>
+      <a class="read-link" href="/blog/how-d4chess-roastme-explains-without-engine-jargon.html">Read</a>
+    </div>
+  </li>
+  <li class="post-item">
+    <div class="post-eyebrow">ScriptForge · August 10, 2026</div>
+    <div class="post-title"><a href="/blog/how-scriptforge-locks-a-live-script-from-ai-overwrite.html">How do you stop an AI agent from overwriting a live script?</a></div>
+    <div class="post-deck">Lock the draft. Let the agent propose. Merge only on a red/green Approve. The live script is not a chat buffer.</div>
+    <div class="post-meta">
+      <span>Shane Foster</span>
+      <span>&middot;</span>
+      <span>7 min read</span>
+      <span>&middot;</span>
+      <a class="read-link" href="/blog/how-scriptforge-locks-a-live-script-from-ai-overwrite.html">Read</a>
+    </div>
+  </li>
+  <li class="post-item">
+    <div class="post-eyebrow">ScriptForge · August 3, 2026</div>
+    <div class="post-title"><a href="/blog/why-scriptforge-keeps-a-blank-script-tab.html">Why does ScriptForge keep a blank Script tab you can always type in?</a></div>
+    <div class="post-deck">If the only door is a prompt, you do not have a writing tool. You have a chatbot wearing a screenplay. The blank tab is the product.</div>
+    <div class="post-meta">
+      <span>Shane Foster</span>
+      <span>&middot;</span>
+      <span>5 min read</span>
+      <span>&middot;</span>
+      <a class="read-link" href="/blog/why-scriptforge-keeps-a-blank-script-tab.html">Read</a>
+    </div>
+  </li>
+  <li class="post-item">
+    <div class="post-eyebrow">ScriptForge · July 27, 2026</div>
+    <div class="post-title"><a href="/blog/why-scriptforge-keeps-undo-after-approved-rewrites.html">Why keep undo history after a writer approves an AI rewrite?</a></div>
+    <div class="post-deck">Approve is a merge, not a cremation. We keep rewrite history until an explicit save so one green click cannot nuke the draft.</div>
+    <div class="post-meta">
+      <span>Shane Foster</span>
+      <span>&middot;</span>
+      <span>6 min read</span>
+      <span>&middot;</span>
+      <a class="read-link" href="/blog/why-scriptforge-keeps-undo-after-approved-rewrites.html">Read</a>
+    </div>
+  </li>
+  <li class="post-item">
+    <div class="post-eyebrow">AutoSocial · July 20, 2026</div>
+    <div class="post-title"><a href="/blog/why-autosocial-publishes-through-the-instagram-graph-api.html">Why publish to Instagram through the Graph API instead of a browser login?</a></div>
+    <div class="post-deck">Browser sessions rot. Official publish APIs do not pretend to be a person. AutoSocial posts through the Instagram Graph API the client authorizes.</div>
+    <div class="post-meta">
+      <span>Shane Foster</span>
+      <span>&middot;</span>
+      <span>7 min read</span>
+      <span>&middot;</span>
+      <a class="read-link" href="/blog/why-autosocial-publishes-through-the-instagram-graph-api.html">Read</a>
+    </div>
+  </li>
+  <li class="post-item">
+    <div class="post-eyebrow">AutoSocial · July 13, 2026</div>
+    <div class="post-title"><a href="/blog/how-autosocial-ships-owner-only-production-login.html">How do you ship production login that doesn’t depend on broken email OTP?</a></div>
+    <div class="post-deck">Owner-only auth. A login path you can operate when the mail provider flakes. Production software is allowed to have one door that always opens for the owner.</div>
+    <div class="post-meta">
+      <span>Shane Foster</span>
+      <span>&middot;</span>
+      <span>6 min read</span>
+      <span>&middot;</span>
+      <a class="read-link" href="/blog/how-autosocial-ships-owner-only-production-login.html">Read</a>
+    </div>
+  </li>
+  <li class="post-item">
+    <div class="post-eyebrow">AutoSocial · July 6, 2026</div>
+    <div class="post-title"><a href="/blog/why-empty-vite-firebase-config-black-screened-autosocial.html">Why did an empty Vite Firebase config black-screen AutoSocial on Fly?</a></div>
+    <div class="post-deck">Vite inlines env at build time. If Fly builds without the public Firebase args, the bundle boots with empty config and the UI dies. Pass the args at build.</div>
+    <div class="post-meta">
+      <span>Shane Foster</span>
+      <span>&middot;</span>
+      <span>6 min read</span>
+      <span>&middot;</span>
+      <a class="read-link" href="/blog/why-empty-vite-firebase-config-black-screened-autosocial.html">Read</a>
+    </div>
+  </li>
+  <li class="post-item">
+    <div class="post-eyebrow">Inaugural Essay · July 1, 2026</div>
     <div class="post-title"><a href="/blog/joy-ai-49-year-view.html">Joy, AI, and the 49-Year View</a></div>
     <div class="post-deck">On making games, the death of skill, fear as a business model, and what joy actually is.</div>
     <div class="post-meta">
@@ -155,7 +333,70 @@ h2 {
       <a class="read-link" href="/blog/joy-ai-49-year-view.html">Read</a>
     </div>
   </li>
+  <li class="post-item">
+    <div class="post-eyebrow">TrustLoopAI · June 29, 2026</div>
+    <div class="post-title"><a href="/blog/what-trustloopai-does-when-deepseek-fails.html">What does TrustLoopAI do when DeepSeek fails in a live SMS loop?</a></div>
+    <div class="post-deck">It fails over to Gemini Flash and keeps the conversation on a transport that actually works on Node 20 — including Fly and the websocket path Supabase needs.</div>
+    <div class="post-meta">
+      <span>Shane Foster</span>
+      <span>&middot;</span>
+      <span>7 min read</span>
+      <span>&middot;</span>
+      <a class="read-link" href="/blog/what-trustloopai-does-when-deepseek-fails.html">Read</a>
+    </div>
+  </li>
+  <li class="post-item">
+    <div class="post-eyebrow">TrustLoopAI · June 22, 2026</div>
+    <div class="post-title"><a href="/blog/how-trustloopai-productized-referrals-and-payg-caps.html">How do you productize referrals and PAYG caps without ops chaos?</a></div>
+    <div class="post-deck">Usage without a ceiling is an outage you invoice later. TrustLoopAI treats referrals, billing, and PAYG caps as product, not a spreadsheet after the fact.</div>
+    <div class="post-meta">
+      <span>Shane Foster</span>
+      <span>&middot;</span>
+      <span>6 min read</span>
+      <span>&middot;</span>
+      <a class="read-link" href="/blog/how-trustloopai-productized-referrals-and-payg-caps.html">Read</a>
+    </div>
+  </li>
+  <li class="post-item">
+    <div class="post-eyebrow">Emoji Isle · June 15, 2026</div>
+    <div class="post-title"><a href="/blog/why-emoji-isle-positions-desynced-after-restart.html">Why did Emoji Isle positions desync after a server restart?</a></div>
+    <div class="post-deck">Memory is not persistence. If the authority dies, clients keep a ghost island. We persist state and reconcile on reconnect.</div>
+    <div class="post-meta">
+      <span>Shane Foster</span>
+      <span>&middot;</span>
+      <span>6 min read</span>
+      <span>&middot;</span>
+      <a class="read-link" href="/blog/why-emoji-isle-positions-desynced-after-restart.html">Read</a>
+    </div>
+  </li>
 </ul>
 
+<div class="page-foot">
+  <span>&copy; 2026 Haven Command LLC</span>
+  <span>
+    <a href="https://havencommand.com/">Home</a>
+    &nbsp;&middot;&nbsp;
+    <a href="https://havencommand.com/#contact">Hire</a>
+    &nbsp;&middot;&nbsp;
+    <a href="mailto:contact@havencommand.com">contact@havencommand.com</a>
+  </span>
+</div>
+
+<script>
+const btn = document.getElementById('theme-btn');
+const root = document.documentElement;
+let theme = localStorage.getItem('hc-theme') || 'auto';
+function apply(t) {
+  root.removeAttribute('data-theme');
+  if (t !== 'auto') root.setAttribute('data-theme', t);
+  btn.innerHTML = t === 'dark' ? '&#9728;' : t === 'light' ? '&#9679;' : '&#9680;';
+  localStorage.setItem('hc-theme', t);
+}
+apply(theme);
+btn.addEventListener('click', () => {
+  theme = theme === 'auto' ? 'dark' : theme === 'dark' ? 'light' : 'auto';
+  apply(theme);
+});
+</script>
 </body>
 </html>

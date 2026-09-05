@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>What does TrustLoopAI do when DeepSeek fails in a live SMS loop? — Haven Command Blog</title>
+<meta name="description" content="TrustLoopAI fails over from DeepSeek to Gemini Flash and uses a Fly/websocket transport that works with Supabase on Node 20. Shane Foster on production SMS AI."/>
+<meta name="keywords" content="LLM fallback, Gemini Flash, DeepSeek, Supabase Node 20 websocket, TrustLoopAI, production AI integrations"/>
+<meta name="author" content="Shane Foster"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://havencommand.com/blog/what-trustloopai-does-when-deepseek-fails"/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://havencommand.com/blog/what-trustloopai-does-when-deepseek-fails"/>
+<meta property="og:title" content="What does TrustLoopAI do when DeepSeek fails in a live SMS loop?"/>
+<meta property="og:description" content="It fails over to Gemini Flash and keeps the conversation on a transport that actually works on Node 20 — including Fly and the websocket path Supabase needs."/>
+<meta property="og:image" content="https://havencommand.com/images/HavenIcon.png"/>
+<meta property="og:site_name" content="Haven Command LLC"/>
+<meta property="article:published_time" content="2026-06-29"/>
+<meta property="article:author" content="Shane Foster"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="What does TrustLoopAI do when DeepSeek fails in a live SMS loop?"/>
+<meta name="twitter:description" content="It fails over to Gemini Flash and keeps the conversation on a transport that actually works on Node 20 — including Fly and the websocket path Supabase needs."/>
+<meta name="twitter:image" content="https://havencommand.com/images/HavenIcon.png"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "What does TrustLoopAI do when DeepSeek fails in a live SMS loop?",
+      "description": "TrustLoopAI fails over from DeepSeek to Gemini Flash and uses a Fly/websocket transport that works with Supabase on Node 20. Shane Foster on production SMS AI.",
+      "datePublished": "2026-06-29",
+      "dateModified": "2026-06-29",
+      "author": {
+        "@type": "Person",
+        "name": "Shane Foster",
+        "jobTitle": "AI Integrations Engineer",
+        "url": "https://havencommand.com",
+        "sameAs": [
+          "https://www.linkedin.com/in/shanefoster"
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Haven Command LLC",
+        "url": "https://havencommand.com",
+        "logo": "https://havencommand.com/images/HavenIcon.png"
+      },
+      "mainEntityOfPage": "https://havencommand.com/blog/what-trustloopai-does-when-deepseek-fails",
+      "keywords": "LLM fallback, Gemini Flash, DeepSeek, Supabase Node 20 websocket, TrustLoopAI, production AI integrations",
+      "about": {
+        "@type": "SoftwareApplication",
+        "name": "TrustLoopAI",
+        "url": "https://trustloopai.fyi"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What happens if the primary model is down?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TrustLoopAI continues the SMS loop on Gemini Flash instead of dropping the customer in the middle of a thread."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What did Node 20 have to do with it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The default transport assumptions did not match how Supabase needed to talk from that runtime on Fly. We used a websocket path that actually stays up."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is this an integrations problem?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The product is the loop: model plus SMS plus database. Any one hop can fail. Clients hire the person who designed the hop, not the prompt."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="post.css"/>
+</head>
+<body>
+<header class="masthead">
+  <div class="mast-top">
+    <span>Fresno, California &middot; Est. 2025</span>
+    <a href="/blog/">havencommand.com/blog</a>
+  </div>
+  <div class="mast-name"><a href="/blog/">The Haven Command</a></div>
+  <div class="mast-sub">
+    <span>Vol.&nbsp;1, No.&nbsp;4</span>
+    <span>Production AI integrations — shipped systems, not demos</span>
+    <span>June 2026 &middot; Free</span>
+  </div>
+</header>
+<button id="theme-btn" title="Toggle theme" type="button">&#9680;</button>
+
+<div class="page">
+<article>
+<div class="art-head">
+  <p class="art-eyebrow">&#9632;&nbsp;TrustLoopAI · Production Notes&nbsp;&#9632;</p>
+  <h1>What does TrustLoopAI do when DeepSeek fails in a live SMS loop?</h1>
+  <p class="art-deck">It fails over to Gemini Flash and keeps the conversation on a transport that actually works on Node 20 — including Fly and the websocket path Supabase needs.</p>
+  <p class="art-byline"><span>Shane Foster</span> &nbsp;&middot;&nbsp; AI Integrations Engineer, <a href="https://havencommand.com">Haven Command LLC</a> &nbsp;&middot;&nbsp; June 29, 2026</p>
+</div>
+
+<div class="article-body">
+  <div class="sec-head">
+    <h2>What problem did we actually hit?</h2>
+    <span class="sec-tag">Problem</span>
+  </div>
+  <p class="drop"><a href="https://trustloopai.fyi">TrustLoopAI</a> is a customer-engagement loop over SMS. If the primary model — DeepSeek, in this setup — errors or times out, the customer is still sitting on a text thread. “Try again later” is not a conversation.</p>
+  <p>Separately, the app has to talk to Supabase from Node 20 on Fly. The easy HTTP assumption is not always the path that stays open. A “connected” product that cannot reach its own database is a demo with a phone number.</p>
+  <div class="sec-head">
+    <h2>How did Haven Command solve it?</h2>
+    <span class="sec-tag">Solution</span>
+  </div>
+  <p>When DeepSeek fails, the loop falls over to Gemini Flash and continues. The customer does not need to know the roster. They need the next useful message. We log the failover so I can see cost and quality; we do not surface an autopsy in the text thread.</p>
+  <p>On the data hop, we use a websocket transport that works for Supabase on that Node 20 / Fly combination instead of pretending every runtime speaks the same dialect. This is plumbing. Plumbing is the product.</p>
+  <p>Same instinct as <a href="/blog/why-d4chess-grounds-coach-answers-on-stockfish-pvs.html">grounding D4Chess</a>: do not let an upstream hole become fluent nonsense or a dead line.</p>
+  <div class="pull">
+    <div class="pull-inner">
+      <blockquote>A fallback model is not a luxury. It is how an SMS loop survives someone else’s outage.</blockquote>
+    </div>
+  </div>
+  <div class="sec-head">
+    <h2>Why does this help someone hiring custom AI work?</h2>
+    <span class="sec-tag">For clients</span>
+  </div>
+  <p>Production AI integrations are failover, transport, and a workflow that survives a vendor bad day. I custom-build that class of loop for founders and companies — SMS, notes, coaches, calendars.</p>
+  <p>Read the live product at <a href="https://trustloopai.fyi">trustloopai.fyi</a>. Hire the same pattern at <a href="https://havencommand.com/">havencommand.com</a> or <a href="mailto:contact@havencommand.com">contact@havencommand.com</a>.</p>
+  <div class="faq-block" id="faq">
+    <h2>Questions this write-up answers</h2>
+    <details>
+      <summary>What happens if the primary model is down?</summary>
+      <p>TrustLoopAI continues the SMS loop on Gemini Flash instead of dropping the customer in the middle of a thread.</p>
+    </details>
+    <details>
+      <summary>What did Node 20 have to do with it?</summary>
+      <p>The default transport assumptions did not match how Supabase needed to talk from that runtime on Fly. We used a websocket path that actually stays up.</p>
+    </details>
+    <details>
+      <summary>Why is this an integrations problem?</summary>
+      <p>The product is the loop: model plus SMS plus database. Any one hop can fail. Clients hire the person who designed the hop, not the prompt.</p>
+    </details>
+  </div>
+  <div class="related">
+    <h2>Related reading</h2>
+    <ul>
+      <li><a href="/blog/how-trustloopai-productized-referrals-and-payg-caps.html">How do you productize referrals and PAYG caps without ops chaos?</a></li>
+      <li><a href="/blog/why-d4chess-grounds-coach-answers-on-stockfish-pvs.html">Why did the D4Chess coach invent lines Stockfish never played?</a></li>
+      <li><a href="/blog/why-empty-vite-firebase-config-black-screened-autosocial.html">Why did an empty Vite Firebase config black-screen AutoSocial on Fly?</a></li>
+      <li><a href="/blog/joy-ai-49-year-view.html">Joy, AI, and the 49-Year View</a></li>
+    </ul>
+  </div>
+  <div class="cta-box">
+    <p><strong>Built this. Can build yours.</strong> TrustLoopAI is a production system I shipped through Haven Command LLC. The same class of work — one bottleneck, end-to-end — is what I custom-build for founders funding a build and companies hiring AI integration help.</p>
+    <p><a href="https://trustloopai.fyi">Open TrustLoopAI</a> · <a href="https://havencommand.com/">Haven Command home</a> · <a href="mailto:contact@havencommand.com">contact@havencommand.com</a> · <a href="/blog/">More production notes</a></p>
+  </div>
+  <div class="signoff">
+    <p class="signoff-name">- Shane Foster</p>
+    <p class="signoff-role">AI Integrations Engineer, <a href="https://havencommand.com">Haven Command LLC</a> &nbsp;&middot;&nbsp; Fresno, California &nbsp;&middot;&nbsp; June 29, 2026</p>
+  </div>
+</div>
+</article>
+</div>
+
+<footer class="page-footer">
+  <span>&copy; 2026 Haven Command LLC &middot; All Rights Reserved</span>
+  <span>
+    <a href="/blog/">All notes</a>
+    &nbsp;&middot;&nbsp;
+    <a href="https://trustloopai.fyi">TrustLoopAI</a>
+    &nbsp;&middot;&nbsp;
+    <a href="https://havencommand.com/">havencommand.com</a>
+    &nbsp;&middot;&nbsp;
+    <a href="mailto:contact@havencommand.com">Contact</a>
+  </span>
+</footer>
+<script>
+const btn = document.getElementById('theme-btn');
+const root = document.documentElement;
+let theme = localStorage.getItem('hc-theme') || 'auto';
+function apply(t) {
+  root.removeAttribute('data-theme');
+  if (t !== 'auto') root.setAttribute('data-theme', t);
+  btn.innerHTML = t === 'dark' ? '&#9728;' : t === 'light' ? '&#9679;' : '&#9680;';
+  localStorage.setItem('hc-theme', t);
+}
+apply(theme);
+btn.addEventListener('click', () => {
+  theme = theme === 'auto' ? 'dark' : theme === 'dark' ? 'light' : 'auto';
+  apply(theme);
+});
+</script>
+</body>
+</html>

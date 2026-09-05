@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Allow: /blog/
+
+Disallow: /admin/
 
 Sitemap: https://havencommand.com/sitemap.xml
