@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Haven Command Blog — Production AI Integration Notes | Shane Foster</title>
-<meta name="description" content="Production notes from Shane Foster, AI integrations engineer at Haven Command LLC. Real problems shipped in D4Chess, ScriptForge, AutoSocial, TrustLoopAI, and Emoji Isle — and how the same class of work is built for clients."/>
-<meta name="keywords" content="AI integrations engineer blog, production AI notes, custom AI product development, D4Chess, ScriptForge AI, AutoSocial, TrustLoopAI, Haven Command, Shane Foster"/>
-<meta name="author" content="Shane Foster"/>
+<title>Haven Command Blog — Production AI Integration Notes</title>
+<meta name="description" content="Hiring briefs from Haven Command LLC. What typical AI hires fail at, what customers felt when it broke, and what the experience became after the company shipped the fix. Products are evidence, not walkthroughs."/>
+<meta name="keywords" content="Haven Command blog, production AI notes, custom AI product development, hire Haven Command, D4Chess, ScriptForge AI, AutoSocial, TrustLoopAI"/>
+<meta name="author" content="Haven Command LLC"/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://havencommand.com/blog/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://havencommand.com/blog/"/>
 <meta property="og:title" content="Haven Command Blog — Production AI Integration Notes"/>
-<meta property="og:description" content="Shipped problems, not slideware. Shane Foster writes up the bottlenecks behind D4Chess, ScriptForge, AutoSocial, and TrustLoopAI."/>
+<meta property="og:description" content="Hiring briefs, not UI nits. What typical AI hires fail at, what broke in Haven Command products, and why to hire the company."/>
 <meta property="og:image" content="https://havencommand.com/images/HavenIcon.png"/>
 <meta property="og:site_name" content="Haven Command LLC"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Haven Command Blog — Production AI Integration Notes"/>
-<meta name="twitter:description" content="Real production problems from shipped AI products — and how Haven Command solves the same class of work for clients."/>
+<meta name="twitter:description" content="Each note: typical AI-hire failure, what broke in production, what the experience became after the fix, why to hire the company."/>
 <meta name="twitter:image" content="https://havencommand.com/images/HavenIcon.png"/>
 <script type="application/ld+json">
 {
@@ -25,15 +25,13 @@
   "@type": "Blog",
   "name": "The Haven Command",
   "url": "https://havencommand.com/blog/",
-  "description": "Production AI integration notes from Shane Foster / Haven Command LLC.",
-  "author": {
-    "@type": "Person",
-    "name": "Shane Foster",
-    "jobTitle": "AI Integrations Engineer",
-    "url": "https://havencommand.com",
-    "sameAs": ["https://www.linkedin.com/in/shanefoster"]
-  },
+  "description": "Production AI integration notes from Haven Command LLC — failure modes typical AI hires still hit, and how the company already cleared them.",
   "publisher": {
+    "@type": "Organization",
+    "name": "Haven Command LLC",
+    "url": "https://havencommand.com"
+  },
+  "author": {
     "@type": "Organization",
     "name": "Haven Command LLC",
     "url": "https://havencommand.com"
@@ -100,7 +98,13 @@ a:hover { color: var(--red); }
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
   padding: .35rem 0;
+  margin-bottom: 1.4rem;
+}
+.index-intro {
+  font-size: 1rem;
+  line-height: 1.65;
   margin-bottom: 2.5rem;
+  color: var(--ink);
 }
 
 h2 {
@@ -210,13 +214,15 @@ h2 {
 <div class="site-name"><a href="/blog/">The Haven Command</a></div>
 <div class="tagline">Production notes on shipping AI systems — not demos</div>
 
+<p class="index-intro">Each note is a hiring brief: what typical AI engineers fail at, what the customer felt when it broke, and what the experience became after Haven Command LLC shipped the fix. Products are evidence — not walkthroughs. <a href="https://havencommand.com/#contact">Hire Haven Command</a>.</p>
+
 <h2>&#9632;&nbsp; All notes</h2>
 
 <ul class="post-list">
   <li class="post-item">
     <div class="post-eyebrow">D4Chess · August 31, 2026</div>
-    <div class="post-title"><a href="/blog/why-d4chess-grounds-coach-answers-on-stockfish-pvs.html">Why did the D4Chess coach invent lines Stockfish never played?</a></div>
-    <div class="post-deck">Because a language model will happily narrate a chess game that never happened. We grounded every coach sentence on verified Stockfish principal variations.</div>
+    <div class="post-title"><a href="/blog/why-d4chess-grounds-coach-answers-on-stockfish-pvs.html">Why did the D4Chess coach invent a game that never happened?</a></div>
+    <div class="post-deck">Typical AI hires ship a fluent coach that sounds right and is wrong. After Haven Command, the lesson matches the game they played — or the coach stays quiet.</div>
     <div class="post-meta">
       <span>Shane Foster</span>
       <span>&middot;</span>
@@ -228,7 +234,7 @@ h2 {
   <li class="post-item">
     <div class="post-eyebrow">D4Chess · August 24, 2026</div>
     <div class="post-title"><a href="/blog/why-the-d4chess-post-game-coach-went-silent.html">Why was the D4Chess post-game coach silent — or talking over itself?</a></div>
-    <div class="post-deck">An empty coach payload and overlapping audio are the same race: two async paths, no owner of the channel. We gated playback on a complete result.</div>
+    <div class="post-deck">Typical AI hires ship a demo that talks in the meeting. After a real game, players got silence — or two voices. After Haven Command, one lesson, or a clean quiet.</div>
     <div class="post-meta">
       <span>Shane Foster</span>
       <span>&middot;</span>
@@ -239,8 +245,8 @@ h2 {
   </li>
   <li class="post-item">
     <div class="post-eyebrow">D4Chess · August 17, 2026</div>
-    <div class="post-title"><a href="/blog/how-d4chess-roastme-explains-without-engine-jargon.html">How do you make engine analysis go viral without the jargon?</a></div>
-    <div class="post-deck">RoastMe is an explainability layer: same verified line, human language. People share a roast. They do not share +1.4 at move 23.</div>
+    <div class="post-title"><a href="/blog/how-d4chess-roastme-explains-without-engine-jargon.html">Why must a non-expert explanation still be honest?</a></div>
+    <div class="post-deck">Typical AI hires add personality and invent the facts. After Haven Command, the human explanation is about the real game — or it does not run.</div>
     <div class="post-meta">
       <span>Shane Foster</span>
       <span>&middot;</span>
@@ -251,8 +257,8 @@ h2 {
   </li>
   <li class="post-item">
     <div class="post-eyebrow">ScriptForge · August 10, 2026</div>
-    <div class="post-title"><a href="/blog/how-scriptforge-locks-a-live-script-from-ai-overwrite.html">How do you stop an AI agent from overwriting a live script?</a></div>
-    <div class="post-deck">Lock the draft. Let the agent propose. Merge only on a red/green Approve. The live script is not a chat buffer.</div>
+    <div class="post-title"><a href="/blog/how-scriptforge-locks-a-live-script-from-ai-overwrite.html">Why did an AI agent overwrite a writer’s live draft?</a></div>
+    <div class="post-deck">Typical AI hires let the model take the work product. After Haven Command, the writer still owns the script — even after a suggestion they later regret.</div>
     <div class="post-meta">
       <span>Shane Foster</span>
       <span>&middot;</span>
@@ -263,8 +269,8 @@ h2 {
   </li>
   <li class="post-item">
     <div class="post-eyebrow">ScriptForge · August 3, 2026</div>
-    <div class="post-title"><a href="/blog/why-scriptforge-keeps-a-blank-script-tab.html">Why does ScriptForge keep a blank Script tab you can always type in?</a></div>
-    <div class="post-deck">If the only door is a prompt, you do not have a writing tool. You have a chatbot wearing a screenplay. The blank tab is the product.</div>
+    <div class="post-title"><a href="/blog/why-scriptforge-keeps-a-blank-script-tab.html">Why do AI writing tools trap you in an empty state you cannot type into?</a></div>
+    <div class="post-deck">Typical AI hires open on a prompt. If the model is slow or wrong, the human cannot work. After Haven Command, a writer can start the page immediately.</div>
     <div class="post-meta">
       <span>Shane Foster</span>
       <span>&middot;</span>
@@ -274,21 +280,9 @@ h2 {
     </div>
   </li>
   <li class="post-item">
-    <div class="post-eyebrow">ScriptForge · July 27, 2026</div>
-    <div class="post-title"><a href="/blog/why-scriptforge-keeps-undo-after-approved-rewrites.html">Why keep undo history after a writer approves an AI rewrite?</a></div>
-    <div class="post-deck">Approve is a merge, not a cremation. We keep rewrite history until an explicit save so one green click cannot nuke the draft.</div>
-    <div class="post-meta">
-      <span>Shane Foster</span>
-      <span>&middot;</span>
-      <span>6 min read</span>
-      <span>&middot;</span>
-      <a class="read-link" href="/blog/why-scriptforge-keeps-undo-after-approved-rewrites.html">Read</a>
-    </div>
-  </li>
-  <li class="post-item">
     <div class="post-eyebrow">AutoSocial · July 20, 2026</div>
-    <div class="post-title"><a href="/blog/why-autosocial-publishes-through-the-instagram-graph-api.html">Why publish to Instagram through the Graph API instead of a browser login?</a></div>
-    <div class="post-deck">Browser sessions rot. Official publish APIs do not pretend to be a person. AutoSocial posts through the Instagram Graph API the client authorizes.</div>
+    <div class="post-title"><a href="/blog/why-autosocial-publishes-through-the-instagram-graph-api.html">Why did the week’s posts never go out after a “working” demo?</a></div>
+    <div class="post-deck">Typical AI hires show a connected calendar in the meeting. A week later nothing publishes. After Haven Command, the week actually goes out.</div>
     <div class="post-meta">
       <span>Shane Foster</span>
       <span>&middot;</span>
@@ -299,8 +293,8 @@ h2 {
   </li>
   <li class="post-item">
     <div class="post-eyebrow">AutoSocial · July 13, 2026</div>
-    <div class="post-title"><a href="/blog/how-autosocial-ships-owner-only-production-login.html">How do you ship production login that doesn’t depend on broken email OTP?</a></div>
-    <div class="post-deck">Owner-only auth. A login path you can operate when the mail provider flakes. Production software is allowed to have one door that always opens for the owner.</div>
+    <div class="post-title"><a href="/blog/how-autosocial-ships-owner-only-production-login.html">Why was the owner locked out of the product they operate?</a></div>
+    <div class="post-deck">Typical AI hires ship login theater. The owner cannot publish. After Haven Command, the person on the hook can still get in.</div>
     <div class="post-meta">
       <span>Shane Foster</span>
       <span>&middot;</span>
@@ -311,8 +305,8 @@ h2 {
   </li>
   <li class="post-item">
     <div class="post-eyebrow">AutoSocial · July 6, 2026</div>
-    <div class="post-title"><a href="/blog/why-empty-vite-firebase-config-black-screened-autosocial.html">Why did an empty Vite Firebase config black-screen AutoSocial on Fly?</a></div>
-    <div class="post-deck">Vite inlines env at build time. If Fly builds without the public Firebase args, the bundle boots with empty config and the UI dies. Pass the args at build.</div>
+    <div class="post-title"><a href="/blog/why-empty-vite-firebase-config-black-screened-autosocial.html">Why did a “finished” AutoSocial deploy hand buyers a black screen?</a></div>
+    <div class="post-deck">Typical AI hires deliver a laptop demo that looks done. Production is a black screen. After Haven Command, a product that cannot boot is not allowed to pretend it is live.</div>
     <div class="post-meta">
       <span>Shane Foster</span>
       <span>&middot;</span>
@@ -335,8 +329,8 @@ h2 {
   </li>
   <li class="post-item">
     <div class="post-eyebrow">TrustLoopAI · June 29, 2026</div>
-    <div class="post-title"><a href="/blog/what-trustloopai-does-when-deepseek-fails.html">What does TrustLoopAI do when DeepSeek fails in a live SMS loop?</a></div>
-    <div class="post-deck">It fails over to Gemini Flash and keeps the conversation on a transport that actually works on Node 20 — including Fly and the websocket path Supabase needs.</div>
+    <div class="post-title"><a href="/blog/what-trustloopai-does-when-deepseek-fails.html">Why did the live SMS conversation die mid-thread?</a></div>
+    <div class="post-deck">Typical AI hires demo one model. When the vendor has a bad day, the customer is sitting on a dead thread. After Haven Command, the conversation keeps going.</div>
     <div class="post-meta">
       <span>Shane Foster</span>
       <span>&middot;</span>
@@ -347,8 +341,8 @@ h2 {
   </li>
   <li class="post-item">
     <div class="post-eyebrow">TrustLoopAI · June 22, 2026</div>
-    <div class="post-title"><a href="/blog/how-trustloopai-productized-referrals-and-payg-caps.html">How do you productize referrals and PAYG caps without ops chaos?</a></div>
-    <div class="post-deck">Usage without a ceiling is an outage you invoice later. TrustLoopAI treats referrals, billing, and PAYG caps as product, not a spreadsheet after the fact.</div>
+    <div class="post-title"><a href="/blog/how-trustloopai-productized-referrals-and-payg-caps.html">Why did usage become an invoice nobody planned?</a></div>
+    <div class="post-deck">Typical AI hires skip billing to ship the demo. After Haven Command, usage has a ceiling the product enforces — not a spreadsheet after the fire.</div>
     <div class="post-meta">
       <span>Shane Foster</span>
       <span>&middot;</span>
@@ -359,8 +353,8 @@ h2 {
   </li>
   <li class="post-item">
     <div class="post-eyebrow">Emoji Isle · June 15, 2026</div>
-    <div class="post-title"><a href="/blog/why-emoji-isle-positions-desynced-after-restart.html">Why did Emoji Isle positions desync after a server restart?</a></div>
-    <div class="post-deck">Memory is not persistence. If the authority dies, clients keep a ghost island. We persist state and reconcile on reconnect.</div>
+    <div class="post-title"><a href="/blog/why-emoji-isle-positions-desynced-after-restart.html">Why does a restart kill multi-user products — including AI ones?</a></div>
+    <div class="post-deck">Typical AI hires leave shared work that dies on restart. People come back to different realities. After Haven Command, everyone is on the same island again.</div>
     <div class="post-meta">
       <span>Shane Foster</span>
       <span>&middot;</span>
@@ -376,7 +370,7 @@ h2 {
   <span>
     <a href="https://havencommand.com/">Home</a>
     &nbsp;&middot;&nbsp;
-    <a href="https://havencommand.com/#contact">Hire</a>
+    <a href="https://havencommand.com/#contact">Hire Haven Command</a>
     &nbsp;&middot;&nbsp;
     <a href="mailto:contact@havencommand.com">contact@havencommand.com</a>
   </span>
