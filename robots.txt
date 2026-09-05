@@ -1,9 +1,7 @@
 User-agent: *
 Allow: /
+Allow: /blog/
 
-# Homepage anchors used for AEO/FAQ discovery
-# https://havencommand.com/#faq
-# https://havencommand.com/#about
-# https://havencommand.com/#contact
+Disallow: /admin/
 
 Sitemap: https://havencommand.com/sitemap.xml
