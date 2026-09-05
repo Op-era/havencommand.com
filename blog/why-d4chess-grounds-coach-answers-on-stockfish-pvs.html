@@ -78,7 +78,7 @@
           "name": "Why does this matter for a client AI product?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Any coach, advisor, or analyst that sits on top of a system of record has the same job: keep the model downstream of verified state."
+            "text": "Any coach, advisor, or analyst that sits on top of a system of record has the same job: keep the model downstream of verified state. That pipeline is a reusable module in the Haven Command systems library, so a client build does not start from a green-field demo."
           }
         }
       ]
@@ -126,7 +126,7 @@
   </div>
   <p>We stopped treating the model as an oracle and started treating it as a narrator. The pipeline is simple on purpose: Stockfish computes the principal variation. That PV is checked. Only then does the coach get to speak — and only about those moves, that eval, that position.</p>
   <p>The model can choose tone, order, and emphasis. It cannot introduce a piece sacrifice that is not in the verified line. If the engine data is missing or incomplete, the coach stays quiet or asks for a retry instead of filling the silence with chess-shaped noise.</p>
-  <p>That is the same pattern I use on other Haven Command products: <a href="https://scriptforgeai.studio">ScriptForge</a> does not let an agent invent a scene that is not in the locked draft; <a href="https://trustloopai.fyi">TrustLoopAI</a> does not invent a customer reply when the upstream model fails. Ground first. Talk second.</p>
+  <p>That coach pipeline now lives in the <a href="https://havencommand.com/#systems-library">Haven Command systems library</a> — an internal practice library, not a public product — next to the same “ground first, talk second” pattern I reuse on <a href="https://scriptforgeai.studio">ScriptForge</a> (locked draft, no invented scenes) and <a href="https://trustloopai.fyi">TrustLoopAI</a> (no invented reply when the upstream model fails). New work plugs into that module instead of rebuilding a narrator from a demo prompt.</p>
   <div class="pull">
     <div class="pull-inner">
       <blockquote>The engine is the source of record. The model is allowed to talk about the record — not invent a prettier one.</blockquote>
@@ -137,7 +137,7 @@
     <span class="sec-tag">For clients</span>
   </div>
   <p>If your product “explains” a spreadsheet, a medical note, a ledger, or a chess game, the model is not the source of truth. The system of record is. Clients who come to Haven Command for <a href="https://havencommand.com/">custom AI integrations</a> usually have the same request underneath the domain: make it talk like a specialist without lying like a chatbot.</p>
-  <p>I ship that as a production loop — retrieval or engine output, a check, then language — not as a prompt that says “please be accurate.” You can see the live chess version at <a href="https://d4chess.club">d4chess.club</a>. If you need the same class of grounded coach on your stack, email <a href="mailto:contact@havencommand.com">contact@havencommand.com</a>.</p>
+  <p>I ship that as a production loop — retrieval or engine output, a check, then language — not as a prompt that says “please be accurate.” The chess version is the library module under a board. You can see it live at <a href="https://d4chess.club">d4chess.club</a>. If you need the same grounded coach on your stack, it plugs in faster than a one-off. Email <a href="mailto:contact@havencommand.com">contact@havencommand.com</a>.</p>
   <div class="faq-block" id="faq">
     <h2>Questions this write-up answers</h2>
     <details>
@@ -150,7 +150,7 @@
     </details>
     <details>
       <summary>Why does this matter for a client AI product?</summary>
-      <p>Any coach, advisor, or analyst that sits on top of a system of record has the same job: keep the model downstream of verified state.</p>
+      <p>Any coach, advisor, or analyst that sits on top of a system of record has the same job: keep the model downstream of verified state. That pipeline is a reusable module in the Haven Command systems library, so a client build does not start from a green-field demo.</p>
     </details>
   </div>
   <div class="related">
@@ -159,12 +159,13 @@
       <li><a href="/blog/why-the-d4chess-post-game-coach-went-silent.html">Why was the D4Chess post-game coach silent — or talking over itself?</a></li>
       <li><a href="/blog/how-d4chess-roastme-explains-without-engine-jargon.html">How do you make engine analysis go viral without the jargon?</a></li>
       <li><a href="/blog/what-trustloopai-does-when-deepseek-fails.html">What does TrustLoopAI do when DeepSeek fails in a live SMS loop?</a></li>
+      <li><a href="https://havencommand.com/#systems-library">The Haven Command systems library (internal practice)</a></li>
       <li><a href="/blog/joy-ai-49-year-view.html">Joy, AI, and the 49-Year View</a></li>
     </ul>
   </div>
   <div class="cta-box">
-    <p><strong>Built this. Can build yours.</strong> D4Chess is a production system I shipped through Haven Command LLC. The same class of work — one bottleneck, end-to-end — is what I custom-build for founders funding a build and companies hiring AI integration help.</p>
-    <p><a href="https://d4chess.club">Open D4Chess</a> · <a href="https://havencommand.com/">Haven Command home</a> · <a href="mailto:contact@havencommand.com">contact@havencommand.com</a> · <a href="/blog/">More production notes</a></p>
+    <p><strong>Built this. Can build yours.</strong> D4Chess is a production system I shipped through Haven Command LLC. The grounded coach pipeline sits in the <a href="https://havencommand.com/#systems-library">systems library</a>, so a client build reuses it instead of starting from a one-off demo.</p>
+    <p><a href="https://d4chess.club">Open D4Chess</a> · <a href="https://havencommand.com/#systems-library">Systems library</a> · <a href="mailto:contact@havencommand.com">contact@havencommand.com</a> · <a href="/blog/">More production notes</a></p>
   </div>
   <div class="signoff">
     <p class="signoff-name">- Shane Foster</p>

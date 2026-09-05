@@ -78,7 +78,7 @@
           "name": "Is this an excuse to skip real auth?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. Users still authenticate. The point is a production door that is not single-homed on a flaky mail hop."
+            "text": "No. Users still authenticate. The point is a production door that is not single-homed on a flaky mail hop. That door is a reusable module in the Haven Command systems library."
           }
         }
       ]
@@ -124,7 +124,7 @@
     <span class="sec-tag">Solution</span>
   </div>
   <p>Production login is owner-gated and does not wait on a broken OTP hop. The owner can reach the app; everyone else still has to authenticate through the designed path. We did not “disable auth.” We stopped single-homing the operator on an inbox.</p>
-  <p>This is the same class of decision as <a href="/blog/why-empty-vite-firebase-config-black-screened-autosocial.html">passing real config into a Fly build</a>: the product has to boot for the person who is on the hook. Auth is part of boot.</p>
+  <p>This is the same class of decision as <a href="/blog/why-empty-vite-firebase-config-black-screened-autosocial.html">passing real config into a Fly build</a>: the product has to boot for the person who is on the hook. Auth is part of boot. The owner-operable login is now a module in the <a href="https://havencommand.com/#systems-library">Haven Command systems library</a> — internal practice, not a public product — so the next client workflow does not rebuild a door from scratch.</p>
   <div class="pull">
     <div class="pull-inner">
       <blockquote>If the only key is an email you cannot receive, you do not own the product. The inbox does.</blockquote>
@@ -134,8 +134,8 @@
     <h2>Why does this help someone hiring custom AI work?</h2>
     <span class="sec-tag">For clients</span>
   </div>
-  <p>AI products fail in boring places: login, billing, empty env, a provider timeout. Companies hiring integration work already know this. Founders funding a first build often find out at 11 p.m. I build owner-operable auth into the loop.</p>
-  <p>See AutoSocial at <a href="https://autosocial.havencommand.com">autosocial.havencommand.com</a>. For a custom workflow with a door you can actually open, <a href="mailto:contact@havencommand.com">contact@havencommand.com</a>.</p>
+  <p>AI products fail in boring places: login, billing, empty env, a provider timeout. Companies hiring integration work already know this. Founders funding a first build often find out at 11 p.m. I build owner-operable auth into the loop, then reuse it from the systems library so custom integrations ship faster than a one-off demo.</p>
+  <p>See AutoSocial at <a href="https://autosocial.havencommand.com">autosocial.havencommand.com</a>. For a custom workflow that plugs into that auth module, <a href="mailto:contact@havencommand.com">contact@havencommand.com</a> — or read how the <a href="https://havencommand.com/#systems-library">library</a> is meant to work.</p>
   <div class="faq-block" id="faq">
     <h2>Questions this write-up answers</h2>
     <details>
@@ -148,7 +148,7 @@
     </details>
     <details>
       <summary>Is this an excuse to skip real auth?</summary>
-      <p>No. Users still authenticate. The point is a production door that is not single-homed on a flaky mail hop.</p>
+      <p>No. Users still authenticate. The point is a production door that is not single-homed on a flaky mail hop. That door is a reusable module in the Haven Command systems library.</p>
     </details>
   </div>
   <div class="related">
@@ -157,6 +157,7 @@
       <li><a href="/blog/why-autosocial-publishes-through-the-instagram-graph-api.html">Why publish to Instagram through the Graph API instead of a browser login?</a></li>
       <li><a href="/blog/why-empty-vite-firebase-config-black-screened-autosocial.html">Why did an empty Vite Firebase config black-screen AutoSocial on Fly?</a></li>
       <li><a href="/blog/why-the-d4chess-post-game-coach-went-silent.html">Why was the D4Chess post-game coach silent — or talking over itself?</a></li>
+      <li><a href="https://havencommand.com/#systems-library">The Haven Command systems library (internal practice)</a></li>
       <li><a href="/blog/joy-ai-49-year-view.html">Joy, AI, and the 49-Year View</a></li>
     </ul>
   </div>
