@@ -334,9 +334,9 @@
             left: 0;
             width: 100%;
             box-sizing: border-box;
-            background-color: rgba(8, 12, 20, 0.38);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
+            background-color: rgba(8, 12, 20, 0.28);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(212, 175, 80, 0.18);
             padding: 20px 30px;
             display: flex;
@@ -404,9 +404,9 @@
         nav {
             margin-top: 0px; /* Adjust as needed */
             width: 100%;
-            background-color: rgba(8, 12, 20, 0.32);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(8, 12, 20, 0.22);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             padding: 10px 0;
             text-align: center;
@@ -433,7 +433,7 @@
         }
 
         .hero {
-            padding: 52px 12px 70px;
+            padding: 72px 12px 96px;
             text-align: center;
             text-shadow: 0 2px 18px rgba(0, 0, 0, 0.88), 0 0 36px rgba(0, 0, 0, 0.55);
         }
@@ -488,14 +488,21 @@
         }
 
         .panel {
-            background: rgba(6, 10, 18, 0.34);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(212, 175, 80, 0.14);
+            background: rgba(4, 8, 16, 0.2);
+            border: 1px solid rgba(212, 175, 80, 0.16);
             border-radius: 10px;
-            padding: 28px 32px 32px;
-            margin-bottom: 28px;
-            box-shadow: 0 10px 36px rgba(0, 0, 0, 0.22);
+            padding: 26px 30px 28px;
+            margin: 0 auto 40px;
+            max-width: 820px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+        }
+
+        .panel.wide {
+            max-width: none;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 8px 4px 12px;
         }
 
         .panel > h2,
@@ -514,8 +521,9 @@
         }
 
         .panel p {
-            color: rgba(255,255,255,0.88);
+            color: rgba(255,255,255,0.92);
             line-height: 1.65;
+            text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7);
         }
 
         .panel a {
@@ -678,9 +686,9 @@
         }
 
         footer {
-            background-color: rgba(6, 10, 18, 0.4);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(6, 10, 18, 0.28);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border-top: 1px solid rgba(212, 175, 80, 0.12);
             padding: 20px;
             text-align: center;
@@ -689,7 +697,8 @@
 
         .contact {
             margin-top: 0;
-            padding: 28px 32px 32px;
+            padding: 26px 30px 28px;
+            background: rgba(4, 8, 16, 0.22);
         }
 
         @media screen and (max-width: 768px) {
@@ -809,7 +818,7 @@
         <p>Same class of outcome on a commissioned build: D4Chess coaches from actual mistakes, TheraScribe turns a session into a note the clinician can use, TrustLoopAI keeps an SMS conversation alive when a vendor has a bad day.</p>
         <p id="systems-library">Commissioned work starts from the <strong>Haven Command systems library</strong> — reusable, integration-ready patterns from products the company already shipped. Not a public catalog. Not a walkthrough. Faster than a one-off demo. Evidence: <a href="blog/">blog</a>.</p>
         </section>
-        <section class="panel" id="projects">
+        <section class="panel wide" id="projects">
         <h2>Can Haven Command build something like D4Chess for your business?</h2>
         <p class="section-lead">The cards below are the proof — AI that does a specific job in a real workflow. TrustLoopAI.fyi and TheraScribe.online are more of the same.</p>
         <div class="projects-grid">
