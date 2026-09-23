@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+    <title>For Investors | Haven Command LLC</title>
+    <meta name="description" content="Haven Command LLC at a glance: our live products, what they do, where we market them, and how we are set up as a company.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://havencommand.com/investors/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://havencommand.com/investors/">
+    <meta property="og:title" content="For Investors | Haven Command LLC">
+    <meta property="og:description" content="Haven Command LLC at a glance: our live products, what they do, where we market them, and how we are set up as a company.">
+    <meta property="og:image" content="https://havencommand.com/images/HavenIcon.png">
+    <meta property="og:site_name" content="Haven Command LLC">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="For Investors | Haven Command LLC">
+    <meta name="twitter:description" content="Haven Command LLC at a glance: our live products, what they do, where we market them, and how we are set up as a company.">
+    <meta name="twitter:image" content="https://havencommand.com/images/HavenIcon.png">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "For Investors — Haven Command LLC",
+      "description": "Haven Command LLC at a glance: our live products, what they do, where we market them, and how we are set up as a company.",
+      "url": "https://havencommand.com/investors/",
+      "isPartOf": { "@type": "Organization", "name": "Haven Command LLC", "url": "https://havencommand.com" }
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        header h1 {
+            margin: 0;
+            flex: 1;
+            color: #00f;
+            text-align: center;
+            text-shadow: 0 0 10px #00f, 0 0 20px #00f, 0 0 30px #00f;
+        }
+        .menu-toggle {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 6px;
+            background: transparent;
+            cursor: pointer;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background-color: #fff;
+            border-radius: 999px;
+        }
+        .menu-spacer {
+            display: none;
+            width: 44px;
+            flex-shrink: 0;
+        }
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+            text-shadow: 0 0 10px #00f, 0 0 20px #00f, 0 0 30px #00f;
+        }
+        .hero {
+            max-width: 860px;
+            margin: 50px auto 10px;
+            padding: 30px;
+            text-align: center;
+        }
+        .hero h2 {
+            font-size: 2.2rem;
+            margin-bottom: 16px;
+        }
+        .hero p {
+            line-height: 1.7;
+            color: rgba(255,255,255,0.85);
+            font-size: 1.05rem;
+        }
+        .section {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 24px;
+        }
+        .section h3 {
+            font-size: 1.6rem;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            padding-bottom: 10px;
+            margin-bottom: 8px;
+        }
+        .section .section-sub {
+            color: rgba(255,255,255,0.65);
+            line-height: 1.6;
+            margin-bottom: 22px;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 22px;
+            margin-bottom: 20px;
+        }
+        .project-card {
+            position: relative;
+            display: block;
+            min-height: 320px;
+            border-radius: 10px;
+            overflow: hidden;
+            text-decoration: none;
+            color: #fff;
+            background-color: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 0 0 rgba(0,0,0,0);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+        a.project-card:hover, a.project-card:focus-visible {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+            border-color: var(--accent, rgba(255,255,255,0.3));
+        }
+        .project-card .card-art {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+        }
+        .project-card .card-scrim {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.92) 100%);
+        }
+        .project-card.no-art {
+            background: linear-gradient(160deg, var(--accent-dark, #10131c) 0%, #05060a 100%);
+        }
+        .project-card .card-body {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 22px;
+            box-sizing: border-box;
+        }
+        .project-card .card-eyebrow {
+            font-size: 0.72rem;
+            font-weight: bold;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent, #9cf);
+            margin-bottom: 8px;
+        }
+        .project-card h4 {
+            margin: 0 0 10px;
+            font-size: 1.6rem;
+        }
+        .project-card p {
+            margin: 0 0 16px;
+            font-size: 0.95rem;
+            line-height: 1.55;
+            color: rgba(255,255,255,0.85);
+        }
+        .project-card .card-cta {
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: var(--accent, #9cf);
+        }
+        .project-card .card-badge {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: bold;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 999px;
+            padding: 4px 12px;
+            width: fit-content;
+            margin-bottom: 8px;
+        }
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
+        }
+        .social-item {
+            background-color: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 8px;
+            padding: 18px;
+        }
+        .social-item h4 {
+            margin: 0 0 6px;
+            font-size: 1.05rem;
+        }
+        .social-item p {
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.55;
+            color: rgba(255,255,255,0.75);
+        }
+        .social-item a {
+            color: #9cf;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .link-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            columns: 2;
+            column-gap: 40px;
+        }
+        .link-list li {
+            margin-bottom: 12px;
+            break-inside: avoid;
+        }
+        .link-list a {
+            color: #9cf;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.05rem;
+        }
+        .link-list .link-note {
+            display: block;
+            color: rgba(255,255,255,0.6);
+            font-weight: normal;
+            font-size: 0.9rem;
+        }
+        .fact-box {
+            background-color: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 8px;
+            padding: 22px;
+            line-height: 1.8;
+        }
+        .fact-box dt {
+            font-weight: bold;
+            color: #fff;
+        }
+        .fact-box dd {
+            margin: 0 0 12px;
+            color: rgba(255,255,255,0.8);
+        }
+        footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        @media screen and (max-width: 768px) {
+            .menu-toggle { display: inline-flex; }
+            .menu-spacer { display: block; }
+            nav { display: none; padding: 0; }
+            body.nav-open nav { display: block; }
+            nav a { display: block; margin: 0; padding: 14px 20px; border-top: 1px solid rgba(255, 255, 255, 0.15); }
+            header h1 { font-size: 1.5rem; }
+            .link-list { columns: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </button>
+        <h1>Haven Command</h1>
+        <div class="menu-spacer" aria-hidden="true"></div>
+    </header>
+    <nav id="site-nav">
+        <a href="/index.html#home" onclick="closeMenu()">Home</a>
+        <a href="/index.html#projects" onclick="closeMenu()">Projects</a>
+        <a href="/careers.html" onclick="closeMenu()">Careers</a>
+        <a href="/index.html#contact" onclick="closeMenu()">Contact Us</a>
+    </nav>
+
+    <div class="hero">
+        <h2>Haven Command LLC, at a Glance</h2>
+        <p>Haven Command LLC is a software, education, and technology company that combines serious development with a passion for games. Our mission is to make learning cool and to build high-quality software, applications, and games that meaningfully improve people's lives.</p>
+        <p>We develop engaging educational tools, productivity software, and immersive entertainment experiences at the intersection of technology and creativity. The company is led by Shane Foster, Founder, CEO, and Managing Member.</p>
+    </div>
+
+    <div class="section">
+        <h3>Our Products</h3>
+        <p class="section-sub">Everything below is real and online. The live products are first; the ones still being built are clearly marked.</p>
+        <div class="projects-grid">
+            <a class="project-card" href="https://d4chess.club" target="_blank" rel="noopener" style="--accent:#e0c496; --accent-dark:#1a140a;">
+                <div class="card-art" style="background-image:url('../images/d4chess-card.jpg');"></div>
+                <div class="card-scrim"></div>
+                <div class="card-body">
+                    <div class="card-eyebrow">AI Chess Training · Live</div>
+                    <h4>D4Chess</h4>
+                    <p>An AI chess coach that analyzes your games, finds your recurring mistakes, and drills your weak spots. Free to start, with premium coaching at $5.99 per month.</p>
+                    <div class="card-cta">Train at d4chess.club →</div>
+                </div>
+            </a>
+            <a class="project-card" href="https://scriptforgeai.studio" target="_blank" rel="noopener" style="--accent:#e8a566; --accent-dark:#1c130a;">
+                <div class="card-art" style="background-image:url('../images/scriptforge-card.jpg');"></div>
+                <div class="card-scrim"></div>
+                <div class="card-body">
+                    <div class="card-eyebrow">AI Screenwriting · Live</div>
+                    <h4>ScriptForge AI</h4>
+                    <p>An AI-assisted screenwriting platform with story-structure agents that track continuity and character psychology. Live since September 2026, $9 per month with a free tier.</p>
+                    <div class="card-cta">Write at scriptforgeai.studio →</div>
+                </div>
+            </a>
+            <a class="project-card no-art" href="https://therascribe.online" target="_blank" rel="noopener" style="--accent:#9fd6e8; --accent-dark:#0a141a;">
+                <div class="card-body">
+                    <div class="card-eyebrow">AI Therapy Notes · Live</div>
+                    <h4>TheraScribe</h4>
+                    <p>AI-powered therapy session transcription and clinical note generation, so therapists get their evenings back. Priced from $49 to $149 per month.</p>
+                    <div class="card-cta">Visit therascribe.online →</div>
+                </div>
+            </a>
+            <a class="project-card no-art" href="https://xibrary.havencommand.com" target="_blank" rel="noopener" style="--accent:#c9a9f5; --accent-dark:#140c1c;">
+                <div class="card-body">
+                    <div class="card-eyebrow">Parts Sourcing · Live</div>
+                    <h4>Xibrary</h4>
+                    <p>A sourcing index for robotics and AI hardware parts, with compliance metadata so builders know exactly what each part is and where it stands.</p>
+                    <div class="card-cta">Browse at xibrary.havencommand.com →</div>
+                </div>
+            </a>
+            <a class="project-card no-art" href="https://howgamersgame.online" target="_blank" rel="noopener" style="--accent:#a9f5b8; --accent-dark:#0c1c10;">
+                <div class="card-body">
+                    <div class="card-eyebrow">Browser Game · Live</div>
+                    <h4>How Gamers Game</h4>
+                    <p>A live browser game — a tactical take on tic-tac-toe with pilot registration, achievements, and monthly high-score boards.</p>
+                    <div class="card-cta">Play at howgamersgame.online →</div>
+                </div>
+            </a>
+            <a class="project-card" href="https://emoji-isle.havencommand.com" target="_blank" rel="noopener" style="--accent:#7fe0c9; --accent-dark:#081713;">
+                <div class="card-art" style="background-image:url('../images/emojiisle-card.jpg');"></div>
+                <div class="card-scrim"></div>
+                <div class="card-body">
+                    <div class="card-badge">In Development</div>
+                    <h4>Emoji Isle</h4>
+                    <p>An online multiplayer survival sandbox. Hunt, gather, craft, build, and raid on a shared island — with strangers who might burn your base down.</p>
+                    <div class="card-cta">Play the build at emoji-isle.havencommand.com →</div>
+                </div>
+            </a>
+            <a class="project-card no-art" href="https://havencommand.com/ghosthunter/" style="--accent:#8f9bb8; --accent-dark:#0c0e14;">
+                <div class="card-body">
+                    <div class="card-badge">In Development</div>
+                    <h4>Ghost Hunter</h4>
+                    <p>A game still under wraps. We are building it in the open and documenting the process as it happens — the explanation comes when there is something real to point at.</p>
+                    <div class="card-cta">Follow along →</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Where We Market</h3>
+        <p class="section-sub">Our marketing runs on a daily content engine built around D4Chess. Every day, a new chess puzzle video goes out on TikTok with music, and every post is cross-posted to Instagram, X, Facebook, and Threads. Each puzzle points back to its full solution page on d4chess.club, so the content brings people to the actual product. We also publish regular long-form articles on the D4Chess blog.</p>
+        <div class="social-grid">
+            <div class="social-item">
+                <h4>TikTok</h4>
+                <p><a href="https://www.tiktok.com/@d4chessclub" target="_blank" rel="noopener">@d4chessclub</a> — our biggest audience, roughly ten thousand followers, and the account is monetized. Daily puzzle videos, every one with music.</p>
+            </div>
+            <div class="social-item">
+                <h4>Instagram</h4>
+                <p><a href="https://instagram.com/d4chess.club" target="_blank" rel="noopener">@d4chess.club</a> — D4Chess Club. Daily posts and reels, cross-posted with the other platforms.</p>
+            </div>
+            <div class="social-item">
+                <h4>X</h4>
+                <p><a href="https://x.com/D4ChessClub" target="_blank" rel="noopener">@D4ChessClub</a> — D4 Chess Club. Daily posts plus real conversations with chess players and fans.</p>
+            </div>
+            <div class="social-item">
+                <h4>Facebook</h4>
+                <p><a href="https://www.facebook.com/profile.php?id=61594396271323" target="_blank" rel="noopener">D4 Chess Club page</a> — our Facebook home for the club, posting the same daily content.</p>
+            </div>
+            <div class="social-item">
+                <h4>Threads</h4>
+                <p><a href="https://www.threads.com/@d4chess.club" target="_blank" rel="noopener">@d4chess.club</a> — part of the daily cross-posting across all four platforms.</p>
+            </div>
+            <div class="social-item">
+                <h4>YouTube</h4>
+                <p>D4 Chess Club — our YouTube channel for lessons and longer-form chess videos.</p>
+            </div>
+            <div class="social-item">
+                <h4>YouTube</h4>
+                <p><a href="https://www.youtube.com/@Xibrary" target="_blank" rel="noopener">@Xibrary</a> — the Xibrary channel, covering the parts-sourcing index.</p>
+            </div>
+            <div class="social-item">
+                <h4>Instagram</h4>
+                <p><a href="https://instagram.com/havencommandllc" target="_blank" rel="noopener">@havencommandllc</a> — the Haven Command company account.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Every Product Link</h3>
+        <p class="section-sub">All of our products that are online right now, in one list.</p>
+        <ul class="link-list">
+            <li><a href="https://d4chess.club" target="_blank" rel="noopener">d4chess.club</a><span class="link-note">AI chess coaching — live</span></li>
+            <li><a href="https://scriptforgeai.studio" target="_blank" rel="noopener">scriptforgeai.studio</a><span class="link-note">AI screenwriting — live</span></li>
+            <li><a href="https://therascribe.online" target="_blank" rel="noopener">therascribe.online</a><span class="link-note">AI therapy notes — live</span></li>
+            <li><a href="https://xibrary.havencommand.com" target="_blank" rel="noopener">xibrary.havencommand.com</a><span class="link-note">robotics and AI hardware parts index — live</span></li>
+            <li><a href="https://howgamersgame.online" target="_blank" rel="noopener">howgamersgame.online</a><span class="link-note">browser game — live</span></li>
+            <li><a href="https://emoji-isle.havencommand.com" target="_blank" rel="noopener">emoji-isle.havencommand.com</a><span class="link-note">multiplayer survival game — in development</span></li>
+            <li><a href="https://havencommand.com/ghosthunter/" target="_blank" rel="noopener">havencommand.com/ghosthunter</a><span class="link-note">game — in development</span></li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>Licenses and Company Standing</h3>
+        <p class="section-sub">What we can show on paper, today.</p>
+        <div class="fact-box">
+            <dl>
+                <dt>Company</dt>
+                <dd>Haven Command LLC is a California limited liability company. Its Articles of Organization are filed with the California Secretary of State.</dd>
+                <dt>Tax ID</dt>
+                <dd>EIN 42-2650765.</dd>
+                <dt>Ownership reporting</dt>
+                <dd>The Beneficial Ownership Information Report (BOIR) is filed.</dd>
+            </dl>
+            <p style="margin:0; color:rgba(255,255,255,0.6); font-size:0.9rem;">That is the full list of what we could verify from our own documents. We hold no other business licenses, and we have no press coverage to point to yet.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Haven Command LLC. All rights reserved. <a href="/privacy_policy/" style="color:#9cf;">Privacy Policy</a> &middot; <a href="/terms_of_service/" style="color:#9cf;">Terms of Service</a></p>
+    </footer>
+    <script>
+        function setMenuOpen(isOpen) {
+            document.body.classList.toggle('nav-open', isOpen);
+            const menuButton = document.querySelector('.menu-toggle');
+            if (menuButton) {
+                menuButton.setAttribute('aria-expanded', String(isOpen));
+                menuButton.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+            }
+        }
+        function toggleMenu() { setMenuOpen(!document.body.classList.contains('nav-open')); }
+        function closeMenu() { setMenuOpen(false); }
+        const mobileBreakpoint = window.matchMedia('(max-width: 768px)');
+        mobileBreakpoint.addEventListener('change', (event) => { if (!event.matches) closeMenu(); });
+    </script>
+</body>
+</html>
