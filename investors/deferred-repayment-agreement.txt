@@ -1,0 +1,398 @@
+NOTE (2026-08-17): Filename "Ali Father" = investor related to Ali (male collaborator), not Alison Fugman-Harrison. Blank name/amount; unsigned template; loan ≠ equity.
+
+NOTE (2026-08-20): Shane direction — hopeful ~$10,000 funding. For contract purposes both Ali and his father are named **Nabeel Ali**. Fill Investor as the father (lender). Keep collaborator Ali distinct in any side notes. Still unsigned until both parties sign.
+
+HAVEN COMMAND LLC
+DEFERRED REPAYMENT AGREEMENT (PROMISSORY NOTE)
+
+Effective Date: ___________________
+Funding Date:  ___________________ (date Principal is received by Company)
+Last Updated:  September 23, 2026
+
+This Deferred Repayment Agreement ("Agreement") is entered into by and between:
+
+  Company:      Haven Command LLC, a California Limited Liability Company
+                1838 E Everglade Ave, Fresno, CA 93720
+                EIN: 42-2650765
+                Contact: shanefoster@havencommand.com
+                Represented by: Shane Foster, Founder & CEO
+                ("Haven Command" or "Company")
+
+  Investor:     Nabeel Ali  [father / lender — same legal name as collaborator Ali; confirm address/email below]
+                [Address]
+                [Email]
+                ("Investor")
+
+Collectively referred to as "the Parties."
+
+================================================================================
+RECITALS
+================================================================================
+
+WHEREAS, Haven Command LLC is an early-stage technology and entertainment
+company developing commercial software, game, and AI products;
+
+WHEREAS, Investor wishes to contribute capital to support the Company's
+operations and product development;
+
+WHEREAS, the Company is in an early-revenue stage and the Parties wish to
+defer repayment until the Company has demonstrated financial sustainability;
+
+WHEREAS, the Parties wish to memorialize the investment, establish fair and
+clear terms of repayment, and protect both Parties' interests;
+
+NOW THEREFORE, the Parties agree as follows:
+
+================================================================================
+SECTION 1 — THE INVESTMENT
+================================================================================
+
+1.1  PRINCIPAL AMOUNT
+
+     Investor agrees to contribute, and the Company agrees to accept, a
+     one-time cash investment in the amount of:
+
+       $10$___________________ USD ("Principal")
+
+     to be transferred to Haven Command LLC's Mercury business bank account
+     within _____ days of both Parties signing this Agreement. The date the
+     Principal is received in the Company's account is the "Funding Date."
+
+1.2  USE OF FUNDS
+
+     The Company shall use the Principal for general business operations,
+     product development, and marketing of Haven Command LLC products,
+     including but not limited to D4Chess.club, Cognition, and TheraScribe.
+     The Company retains sole discretion over specific allocation of funds.
+
+1.3  THIS IS A LOAN — NOT AN EQUITY INVESTMENT
+
+     This Agreement is a promissory note. It does not grant Investor any
+     ownership interest, membership interest, equity stake, voting rights, or
+     management authority in Haven Command LLC. Investor is a creditor of the
+     Company, not a member or shareholder. Shane Foster remains the sole
+     member of Haven Command LLC.
+
+================================================================================
+SECTION 2 — INTEREST
+================================================================================
+
+2.1  INTEREST RATE
+
+     The outstanding Principal balance shall accrue simple interest at the
+     annual rate of ___________________ (_____%) per year from the Funding Date.
+
+     Monthly interest accrual = Outstanding Principal × 4% ÷ 12
+
+     Example: $5,000 Principal × 4% ÷ 12 = $16.67 interest per month.
+
+     NOTE: 4% is set at or above the IRS Applicable Federal Rate (AFR) to
+     avoid imputed interest treatment. If the IRS AFR rises above 4% in a
+     future year, the Parties agree to amend this rate in writing to match
+     the then-current mid-term AFR, if required.
+
+2.2  INTEREST ACCRUES FROM FUNDING DATE
+
+     Interest begins accruing on the Funding Date regardless of when
+     payments begin. This compensates Investor for the time value of money
+     during the pre-payment period.
+
+2.3  TOTAL AMOUNT OWED
+
+     "Total Amount Owed" as of any date = Principal + all simple interest
+     accrued from the Funding Date through that date.
+
+     No payments are required before the Payment Trigger defined in
+     Section 4.1. However, interest continues to accrue during that period,
+     so the Total Amount Owed grows until repayment begins.
+
+     Illustrative example (for a $5,000 investment, 12 months to trigger):
+
+       Interest accrued pre-trigger (12 months): $200.00
+       Total Amount Owed at trigger:             $5,200.00
+       Monthly payment (24-month schedule):      $216.67/month
+       Total paid to Investor:                   ~$5,220 (principal + interest)
+
+================================================================================
+SECTION 3 — PROFITABILITY DEFINITION
+================================================================================
+
+3.1  GROSS MONTHLY REVENUE
+
+     "Gross Monthly Revenue" means all cash actually received by the Company
+     during a calendar month from customers, subscriptions, licenses, and
+     product sales — net of refunds and chargebacks processed in that month.
+     It does not include loans, owner contributions, or investor proceeds.
+
+3.2  ACTUAL MONTHLY CASH EXPENSES
+
+     "Actual Monthly Cash Expenses" means all cash actually paid out by the
+     Company during a calendar month for hosting, software subscriptions,
+     contractors, advertising, and other direct operating costs.
+
+     This definition intentionally excludes:
+       (a) Deferred compensation obligations not yet paid in cash;
+       (b) Non-cash accounting entries.
+
+     The intent is to measure real cash flow, not accounting net income.
+
+3.3  CASH FLOW POSITIVE THRESHOLD
+
+     The Company is "Cash Flow Positive" when:
+
+       Gross Monthly Revenue > Actual Monthly Cash Expenses
+
+     for TWO (2) consecutive calendar months ("Profitable Period").
+
+     This definition is simple and objectively verifiable from the Company's
+     bank statements alone.
+
+================================================================================
+SECTION 4 — PAYMENT TRIGGER AND REPAYMENT TERMS
+================================================================================
+
+4.1  PAYMENT TRIGGER
+
+     Repayment shall begin on the first day of the calendar month following
+     the end of the Profitable Period defined in Section 3.3
+     ("Payment Trigger Date").
+
+     The Company shall notify Investor in writing within 5 business days of
+     the Payment Trigger Date being reached.
+
+4.2  REPAYMENT SCHEDULE
+
+     Beginning on the Payment Trigger Date, the Company shall pay Investor
+     a fixed monthly installment calculated as follows:
+
+       Monthly Payment = Total Amount Owed on the Payment Trigger Date ÷ 24
+
+     Payments continue on the same calendar day each month until the Total
+     Amount Owed is paid in full or the 24-month schedule is complete,
+     whichever comes first.
+
+     The 24-month schedule is designed to give the Company a predictable
+     obligation while ensuring Investor receives full repayment within a
+     reasonable timeframe.
+
+4.3  PAYMENT DEFERRAL IN LOW-REVENUE MONTHS
+
+     If in any given month after the Payment Trigger Date the Company's
+     Gross Monthly Revenue falls below its Actual Monthly Cash Expenses
+     (i.e., the Company is no longer Cash Flow Positive), the Company may
+     defer that month's payment.
+
+     Deferred payments carry forward and are added to the remaining balance.
+     The repayment schedule extends by one month for each month deferred.
+     Deferred months do not cancel the obligation — they only delay it.
+
+     The Company shall notify Investor in writing within 5 business days of
+     any deferred payment.
+
+4.4  MATURITY DATE (LONGSTOP)
+
+     Regardless of whether the Payment Trigger has been met, the full
+     outstanding Total Amount Owed shall become due and payable no later
+     than FIVE (5) YEARS from the Funding Date ("Maturity Date").
+
+     If the Total Amount Owed has not been repaid in full by the Maturity
+     Date, Investor may demand repayment in writing. Upon such demand, the
+     Company shall repay the full remaining balance within NINETY (90) DAYS.
+
+     The Maturity Date provision exists to ensure Investor has a definite
+     outside date by which repayment must occur, regardless of the
+     Company's revenue performance.
+
+4.5  EARLY REPAYMENT
+
+     The Company may repay the Total Amount Owed in full or in part at any
+     time, without penalty. Partial early payments reduce the outstanding
+     Principal, which reduces subsequent interest accrual.
+
+4.6  FINAL PAYMENT AND TERMINATION
+
+     Upon receipt of the final payment, this Agreement terminates
+     automatically. The Company shall provide Investor written confirmation
+     that the obligation is satisfied within 10 business days of the final
+     payment.
+
+4.7  PAYMENT METHOD
+
+     All payments shall be made by ACH transfer, check, or other mutually
+     agreed written method. Investor shall provide current banking
+     information in writing. Changes to banking information require written
+     notice at least 10 business days before the next payment.
+
+================================================================================
+SECTION 5 — REPORTING
+================================================================================
+
+5.1  QUARTERLY SUMMARY
+
+     Beginning in the first full calendar quarter after the Funding Date,
+     the Company shall provide Investor a one-page written summary each
+     quarter containing:
+
+       (a) Gross Monthly Revenue for each month of the quarter;
+       (b) Actual Monthly Cash Expenses for each month of the quarter;
+       (c) Whether the Company reached or remained in a Profitable Period;
+       (d) Current outstanding balance owed to Investor;
+       (e) Payments made during the quarter, if any.
+
+     Quarterly summaries shall be delivered within 30 days of the end of
+     each quarter (i.e., by January 31, April 30, July 31, October 31).
+
+5.2  PAYMENT STATEMENTS
+
+     The Company shall provide a brief payment statement with each
+     scheduled repayment showing: payment amount, interest applied,
+     principal applied, and remaining balance.
+
+================================================================================
+SECTION 6 — WHAT INVESTOR RECEIVES AND DOES NOT RECEIVE
+================================================================================
+
+6.1  INVESTOR RECEIVES:
+       (a) Return of full Principal;
+       (b) Simple interest at _____% per annum, accruing from the Funding Date;
+       (c) Quarterly financial summaries (Section 5.1);
+       (d) Monthly payment statements during the repayment period;
+       (e) Written notice when Payment Trigger is reached;
+       (f) Written confirmation when obligation is fully satisfied.
+
+6.2  INVESTOR DOES NOT RECEIVE:
+       (a) Equity, membership interest, or ownership in Haven Command LLC;
+       (b) Voting rights or management authority of any kind;
+       (c) Revenue share or ongoing participation beyond repayment of
+           Principal and interest as defined herein;
+       (d) Any return beyond the Total Amount Owed as defined herein.
+
+================================================================================
+SECTION 7 — RISK ACKNOWLEDGMENT
+================================================================================
+
+7.1  Investor acknowledges and accepts the following risks:
+
+       (a) The Company is early-stage at the time of this Agreement. There
+           is no guarantee the Company will become profitable or that
+           repayment will occur before the Maturity Date;
+
+       (b) If the Company is dissolved, ceases operations, or becomes
+           insolvent before the Total Amount Owed is repaid, Investor is
+           treated as an unsecured creditor and may receive partial or
+           no repayment;
+
+       (c) Investor's claim is subordinate to any secured debt obligations
+           the Company may have at or after the time of this Agreement;
+
+       (d) This investment does not carry FDIC insurance or any government
+           protection.
+
+7.2  Investor represents that:
+
+       (a) He has the financial means to make this investment without
+           material adverse effect on his personal financial situation;
+
+       (b) He understands and accepts the risks described in Section 7.1;
+
+       (c) He has had the opportunity to review this Agreement and seek
+           independent legal and financial advice before signing.
+
+================================================================================
+SECTION 8 — GENERAL PROVISIONS
+================================================================================
+
+8.1  GOVERNING LAW
+
+     This Agreement shall be governed by the laws of the State of California.
+
+8.2  DISPUTE RESOLUTION
+
+     The Parties agree to attempt good-faith negotiation before pursuing
+     legal action. If unresolved within 30 days, disputes shall be submitted
+     to binding arbitration in Fresno County, California under AAA Commercial
+     Rules. The prevailing Party shall be entitled to recover reasonable
+     attorneys' fees and arbitration costs.
+
+8.3  ENTIRE AGREEMENT
+
+     This Agreement constitutes the entire understanding between the Parties
+     regarding this investment and supersedes all prior oral or written
+     discussions on the subject.
+
+8.4  AMENDMENTS
+
+     Any amendment to this Agreement must be in writing and signed by
+     both Parties.
+
+8.5  SEVERABILITY
+
+     If any provision is found to be unenforceable, the remaining provisions
+     remain in full force and effect.
+
+8.6  NOTICES
+
+     All notices shall be in writing and delivered by email with read receipt
+     or by certified mail to the addresses listed at the top of this
+     Agreement. Email notice to shanefoster@havencommand.com (Company) is
+     effective on delivery confirmation.
+
+8.7  NO WAIVER
+
+     Failure to enforce any provision of this Agreement at any time does not
+     waive the right to enforce it later.
+
+================================================================================
+REPAYMENT TRACKING LOG
+================================================================================
+
+  Funding Date:          ___________________
+  Principal Received:    $___________________
+  Interest Rate:         _____% per annum (simple) — accrues from Funding Date
+  Payment Trigger Date:  ___________________
+  Total Amount Owed
+  at Payment Trigger:    $___________________
+  Monthly Payment:       $___________________  (Total Owed ÷ 24)
+  Maturity Date:         ___________________ (5 years from Funding Date)
+
+  Month       Opening Balance    Interest Accrued    Payment Made    Closing Balance
+  ─────────   ───────────────    ────────────────    ────────────    ───────────────
+  Pre-trigger [balance grows as interest accrues — no payments due]
+  ─────────   ───────────────    ────────────────    ────────────    ───────────────
+  [Month 1]   $___________       $___________        $___________    $___________
+  [Month 2]   $___________       $___________        $___________    $___________
+  [continue until balance = $0.00 or Maturity Date]
+  ─────────   ───────────────    ────────────────    ────────────    ───────────────
+  PAID IN FULL: ___________________  Final Payment: $___________
+
+================================================================================
+SIGNATURES
+================================================================================
+
+By signing below, both Parties agree to the terms of this Agreement.
+
+HAVEN COMMAND LLC
+
+Signature:  _______________________________
+Name:       Shane Foster
+Title:      Founder & CEO
+Date:       ___________________
+
+
+INVESTOR
+
+Signature:  _______________________________
+Name:       ___________________________
+Date:       ___________________
+
+================================================================================
+ATTORNEY DISCLAIMER
+================================================================================
+
+This Agreement was prepared as a working document for Haven Command LLC and
+should be reviewed by a licensed California attorney before execution,
+particularly if the Principal amount exceeds $10,000. This document does not
+constitute legal advice. For investments from non-accredited investors, confirm
+applicable California and federal securities exemptions with qualified counsel
+before signing.
+================================================================================
